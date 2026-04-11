@@ -3,14 +3,14 @@ import { getServerSession } from "next-auth";
 
 import dbConnect from "@/lib/dbConnect";
 import NotificationModel from "@/models/NotificationModel";
-import { authOptions } from "@/lib/auth";
+import { getAuthOptions } from "@/lib/auth";
 
 export async function PATCH(
   request: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const session = await getServerSession(authOptions);
+    const session = await getServerSession(getAuthOptions());
 
     if (!session) {
       return NextResponse.json(
@@ -85,7 +85,7 @@ export async function DELETE(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const session = await getServerSession(authOptions);
+    const session = await getServerSession(getAuthOptions());
 
     if (!session || session.user.role !== "admin") {
       return NextResponse.json(

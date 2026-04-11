@@ -1,7 +1,8 @@
-import cloudinary from './cloudinary';
+import cloudinary, { ensureCloudinaryConfigured } from "./cloudinary";
 
 // Delete audio file from Cloudinary
 export const deleteAudioFromCloudinary = async (publicId: string) => {
+  ensureCloudinaryConfigured();
   try {
     const result = await cloudinary.uploader.destroy(publicId, {
       resource_type: 'video' // Cloudinary uses 'video' for audio files
@@ -15,6 +16,7 @@ export const deleteAudioFromCloudinary = async (publicId: string) => {
 
 // Get audio file info from Cloudinary
 export const getAudioInfo = async (publicId: string) => {
+  ensureCloudinaryConfigured();
   try {
     const result = await cloudinary.api.resource(publicId, {
       resource_type: 'video'
@@ -28,6 +30,7 @@ export const getAudioInfo = async (publicId: string) => {
 
 // List all audio files in the IELTS folder
 export const listAudioFiles = async () => {
+  ensureCloudinaryConfigured();
   try {
     const result = await cloudinary.api.resources({
       type: 'upload',
@@ -44,6 +47,7 @@ export const listAudioFiles = async () => {
 
 // List all listening audio files
 export const listListeningAudioFiles = async () => {
+  ensureCloudinaryConfigured();
   try {
     const result = await cloudinary.api.resources({
       type: 'upload',
@@ -60,6 +64,7 @@ export const listListeningAudioFiles = async () => {
 
 // Delete listening audio file
 export const deleteListeningAudio = async (publicId: string) => {
+  ensureCloudinaryConfigured();
   try {
     const result = await cloudinary.uploader.destroy(publicId, {
       resource_type: 'video'
@@ -77,6 +82,7 @@ export const getAudioUrl = (publicId: string, options: {
   quality?: string;
   fetch_format?: string;
 } = {}) => {
+  ensureCloudinaryConfigured();
   return cloudinary.url(publicId, {
     resource_type: 'video',
     ...options
@@ -89,6 +95,7 @@ export const getListeningAudioUrl = (publicId: string, options: {
   quality?: string;
   bit_rate?: string;
 } = {}) => {
+  ensureCloudinaryConfigured();
   return cloudinary.url(publicId, {
     resource_type: 'video',
     format: options.format || 'mp3',

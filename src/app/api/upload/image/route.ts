@@ -1,15 +1,13 @@
 import { v2 as cloudinary } from "cloudinary";
 import { NextResponse } from "next/server";
-import { IncomingForm } from "formidable";
-import fs from "fs";
-
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME!,
-  api_key: process.env.CLOUDINARY_API_KEY!,
-  api_secret: process.env.CLOUDINARY_API_SECRET!,
-});
 
 export async function POST(req: Request) {
+  cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME!,
+    api_key: process.env.CLOUDINARY_API_KEY!,
+    api_secret: process.env.CLOUDINARY_API_SECRET!,
+  });
+
   const formData = await req.formData();
   const file = formData.get("image") as File;
 

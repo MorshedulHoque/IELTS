@@ -1,10 +1,17 @@
-import { createClient } from 'contentful';
+import { createClient } from "contentful";
 
-const client = createClient({
-  space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID!,
-  accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN!,
-  environment: process.env.NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT || 'master',
-});
+let client: ReturnType<typeof createClient> | null = null;
+
+function getContentfulClient() {
+  if (!client) {
+    client = createClient({
+      space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID!,
+      accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN!,
+      environment: process.env.NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT || "master",
+    });
+  }
+  return client;
+}
 
 export interface WritingSample {
   sys: {
@@ -109,7 +116,7 @@ export const getWritingSamples = async (): Promise<WritingSample[]> => {
     console.log('Space ID:', process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID);
     console.log('Token (first 10 chars):', process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN?.substring(0, 10) + '...');
     
-    const response = await client.getEntries({
+    const response = await getContentfulClient().getEntries({
       content_type: 'ieltsWriting', // Adjust this based on your Contentful content type
       order: ['-fields.date'], // Sort by date descending
     });
@@ -157,7 +164,7 @@ export const getWritingSamples = async (): Promise<WritingSample[]> => {
 
 export const getWritingSampleBySlug = async (slug: string): Promise<WritingSample | null> => {
   try {
-    const response = await client.getEntries({
+    const response = await getContentfulClient().getEntries({
       content_type: 'ieltsWriting',
       'fields.slug': slug,
       limit: 1,
@@ -207,7 +214,7 @@ export const getWritingSampleBySlug = async (slug: string): Promise<WritingSampl
 
 export const getBlogPosts = async (): Promise<BlogPost[]> => {
   try {
-    const response = await client.getEntries({
+    const response = await getContentfulClient().getEntries({
       content_type: 'blogPage',
       order: ['-fields.createdDate'],
     });
@@ -221,7 +228,7 @@ export const getBlogPosts = async (): Promise<BlogPost[]> => {
 
 export const getBlogPostBySlug = async (slug: string): Promise<BlogPost | null> => {
   try {
-    const response = await client.getEntries({
+    const response = await getContentfulClient().getEntries({
       content_type: 'blogPage',
       'fields.slug': slug,
       limit: 1,
@@ -234,4 +241,4 @@ export const getBlogPostBySlug = async (slug: string): Promise<BlogPost | null> 
   }
 };
 
-export default client;
+export { getContentfulClient };

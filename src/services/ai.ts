@@ -1,15 +1,5 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-// Add debug logging
-console.log('API Key available:', !!process.env.NEXT_PUBLIC_GOOGLE_AI_API_KEY);
-console.log('API Key length:', process.env.NEXT_PUBLIC_GOOGLE_AI_API_KEY?.length);
-
-if (!process.env.NEXT_PUBLIC_GOOGLE_AI_API_KEY) {
-  console.error('Google AI API Key is not configured!');
-}
-
-const genAI = new GoogleGenerativeAI(process.env.NEXT_PUBLIC_GOOGLE_AI_API_KEY || "");
-
 interface EvaluationResult {
   score: number;
   feedback: {
@@ -36,13 +26,14 @@ export async function evaluateWritingAnswer(
   criteria: string
 ): Promise<EvaluationResult> {
   try {
-    // Log API configuration
-    console.log('=== Gemini API Configuration Check ===');
-    console.log('API Key configured:', !!process.env.NEXT_PUBLIC_GOOGLE_AI_API_KEY);
-    console.log('API Key length:', process.env.NEXT_PUBLIC_GOOGLE_AI_API_KEY?.length);
-    console.log('Model name:', "gemini-1.5-flash");
+    const apiKey = process.env.NEXT_PUBLIC_GOOGLE_AI_API_KEY;
+    console.log("=== Gemini API Configuration Check ===");
+    console.log("API Key configured:", !!apiKey);
+    console.log("API Key length:", apiKey?.length);
+    console.log("Model name:", "gemini-1.5-flash");
 
-    console.log('\n=== Starting Writing Evaluation ===');
+    console.log("\n=== Starting Writing Evaluation ===");
+    const genAI = new GoogleGenerativeAI(apiKey || "");
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
     const prompt = `You are an IELTS writing examiner. Evaluate the following writing answer based on the given criteria. 

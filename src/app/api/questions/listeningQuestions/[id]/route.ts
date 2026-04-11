@@ -4,8 +4,6 @@ import { NextResponse } from "next/server";
 import dbConnect from "@/lib/dbConnect";
 import ListeningModel from "@/models/ListeningModel";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
-
 const isValidObjectId = (id: string) => /^[0-9a-fA-F]{24}$/.test(id);
 
 export async function GET(
@@ -41,7 +39,7 @@ export async function PATCH(
 ) {
   try {
     await dbConnect();
-    // const session = await getServerSession(authOptions);
+    // const session = await getServerSession(getAuthOptions());
     // if (!session) {
     //   return NextResponse.json(
     //     { success: false, error: "Unauthorized" },
@@ -92,7 +90,7 @@ export async function DELETE(
 ) {
   try {
     await dbConnect();
-    // const session = await getServerSession(authOptions);
+    // const session = await getServerSession(getAuthOptions());
     // if (!session) {
     //   return NextResponse.json(
     //     { success: false, error: "Unauthorized" },

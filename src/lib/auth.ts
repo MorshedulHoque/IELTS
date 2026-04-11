@@ -19,7 +19,8 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import LinkedInProvider from "next-auth/providers/linkedin";
 
-export const authOptions: NextAuthOptions = {
+export function getAuthOptions(): NextAuthOptions {
+  return {
   pages: {
     signIn: "/user/signin",
   },
@@ -165,3 +166,4 @@ export const authOptions: NextAuthOptions = {
     maxAge: 60 * 60 * 24 * 30,
   },
 };
+}

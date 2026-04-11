@@ -3,11 +3,11 @@ import { getServerSession } from "next-auth";
 
 import dbConnect from "@/lib/dbConnect";
 import NotificationModel from "@/models/NotificationModel";
-import { authOptions } from "@/lib/auth";
+import { getAuthOptions } from "@/lib/auth";
 
 export async function POST() {
   try {
-    const session = await getServerSession(authOptions);
+    const session = await getServerSession(getAuthOptions());
 
     if (!session) {
       return NextResponse.json(

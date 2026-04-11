@@ -4,7 +4,7 @@ import { getServerSession } from "next-auth";
 import dbConnect from "@/lib/dbConnect";
 import NotificationModel from "@/models/NotificationModel";
 import UserModel from "@/models/UserModel";
-import { authOptions } from "@/lib/auth";
+import { getAuthOptions } from "@/lib/auth";
 
 const serializeNotification = (notification: any) => ({
   ...notification,
@@ -21,7 +21,7 @@ const serializeNotification = (notification: any) => ({
 
 export async function GET(request: Request) {
   try {
-    const session = await getServerSession(authOptions);
+    const session = await getServerSession(getAuthOptions());
 
     if (!session) {
       return NextResponse.json(
@@ -97,7 +97,7 @@ export async function GET(request: Request) {
 
 export async function POST(request: Request) {
   try {
-    const session = await getServerSession(authOptions);
+    const session = await getServerSession(getAuthOptions());
 
     if (!session || session.user.role !== "admin") {
       return NextResponse.json(

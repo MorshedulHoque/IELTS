@@ -4,8 +4,6 @@ import { NextResponse } from "next/server";
 import dbConnect from "@/lib/dbConnect";
 import ReadingModel from "@/models/ReadingModel";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
-
 interface ReadingTest {
   id: string;
   title: string;
@@ -47,7 +45,7 @@ export async function PATCH(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    // const session = await getServerSession(authOptions);
+    // const session = await getServerSession(getAuthOptions());
     // if (!session) {
     //   return NextResponse.json(
     //     { success: false, error: "Unauthorized" },
@@ -95,7 +93,7 @@ export async function DELETE(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    // const session = await getServerSession(authOptions);
+    // const session = await getServerSession(getAuthOptions());
     // if (!session) {
     //   return NextResponse.json(
     //     { success: false, error: "Unauthorized" },

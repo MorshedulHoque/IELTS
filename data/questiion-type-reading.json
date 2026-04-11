@@ -1,0 +1,238 @@
+{
+"fill_in_the_blanks_with_subtitle": [
+    {
+    "title": "",
+    "subtitle": "Steam power",
+    "extra": [
+        "Newcomen’s steam engine was used in mines to remove water.",
+        "In Watt and Boulton’s steam engine, the movement of the __________ was linked to a gear system.",
+        "A greater supply of __________ was required to power steam engines."
+    ],
+    "questions": [
+        {
+        "question_number": 1,
+        "answer": "piston",
+        "input_type": "text"
+        },
+        {
+        "question_number": 2,
+        "answer": "coal",
+        "input_type": "text"
+        }
+    ]
+    }
+],
+"true_false_not_given": [
+    {
+    "question_number": 8,
+    "question": "Britain's canal network grew rapidly so that more goods could be transported around the country.",
+    "answer": "True",
+    "input_type": "dropdown"
+    }
+],
+"fill_in_the_blanks": [
+    {
+    "question_number": 8,
+    "question": "Mike and Bob Bryan made changes to the types of __________ used on their racket frames.",
+    "answer": "paint",
+    "input_type": "text"
+    }
+],
+"paragraph_matching": [
+    {
+    "question_number": 14,
+    "question": "reference to two chemical compounds which impact on performance",
+    "answer": "C",
+    "options": [
+        {
+        "label": "A",
+        "value": "A"
+        },
+        {
+        "label": "B",
+        "value": "B"
+        },
+        {
+        "label": "C",
+        "value": "C"
+        },
+        {
+        "label": "D",
+        "value": "D"
+        },
+        {
+        "label": "E",
+        "value": "E"
+        },
+        {
+        "label": "F",
+        "value": "F"
+        }
+    ],
+    "input_type": "dropdown"
+    }
+],
+"mcq": [
+    {
+    "question_number": 27,
+    "question": "What point does the writer make about misinformation in the first paragraph?",
+    "answer": ["D"],
+    "options": [
+        {
+        "label": "A",
+        "value": "Misinformation is a relatively recent phenomenon."
+        },
+        {
+        "label": "B",
+        "value": "Some people find it easy to identify misinformation."
+        },
+        {
+        "label": "C",
+        "value": "Misinformation changes as it is passed from one person to another."
+        },
+        {
+        "label": "D",
+        "value": "There may be a number of reasons for the spread of misinformation."
+        }
+    ],
+    "input_type": "radio",
+    "min_selection": 1,
+    "max_selection": 1
+    }
+],
+"summary_fill_in_the_blanks": {
+    "question_numbers": [31, 32, 33, 34, 35, 36],
+    "passage": "Maryam Mirzakhani is regarded as [31] in the field of mathematics because she was the only female holder of the prestigious Fields Medal — a record that she retained at the time of her death. However, maths held little [32] for her as a child and in fact her performance was below average until she was [33] by a difficult puzzle that one of her siblings showed her. Later, as a professional mathematician, she had an inquiring mind and proved herself to be [34] when things did not go smoothly. She said she got the greatest [35] from making ground-breaking discoveries and in fact she was responsible for some extremely [36] mathematical studies.",
+    "answers": {
+    "31": "G",
+    "32": "J",
+    "33": "H",
+    "34": "B",
+    "35": "E",
+    "36": "C"
+    },
+    "options": [
+    {
+        "label": "A",
+        "value": "appeal"
+    },
+    {
+        "label": "B",
+        "value": "determined"
+    },
+    {
+        "label": "C",
+        "value": "intrigued"
+    },
+    {
+        "label": "D",
+        "value": "single"
+    },
+    {
+        "label": "E",
+        "value": "achievement"
+    },
+    {
+        "label": "F",
+        "value": "devoted"
+    },
+    {
+        "label": "G",
+        "value": "involved"
+    },
+    {
+        "label": "H",
+        "value": "unique"
+    },
+    {
+        "label": "I",
+        "value": "innovative"
+    },
+    {
+        "label": "J",
+        "value": "satisfaction"
+    },
+    {
+        "label": "K",
+        "value": "intent"
+    }
+    ],
+    "input_type": "drag_and_drop"
+},
+"matching_headings": [
+    {
+    "question_number": 14,
+    "question": "reference to two chemical compounds which impact on performance",
+    "answer": "C",
+    "options": [
+        {
+        "label": "A",
+        "value": "A"
+        },
+        {
+        "label": "B",
+        "value": "B"
+        },
+        {
+        "label": "C",
+        "value": "C"
+        },
+        {
+        "label": "D",
+        "value": "D"
+        },
+        {
+        "label": "E",
+        "value": "E"
+        },
+        {
+        "label": "F",
+        "value": "F"
+        }
+    ],
+    "input_type": "dropdown"
+    }
+],
+"multiple_mcq": [
+    {
+    "question_numbers": [20, 21],
+    "question": "Which TWO of the following statements does the writer make about inhabitants of the Mediterranean region in the ancient world?",
+    "options": [
+        { "label": "A", "value": "They often used stolen vessels to carry out pirate attacks." },
+        { "label": "B", "value": "They managed to escape capture by the authorities because they knew the area so well." },
+        { "label": "C", "value": "They paid for information about the routes merchant ships would take." },
+        { "label": "D", "value": "They depended more on the sea for their livelihood than on farming." },
+        { "label": "E", "value": "They stored many of the goods taken in pirate attacks in coves along the coastline." }
+    ],
+    "input_type": "checkbox",
+    "min_selection": 2,
+    "max_selection": 2,
+    "correct_mapping": {
+        "20": "B",
+        "21": "C"
+        }
+    }
+],
+"passage_fill_in_the_blanks": {
+    "question_number": [24, 25, 26],
+    "instruction": "Complete the summary below. Choose ONE WORD ONLY from the passage for each answer.",
+    "text": "Piracy was an issue ancient Rome had to deal with, but it also brought some benefits for Rome. For example, pirates supplied slaves that were important for Rome's industries. However, attacks on vessels transporting __________ to Rome resulted in calls for __________ for the pirates responsible. Nevertheless, piracy continued, with some pirates demanding a __________ for the return of the Roman officials they captured.",
+    "blanks": [
+    {
+        "blank_number": 24,
+        "input_type": "text",
+        "answer": "corn"
+    },
+    {
+        "blank_number": 25,
+        "input_type": "text",
+        "answer": "punishment"
+    },
+    {
+        "blank_number": 26,
+        "input_type": "text",
+        "answer": "ransom"
+    }
+    ]
+}        
+}    

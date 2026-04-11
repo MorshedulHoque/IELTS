@@ -1,0 +1,348 @@
+{
+  "readingTests": [
+    {
+      "id": "reading-1",
+      "title": "Academic Reading Test 1",
+      "type": "academic",
+      "duration": 60,
+      "parts": [
+        {
+          "partId": "part-1",
+          "title": "Part 1",
+          "passage": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vitae eros eget tellus tristique bibendum.",
+          "image": "/images/reading/passage1.png",
+          "questions": [
+            {
+              "id": "q1",
+              "type": "fill_in_blank",
+              "question": "Complete the summary using words from the text:\nThe main purpose of the study was to ______ the effects of the intervention.",
+              "answers": ["investigate"],
+              "maxWords": 1
+            },
+            {
+              "id": "q2",
+              "type": "multiple_choice",
+              "question": "What was the primary method used in the research?",
+              "options": [
+                "Case studies",
+                "Laboratory experiments",
+                "Statistical analysis",
+                "Field observations"
+              ],
+              "correctAnswer": 1
+            }
+          ]
+        },
+        {
+          "partId": "part-2",
+          "title": "Part 2",
+          "passage": "Another long passage text here describing the context of renewable energy and its implications.",
+          "questions": [
+            {
+              "id": "q3",
+              "type": "matching_headings",
+              "question": "Match the headings to the paragraphs:",
+              "headings": [
+                "Introduction to Renewable Energy",
+                "Historical Development",
+                "Current Challenges",
+                "Future Prospects"
+              ],
+              "paragraphs": [
+                "A. The concept of harnessing natural resources has evolved over centuries...",
+                "B. Despite recent advancements, significant obstacles remain...",
+                "C. Recent studies show a shift in public opinion..."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "reading-2",
+      "title": "General Training Reading Test 1",
+      "type": "general",
+      "duration": 60,
+      "parts": [
+        {
+          "partId": "part-1",
+          "title": "Section 1",
+          "passage": "Sample general training text regarding administrative procedures and application processes.",
+          "questions": [
+            {
+              "id": "q4",
+              "type": "true_false",
+              "question": "The text states that all applications must be submitted online:",
+              "correctAnswer": "true"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "reading-3",
+      "title": "Academic Reading Test 2",
+      "type": "academic",
+      "duration": 60,
+      "parts": [
+        {
+          "partId": "part-1",
+          "title": "Part 1",
+          "passage": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.",
+          "image": "/images/reading/passage2.png",
+          "questions": [
+            {
+              "id": "q1",
+              "type": "fill_in_blank",
+              "question": "The research aimed to ______ the impact of climate change on coastal regions.",
+              "answers": ["assess"],
+              "maxWords": 1
+            },
+            {
+              "id": "q2",
+              "type": "multiple_choice",
+              "question": "Which factor was considered most significant in the study?",
+              "options": ["Temperature", "Rainfall", "Wind speed", "Humidity"],
+              "correctAnswer": 2
+            }
+          ]
+        },
+        {
+          "partId": "part-2",
+          "title": "Part 2",
+          "passage": "Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.",
+          "questions": [
+            {
+              "id": "q3",
+              "type": "true_false",
+              "question": "The passage suggests that the solution is universally accepted.",
+              "correctAnswer": "false"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "reading-4",
+      "title": "General Training Reading Test 2",
+      "type": "general",
+      "duration": 60,
+      "parts": [
+        {
+          "partId": "part-1",
+          "title": "Section 1",
+          "passage": "Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+          "questions": [
+            {
+              "id": "q1",
+              "type": "multiple_choice",
+              "question": "Which statement best describes the main idea?",
+              "options": ["Option A", "Option B", "Option C", "Option D"],
+              "correctAnswer": 3
+            },
+            {
+              "id": "q2",
+              "type": "true_false",
+              "question": "The passage claims that technology is harmful to society.",
+              "correctAnswer": "false"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "reading-5",
+      "title": "Academic Reading Test 3",
+      "type": "academic",
+      "duration": 60,
+      "parts": [
+        {
+          "partId": "part-1",
+          "title": "Part 1",
+          "passage": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+          "questions": [
+            {
+              "id": "q1",
+              "type": "fill_in_blank",
+              "question": "The study was conducted to ______ the efficiency of new algorithms.",
+              "answers": ["measure"],
+              "maxWords": 1
+            }
+          ]
+        },
+        {
+          "partId": "part-2",
+          "title": "Part 2",
+          "passage": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+          "questions": [
+            {
+              "id": "q2",
+              "type": "multiple_choice",
+              "question": "Which method did the researchers prefer?",
+              "options": [
+                "Quantitative",
+                "Qualitative",
+                "Mixed methods",
+                "Case study"
+              ],
+              "correctAnswer": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "reading-6",
+      "title": "General Training Reading Test 3",
+      "type": "general",
+      "duration": 60,
+      "parts": [
+        {
+          "partId": "part-1",
+          "title": "Section 1",
+          "passage": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+          "questions": [
+            {
+              "id": "q1",
+              "type": "true_false",
+              "question": "The passage confirms that online learning is the future of education.",
+              "correctAnswer": "true"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "reading-7",
+      "title": "Academic Reading Test 4",
+      "type": "academic",
+      "duration": 60,
+      "parts": [
+        {
+          "partId": "part-1",
+          "title": "Part 1",
+          "passage": "Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.",
+          "questions": [
+            {
+              "id": "q1",
+              "type": "fill_in_blank",
+              "question": "The primary objective was to ______ the behavioral patterns observed.",
+              "answers": ["analyze"],
+              "maxWords": 1
+            },
+            {
+              "id": "q2",
+              "type": "multiple_choice",
+              "question": "What factor was highlighted in the study?",
+              "options": ["Environment", "Culture", "Economy", "Technology"],
+              "correctAnswer": 0
+            }
+          ]
+        },
+        {
+          "partId": "part-2",
+          "title": "Part 2",
+          "passage": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores.",
+          "questions": [
+            {
+              "id": "q3",
+              "type": "matching_headings",
+              "question": "Match the headings to the correct paragraphs:",
+              "headings": [
+                "Background",
+                "Methodology",
+                "Findings",
+                "Conclusion"
+              ],
+              "paragraphs": [
+                "A. The study begins by exploring historical data...",
+                "B. Research methods involved both quantitative and qualitative analysis...",
+                "C. The results indicated a clear trend...",
+                "D. The study concludes with recommendations for future research..."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "reading-8",
+      "title": "General Training Reading Test 4",
+      "type": "general",
+      "duration": 60,
+      "parts": [
+        {
+          "partId": "part-1",
+          "title": "Section 1",
+          "passage": "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
+          "questions": [
+            {
+              "id": "q1",
+              "type": "multiple_choice",
+              "question": "Which option best summarizes the passage?",
+              "options": ["Option 1", "Option 2", "Option 3", "Option 4"],
+              "correctAnswer": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "reading-9",
+      "title": "Academic Reading Test 5",
+      "type": "academic",
+      "duration": 60,
+      "parts": [
+        {
+          "partId": "part-1",
+          "title": "Part 1",
+          "passage": "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.",
+          "questions": [
+            {
+              "id": "q1",
+              "type": "fill_in_blank",
+              "question": "The researchers aimed to ______ the data trends observed over the years.",
+              "answers": ["analyze"],
+              "maxWords": 1
+            },
+            {
+              "id": "q2",
+              "type": "multiple_choice",
+              "question": "What was the primary finding of the study?",
+              "options": ["Finding A", "Finding B", "Finding C", "Finding D"],
+              "correctAnswer": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "reading-10",
+      "title": "General Training Reading Test 5",
+      "type": "general",
+      "duration": 60,
+      "parts": [
+        {
+          "partId": "part-1",
+          "title": "Section 1",
+          "passage": "Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.",
+          "questions": [
+            {
+              "id": "q1",
+              "type": "true_false",
+              "question": "The passage indicates that all applications require prior experience.",
+              "correctAnswer": "false"
+            },
+            {
+              "id": "q2",
+              "type": "multiple_choice",
+              "question": "Which option best describes the main idea?",
+              "options": ["Option A", "Option B", "Option C", "Option D"],
+              "correctAnswer": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

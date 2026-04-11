@@ -1,0 +1,166 @@
+{
+  "speakingTests": [
+    {
+      "title": "Part 1: Personal Information",
+      "type": "part1",
+      "description": "Basic personal questions about familiar topics",
+      "difficulty": "easy",
+      "total_duration": 5,
+      "questions": [
+        {
+          "question_number": 1,
+          "question": "Can you tell me about your hometown?",
+          "question_type": "personal",
+          "speaking_time": 2,
+          "instructions": "Speak for about 2 minutes about your hometown, including where it is, what it's like, and what you like about it."
+        },
+        {
+          "question_number": 2,
+          "question": "What do you do for work or study?",
+          "question_type": "personal",
+          "speaking_time": 2,
+          "instructions": "Describe your job or studies, what you do, and how long you've been doing it."
+        },
+        {
+          "question_number": 3,
+          "question": "Do you enjoy reading books?",
+          "question_type": "personal",
+          "speaking_time": 1,
+          "instructions": "Talk about your reading habits and preferences."
+        }
+      ]
+    },
+    {
+      "title": "Part 2: Describe a Place",
+      "type": "part2",
+      "description": "Cue card with preparation time",
+      "difficulty": "medium",
+      "total_duration": 4,
+      "questions": [
+        {
+          "question_number": 1,
+          "question": "Describe a place you would like to visit. You should say:\n\n- Where this place is\n- How you know about this place\n- What you would do there\n- And explain why you would like to visit this place",
+          "question_type": "cue_card",
+          "preparation_time": 1,
+          "speaking_time": 2,
+          "instructions": "You have 1 minute to prepare and 2 minutes to speak. Make notes if you wish."
+        }
+      ]
+    },
+    {
+      "title": "Part 3: Technology Discussion",
+      "type": "part3",
+      "description": "Follow-up questions about technology",
+      "difficulty": "hard",
+      "total_duration": 5,
+      "questions": [
+        {
+          "question_number": 1,
+          "question": "How has technology changed the way people work?",
+          "question_type": "discussion",
+          "speaking_time": 2,
+          "instructions": "Discuss the impact of technology on work patterns and productivity."
+        },
+        {
+          "question_number": 2,
+          "question": "Do you think technology makes people more or less social?",
+          "question_type": "discussion",
+          "speaking_time": 2,
+          "instructions": "Consider both positive and negative effects of technology on social interaction."
+        },
+        {
+          "question_number": 3,
+          "question": "What technological developments do you think will be important in the future?",
+          "question_type": "discussion",
+          "speaking_time": 1,
+          "instructions": "Share your predictions about future technology trends."
+        }
+      ]
+    },
+    {
+      "title": "Full Test: Education & Learning",
+      "type": "full_test",
+      "description": "Complete IELTS Speaking test covering all parts",
+      "difficulty": "medium",
+      "total_duration": 14,
+      "questions": [
+        {
+          "question_number": 1,
+          "question": "What subjects did you study at school?",
+          "question_type": "personal",
+          "speaking_time": 1,
+          "instructions": "Talk about your school subjects and which ones you enjoyed."
+        },
+        {
+          "question_number": 2,
+          "question": "Do you prefer studying alone or with others?",
+          "question_type": "personal",
+          "speaking_time": 1,
+          "instructions": "Explain your study preferences and why."
+        },
+        {
+          "question_number": 3,
+          "question": "Describe a teacher who has influenced you. You should say:\n\n- Who this teacher was\n- What subject they taught\n- How they taught\n- And explain why they influenced you",
+          "question_type": "cue_card",
+          "preparation_time": 1,
+          "speaking_time": 2,
+          "instructions": "You have 1 minute to prepare and 2 minutes to speak."
+        },
+        {
+          "question_number": 4,
+          "question": "How do you think education has changed in recent years?",
+          "question_type": "discussion",
+          "speaking_time": 2,
+          "instructions": "Discuss changes in teaching methods and technology in education."
+        },
+        {
+          "question_number": 5,
+          "question": "What role do you think parents should play in their children's education?",
+          "question_type": "discussion",
+          "speaking_time": 2,
+          "instructions": "Consider the balance between school and home education."
+        }
+      ]
+    },
+    {
+      "title": "Part 1: Daily Life",
+      "type": "part1",
+      "description": "Questions about daily routines and activities",
+      "difficulty": "easy",
+      "total_duration": 4,
+      "questions": [
+        {
+          "question_number": 1,
+          "question": "What do you usually do on weekends?",
+          "question_type": "personal",
+          "speaking_time": 2,
+          "instructions": "Describe your typical weekend activities and why you enjoy them."
+        },
+        {
+          "question_number": 2,
+          "question": "Do you like cooking?",
+          "question_type": "personal",
+          "speaking_time": 2,
+          "instructions": "Talk about your cooking skills and food preferences."
+        }
+      ]
+    },
+    {
+      "title": "Part 2: Describe an Event",
+      "type": "part2",
+      "description": "Cue card about a memorable event",
+      "difficulty": "medium",
+      "total_duration": 4,
+      "questions": [
+        {
+          "question_number": 1,
+          "question": "Describe a memorable event in your life. You should say:\n\n- When this event happened\n- Where it took place\n- What happened\n- And explain why it was memorable for you",
+          "question_type": "cue_card",
+          "preparation_time": 1,
+          "speaking_time": 2,
+          "instructions": "You have 1 minute to prepare and 2 minutes to speak. Make notes if you wish."
+        }
+      ]
+    }
+  ]
+} 

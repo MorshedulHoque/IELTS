@@ -1,0 +1,58 @@
+  [
+    {
+      "title": "Writing Test 1",
+      "type": "Academic",
+      "duration": 60,
+      "parts": [
+        {
+          "title": "Writing Task 1",
+          "subtitle": "You should spend about 20 minutes on this task.",
+          "Question": [
+            "The graph below gives information on the numbers of participants for different activities at one social centre in Melbourne, Australia for the period 2000 to 2020.",
+            "Summarize the information by selecting and reporting the main features, and make a comparisons where relavant."
+          ],
+          "instruction":["Write at least 150 words."],
+          "image": "https://example.com/images/activities-participants.png"
+        },
+        {
+          "title": "Writing Task 2",
+          "subtitle": "You should spend about 40 minutes on this task.",
+          "Question": [
+            "Some people think that competition at work, at school and in daily life is a good thing. Others belive that we should try to cooperate more, rather than competing against each other.",
+            "Discuss both these views and give your own opinion."
+          ],
+          "instruction":[
+            "Give reasons for your answer and include any relevant examples from your own knowledge or experience.",
+            "Write at least 250 words."]
+        }
+      ]
+    },
+    {
+      "title": "Writing Test 2",
+      "type": "Academic",
+      "duration": 60,
+      "parts": [
+        {
+          "title": "Writing Task 1",
+          "subtitle": "You should spend about 20 minutes on this task.",
+          "Question": [
+            "The graph below gives information on the numbers of participants for different activities at one social centre in Melbourne, Australia for the period 2000 to 2020.",
+            "Summarize the information by selecting and reporting the main features, and make a comparisons where relavant."
+          ],
+          "instruction":["Write at least 150 words."],
+          "image": "https://example.com/images/activities-participants.png"
+        },
+        {
+          "title": "Writing Task 2",
+          "subtitle": "You should spend about 40 minutes on this task.",
+          "Question": [
+            "Some people think that competition at work, at school and in daily life is a good thing. Others belive that we should try to cooperate more, rather than competing against each other.",
+            "Discuss both these views and give your own opinion."
+          ],
+          "instruction":[
+            "Give reasons for your answer and include any relevant examples from your own knowledge or experience.",
+            "Write at least 250 words."]
+        }
+      ]
+    }
+  ]

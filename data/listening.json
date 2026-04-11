@@ -1,0 +1,475 @@
+{
+  "listeningTests": [
+    {
+      "title": "Academic Listening Test 1",
+      "type": "academic",
+      "duration": 30,
+      "audioUrl": "https://dummy-s3-bucket.com/listening-tests/test1-section1.mp3",
+      "parts": [
+        {
+          "title": "Part 1",
+          "questions": [
+            {
+              "fill_in_the_blanks_with_subtitle": [
+                {
+                  "instructions": "Complete the notes below. Write ONE WORD AND/OR A NUMBER for each answer.",
+                  "title": "Hinchingbrooke Country Park",
+                  "subtitle": "The park",
+                  "extra": [
+                    "Area: __________ hectares",
+                    "Habitats: wetland, grassland and woodland",
+                    "Wetland: lakes, ponds and a __________",
+                    "Wildlife includes birds, insects and animals"
+                  ],
+                  "questions": [
+                    {
+                      "question_number": 1,
+                      "answer": "piston",
+                      "input_type": "text"
+                    },
+                    {
+                      "question_number": 2,
+                      "answer": "coal",
+                      "input_type": "text"
+                    }
+                  ]
+                },
+                {
+                  "subtitle": "Subjects studied in educational visits include",
+                  "extra": [
+                    "Science: Children look at __________ about plants, etc.",
+                    "Geography: includes learning to use a and compass",
+                    "History: changes in land use",
+                    "Leisure and tourism: mostly concentrates on the park's __________"
+                  ],
+                  "questions": [
+                    {
+                      "question_number": 3,
+                      "answer": "workshops",
+                      "input_type": "text"
+                    },
+                    {
+                      "question_number": 4,
+                      "answer": "workshops",
+                      "input_type": "text"
+                    }
+                  ]
+                },
+                {
+                  "subtitle": "Iron industry",
+                  "extra": [
+                    "Smelting of iron ore with coke resulted in material that was better __________.",
+                    "Demand for iron increased with the growth of the __________."
+                  ],
+                  "questions": [
+                    {
+                      "question_number": 5,
+                      "answer": "quality",
+                      "input_type": "text"
+                    },
+                    {
+                      "question_number": 6,
+                      "answer": "railways",
+                      "input_type": "text"
+                    }
+                  ]
+                },
+                {
+                  "subtitle": "Benefits of outdoor educational visits",
+                  "extra": [
+                    "They give children a feeling of __________ that they may not have elsewhere.",
+                    "Children learn new __________ and gain self-confidence."
+                  ],
+                  "questions": [
+                    {
+                      "question_number": 7,
+                      "answer": "sanitation",
+                      "input_type": "text"
+                    },
+                    {
+                      "question_number": 8,
+                      "answer": "sanitation",
+                      "input_type": "text"
+                    }
+                  ]
+                },
+                {
+                  "subtitle": "Practical issues",
+                  "extra": [
+                    "Cost per child: £ __________",
+                    "Adults, such as __________ free"
+                  ],
+                  "questions": [
+                    {
+                      "question_number": 9,
+                      "answer": "sanitation",
+                      "input_type": "text"
+                    },
+                    {
+                      "question_number": 10,
+                      "answer": "sanitation",
+                      "input_type": "text"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Part 2",
+          "questions": [
+            {
+              "mcq": [
+                {
+                  "instructions": "Choose the correct letter, A, B or C."
+                },
+                {
+                  "question_number": 11,
+                  "question": "During the visit to Malatte, in France, members especially enjoyed",
+                  "answer": "C",
+                  "options": [
+                    {
+                      "label": "A",
+                      "value": "going to a theme park."
+                    },
+                    {
+                      "label": "B",
+                      "value": "experiencing a river trip."
+                    },
+                    {
+                      "label": "C",
+                      "value": "visiting a cheese factory."
+                    }
+                  ],
+                  "input_type": "radio",
+                  "min_selection": 1,
+                  "max_selection": 1
+                },
+                {
+                  "question_number": 12,
+                  "question": "What will happen in Stanthorpe to mark the 25th anniversary of the Twinning Association?",
+                  "answer": "A",
+                  "options": [
+                    {
+                      "label": "A",
+                      "value": "A tree will be planted."
+                    },
+                    {
+                      "label": "B",
+                      "value": "A garden seat will be bought."
+                    },
+                    {
+                      "label": "C",
+                      "value": "A footbridge will be built."
+                    }
+                  ],
+                  "input_type": "radio",
+                  "min_selection": 1,
+                  "max_selection": 1
+                },
+                {
+                  "question_number": 13,
+                  "question": "Which event raised most funds this year?",
+                  "answer": "C",
+                  "options": [
+                    {
+                      "label": "A",
+                      "value": "the film show"
+                    },
+                    {
+                      "label": "B",
+                      "value": "the pancake evening"
+                    },
+                    {
+                      "label": "C",
+                      "value": "the cookery demonstration"
+                    }
+                  ],
+                  "input_type": "radio",
+                  "min_selection": 1,
+                  "max_selection": 1
+                },
+                {
+                  "question_number": 14,
+                  "question": "For the first evening with the French visitors host families are advised to",
+                  "answer": "B",
+                  "options": [
+                    {
+                      "label": "A",
+                      "value": "take them for a walk round the town."
+                    },
+                    {
+                      "label": "B",
+                      "value": "go to a local restaurant."
+                    },
+                    {
+                      "label": "C",
+                      "value": "have a meal at home."
+                    }
+                  ],
+                  "input_type": "radio",
+                  "min_selection": 1,
+                  "max_selection": 1
+                },
+                {
+                  "question_number": 15,
+                  "question": "On Saturday evening there will be the chance to",
+                  "answer": "A",
+                  "options": [
+                    {
+                      "label": "A",
+                      "value": "listen to a concert."
+                    },
+                    {
+                      "label": "B",
+                      "value": "watch a match."
+                    },
+                    {
+                      "label": "C",
+                      "value": "take part in a competition."
+                    }
+                  ],
+                  "input_type": "radio",
+                  "min_selection": 1,
+                  "max_selection": 1
+                }
+              ],
+              "map": [
+                {
+                  "instructions": "Label the map below. Write the correct letter, A–H, next to Questions 16–20",
+                  "title": "Title of the map",
+                  "image": "/images/map.png",
+                  "labels": [
+                    "A",
+                    "B",
+                    "C",
+                    "D",
+                    "E",
+                    "F",
+                    "G",
+                    "H"
+                  ],
+                  "questions": [
+                    {
+                      "question_number": 16,
+                      "question": "Farm shop",
+                      "answer": "A",
+                      "input_type": "radio",
+                      "min_selection": 1,
+                      "max_selection": 1
+                    },
+                    {
+                      "question_number": 17,
+                      "question": "Disabled entry",
+                      "answer": "C",
+                      "input_type": "radio",
+                      "min_selection": 1,
+                      "max_selection": 1
+                    },
+                    {
+                      "question_number": 18,
+                      "question": "Adventure playground",
+                      "answer": "F",
+                      "input_type": "radio",
+                      "min_selection": 1,
+                      "max_selection": 1
+                    },
+                    {
+                      "question_number": 19,
+                      "question": "Kitchen gardens",
+                      "answer": "B",
+                      "input_type": "radio",
+                      "min_selection": 1,
+                      "max_selection": 1
+                    },
+                    {
+                      "question_number": 20,
+                      "question": "The Temple of the Four Winds",
+                      "answer": "H",
+                      "input_type": "radio",
+                      "min_selection": 1,
+                      "max_selection": 1
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Part 3",
+          "questions": [
+            {
+              "fill_in_the_blanks_with_subtitle": [
+                {
+                  "title": "Céide Fields",
+                  "extra": [
+                    "an important Neolithic archaeological site in the northwest of Ireland"
+                  ]
+                },
+                {
+                  "subtitle": "Discovery",
+                  "extra": [
+                    "In the 1930s, a local teacher realised that stones beneath the bog surface were once __________ .",
+                    "His __________ became an archaeologist and undertook an investigation of the site:",
+                    "- a traditional method used by local people to dig for __________ was used to identify where stones were located",
+                    "- carbon dating later proved the site was Neolithic.",
+                    "Items are well preserved in the bog because of a lack of __________ ."
+                  ],
+                  "questions": [
+                    {
+                      "question_number": 31,
+                      "answer": "workshops",
+                      "input_type": "text"
+                    },
+                    {
+                      "question_number": 32,
+                      "answer": "workshops",
+                      "input_type": "text"
+                    },
+                    {
+                      "question_number": 33,
+                      "answer": "workshops",
+                      "input_type": "text"
+                    },
+                    {
+                      "question_number": 34,
+                      "answer": "workshops",
+                      "input_type": "text"
+                    }
+                  ]
+                },
+                {
+                  "subtitle": "Neolithic farmers",
+                  "extra": [
+                    "Houses were __________ in shape and had a hole in the roof.",
+                    "Neolithic innovations include:",
+                    "- cooking indoors",
+                    "- pots used for storage and to make __________",
+                    "Each field at Céide was large enough to support a big __________",
+                    "The fields were probably used to restrict the grazing of animals - no evidence of structures to house them during __________ ."
+                  ],
+                  "questions": [
+                    {
+                      "question_number": 35,
+                      "answer": "quality",
+                      "input_type": "text"
+                    },
+                    {
+                      "question_number": 36,
+                      "answer": "railways",
+                      "input_type": "text"
+                    },
+                    {
+                      "question_number": 37,
+                      "answer": "workshops",
+                      "input_type": "text"
+                    },
+                    {
+                      "question_number": 38,
+                      "answer": "workshops",
+                      "input_type": "text"
+                    }
+                  ]
+                },
+                {
+                  "subtitle": "Reasons for the decline in farming",
+                  "extra": [
+                    "a decline in __________ quality",
+                    "an increase in __________ ."
+                  ],
+                  "questions": [
+                    {
+                      "question_number": 39,
+                      "answer": "sanitation",
+                      "input_type": "text"
+                    },
+                    {
+                      "question_number": 40,
+                      "answer": "sanitation",
+                      "input_type": "text"
+                    }
+                  ]
+                }
+              ],
+              "box_matching": [
+                {
+                  "instructions": "What is the students' opinion about each of the following food trends? Choose SIX answers from the box and write the correct letter, A–H, next to Questions 16–21.",
+                  "options_title": "Food trends",
+                  "options": [
+                    {
+                      "label": "A",
+                      "value": "This is only relevant to young people."
+                    },
+                    {
+                      "label": "B",
+                      "value": "This may have disappointing results."
+                    },
+                    {
+                      "label": "C",
+                      "value": "This already seems to be widespread."
+                    },
+                    {
+                      "label": "D",
+                      "value": "Retailers should do more to encourage this."
+                    },
+                    {
+                      "label": "E",
+                      "value": "More financial support is needed for this."
+                    },
+                    {
+                      "label": "F",
+                      "value": "Most people know little about this."
+                    },
+                    {
+                      "label": "G",
+                      "value": "There should be stricter regulations about this."
+                    },
+                    {
+                      "label": "H",
+                      "value": "This could be dangerous."
+                    }
+                  ],
+                  "question_title": "Students' opinion",
+                  "questions": [
+                    {
+                      "question_number": 16,
+                      "topic": "Use of local products",
+                      "answer": "C"
+                    },
+                    {
+                      "question_number": 17,
+                      "topic": "Reduction in unnecessary packaging",
+                      "answer": "D"
+                    },
+                    {
+                      "question_number": 18,
+                      "topic": "Gluten-free and lactose-free food",
+                      "answer": "A"
+                    },
+                    {
+                      "question_number": 19,
+                      "topic": "Use of branded products related to celebrity chefs",
+                      "answer": "B"
+                    },
+                    {
+                      "question_number": 20,
+                      "topic": "Development of 'ghost kitchens' for takeaway food",
+                      "answer": "H"
+                    },
+                    {
+                      "question_number": 21,
+                      "topic": "Use of mushrooms for common health concerns",
+                      "answer": "F"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

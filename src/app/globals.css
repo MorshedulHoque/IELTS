@@ -1,0 +1,647 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Text highlighting animations */
+@keyframes highlightFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes highlightPulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.highlight-animation {
+  animation: highlightFadeIn 0.3s ease-out;
+}
+
+.highlight-hover {
+  transition: all 0.2s ease-in-out;
+}
+
+.highlight-hover:hover {
+  animation: highlightPulse 1s ease-in-out;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Selection styling */
+::selection {
+  background-color: rgba(59, 130, 246, 0.3);
+}
+
+::-moz-selection {
+  background-color: rgba(59, 130, 246, 0.3);
+}
+
+/* Onboarding Wizard Animations */
+@keyframes fadeSlideForward {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeSlideBackward {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-slide-forward {
+  animation: fadeSlideForward 0.4s ease-out;
+}
+
+.animate-fade-slide-backward {
+  animation: fadeSlideBackward 0.4s ease-out;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Navbar Animations */
+@keyframes slideInFromTop {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 4px rgba(239, 68, 68, 0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* Navbar specific styles */
+nav {
+  animation: slideInFromTop 0.5s ease-out;
+}
+
+/* Phone Input Styling */
+.phone-input-container {
+  width: 100% !important;
+  position: relative !important;
+  z-index: 1000 !important;
+  overflow: visible !important;
+}
+
+.phone-input-field {
+  width: 100% !important;
+  padding: 10px 10px 10px 50px !important;
+  border-radius: 0.5rem !important;
+  border: 1px solid #e5e7eb !important;
+  font-size: 0.875rem !important;
+  transition: all 0.2s !important;
+  background: white !important;
+  color: #111827 !important;
+  margin-left: 8px !important;
+}
+
+.phone-input-field:focus {
+  border-color: #f43f5e !important;
+  outline: none !important;
+  box-shadow: 0 0 0 1px rgba(244, 63, 94, 0.2) !important;
+}
+
+.phone-input-button {
+  border-radius: 0.5rem 0 0 0.5rem !important;
+  border: 1px solid #e5e7eb !important;
+  border-right: none !important;
+  background: white !important;
+  height: 100% !important;
+  padding: 0 8px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.phone-input-button:hover {
+  background: #f9fafb !important;
+}
+
+.phone-input-button:focus {
+  outline: none !important;
+}
+
+/* Dropdown Styling */
+.phone-input-dropdown {
+  position: absolute !important;
+  z-index: 999999 !important;
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  border-radius: 0.5rem !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+  border: 1px solid #e5e7eb !important;
+  max-height: 300px !important;
+  overflow-y: auto !important;
+  margin-top: 4px !important;
+  width: 100% !important;
+  min-width: 300px !important;
+  opacity: 1 !important;
+  backdrop-filter: none !important;
+}
+
+/* Ensure all child elements have proper backgrounds */
+.phone-input-dropdown > * {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+}
+
+.phone-input-dropdown ul {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Override library's default transparent/backdrop styles */
+.flag-dropdown,
+.flag-dropdown.open,
+.flag-dropdown.open .selected-flag {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+}
+
+/* Ensure the dropdown container itself is opaque */
+div.phone-input-dropdown,
+div[class*="flag-dropdown"],
+div[class*="country-list"],
+div[class*="react-tel-input"],
+div[class*="country-list"] {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  opacity: 1 !important;
+}
+
+/* Ensure country list dropdown has highest z-index */
+div[class*="country-list"],
+ul[class*="country-list"],
+.country-list {
+  position: absolute !important;
+  z-index: 999999 !important;
+}
+
+/* Ensure questions below don't overlap the dropdown */
+.bg-white.rounded-xl {
+  position: relative !important;
+  z-index: 0 !important;
+  overflow: visible !important;
+}
+
+/* Ensure the main onboarding container allows overflow */
+.min-h-screen {
+  overflow: visible !important;
+}
+
+/* Phone input question gets highest z-index */
+[data-question-id="phoneNo"] {
+  z-index: 1000 !important;
+  position: relative !important;
+  overflow: visible !important;
+}
+
+/* Ensure all other questions have lower z-index */
+[data-question-id]:not([data-question-id="phoneNo"]) {
+  z-index: 1 !important;
+  position: relative !important;
+  overflow: visible !important;
+}
+
+/* Ensure the questions container allows overflow */
+.space-y-5 {
+  position: relative !important;
+  z-index: 0 !important;
+  overflow: visible !important;
+}
+
+/* Ensure questions after phone input don't overlap */
+.space-y-5 > [data-question-id]:not([data-question-id="phoneNo"]) {
+  z-index: 0 !important;
+  position: relative !important;
+}
+
+/* Create a new stacking context for phone input */
+.phone-input-wrapper {
+  position: relative !important;
+  z-index: 1000 !important;
+  overflow: visible !important;
+}
+
+/* Override react-phone-input-2 specific classes */
+.react-tel-input .flag-dropdown,
+.react-tel-input .country-list,
+.react-tel-input .country-list .country {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+}
+
+.react-tel-input .country-list {
+  position: absolute !important;
+  z-index: 999999 !important;
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+  border: 1px solid #e5e7eb !important;
+}
+
+/* Force dropdown to appear above everything - most aggressive */
+.react-tel-input .country-list {
+  position: absolute !important;
+  z-index: 999999 !important;
+}
+
+/* Catch all possible dropdown variations from react-phone-input-2 */
+.react-tel-input .flag-dropdown.open .country-list,
+.react-tel-input .flag-dropdown.open ul,
+.react-tel-input ul.country-list,
+.react-tel-input div.country-list {
+  position: absolute !important;
+  z-index: 999999 !important;
+}
+
+.react-tel-input .country-list .country {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+.react-tel-input .country-list .country:hover {
+  background: #fef2f2 !important;
+  background-color: #fef2f2 !important;
+}
+
+.phone-input-dropdown::-webkit-scrollbar {
+  width: 8px;
+}
+
+.phone-input-dropdown::-webkit-scrollbar-track {
+  background: #fef2f2;
+  border-radius: 4px;
+}
+
+.phone-input-dropdown::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #ef4444 0%, #dc2626 100%);
+  border-radius: 4px;
+  border: 1px solid #fef2f2;
+}
+
+.phone-input-dropdown::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #dc2626 0%, #b91c1c 100%);
+}
+
+.phone-input-dropdown .country {
+  padding: 10px 16px !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  transition: background-color 0.15s ease !important;
+  border-bottom: 1px solid #f3f4f6 !important;
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+.phone-input-dropdown .country:last-child {
+  border-bottom: none !important;
+}
+
+.phone-input-dropdown .country:hover {
+  background: #fef2f2 !important;
+}
+
+.phone-input-dropdown .country.highlight {
+  background: #fee2e2 !important;
+  font-weight: 500 !important;
+}
+
+.phone-input-dropdown .country .flag {
+  width: 20px !important;
+  height: 15px !important;
+  margin-right: 8px !important;
+}
+
+.phone-input-dropdown .country-name {
+  flex: 1 !important;
+  font-size: 0.875rem !important;
+  color: #111827 !important;
+}
+
+.phone-input-dropdown .dial-code {
+  font-size: 0.875rem !important;
+  color: #6b7280 !important;
+  font-weight: 500 !important;
+}
+
+/* Search Input in Dropdown */
+.phone-input-search {
+  padding: 12px 16px !important;
+  border-bottom: 1px solid #e5e7eb !important;
+  position: sticky !important;
+  top: 0 !important;
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  z-index: 10 !important;
+  opacity: 1 !important;
+}
+
+.phone-input-search input {
+  width: 100% !important;
+  padding: 8px 12px !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 0.375rem !important;
+  font-size: 0.875rem !important;
+  outline: none !important;
+  transition: all 0.2s !important;
+}
+
+.phone-input-search input:focus {
+  border-color: #f43f5e !important;
+  box-shadow: 0 0 0 1px rgba(244, 63, 94, 0.2) !important;
+}
+
+/* Homepage Animations */
+@keyframes blob {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+
+.animate-blob {
+  animation: blob 7s infinite;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+
+@keyframes bounce-slow {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-bounce-slow {
+  animation: bounce-slow 3s ease-in-out infinite;
+}
+
+/* Smooth scroll behavior - Main page scrollbar */
+html {
+  scroll-behavior: smooth !important;
+}
+
+body {
+  scroll-behavior: smooth !important;
+}
+
+/* Custom Scrollbar Styling - Red/IELTS Theme for Main Page */
+/* Webkit browsers (Chrome, Safari, Edge) - Main page scrollbar */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 12px !important;
+  height: 12px !important;
+}
+
+html::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track {
+  background: #f1f5f9 !important;
+  border-radius: 6px !important;
+}
+
+html::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb {
+  background: #dc2626 !important;
+  background-image: linear-gradient(180deg, #dc2626 0%, #b91c1c 100%) !important;
+  border-radius: 6px !important;
+  border: 2px solid #f1f5f9 !important;
+  transition: background 0.3s ease !important;
+}
+
+html::-webkit-scrollbar-thumb:hover,
+body::-webkit-scrollbar-thumb:hover {
+  background: #b91c1c !important;
+  background-image: linear-gradient(180deg, #b91c1c 0%, #991b1b 100%) !important;
+}
+
+html::-webkit-scrollbar-thumb:active,
+body::-webkit-scrollbar-thumb:active {
+  background: #991b1b !important;
+  background-image: linear-gradient(180deg, #991b1b 0%, #7f1d1d 100%) !important;
+}
+
+/* Global scrollbar styling for all elements */
+::-webkit-scrollbar {
+  width: 10px !important;
+  height: 10px !important;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9 !important;
+  border-radius: 5px !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #dc2626 !important;
+  background-image: linear-gradient(180deg, #dc2626 0%, #b91c1c 100%) !important;
+  border-radius: 5px !important;
+  border: 2px solid #f1f5f9 !important;
+  transition: background 0.3s ease !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #b91c1c !important;
+  background-image: linear-gradient(180deg, #b91c1c 0%, #991b1b 100%) !important;
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: #991b1b !important;
+  background-image: linear-gradient(180deg, #991b1b 0%, #7f1d1d 100%) !important;
+}
+
+/* Firefox - Main page scrollbar */
+html {
+  scrollbar-width: thin !important;
+  scrollbar-color: #dc2626 #f1f5f9 !important;
+}
+
+body {
+  scrollbar-width: thin !important;
+  scrollbar-color: #dc2626 #f1f5f9 !important;
+}
+
+/* Smooth scrolling for all scrollable elements */
+* {
+  scroll-behavior: smooth !important;
+}
+
+/* Custom scrollbar for specific containers */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #fef2f2;
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #ef4444 0%, #dc2626 100%);
+  border-radius: 4px;
+  border: 1px solid #fef2f2;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #dc2626 0%, #b91c1c 100%);
+}
+
+/* No results message */
+.phone-input-dropdown .no-entries-message {
+  padding: 16px !important;
+  text-align: center !important;
+  color: #6b7280 !important;
+  font-size: 0.875rem !important;
+}
+
+/* Force Red Scrollbar - Applied Last to Override Everything */
+html {
+  scrollbar-width: thin !important;
+  scrollbar-color: #dc2626 #f1f5f9 !important;
+}
+
+html::-webkit-scrollbar {
+  width: 12px !important;
+  height: 12px !important;
+  -webkit-appearance: none !important;
+}
+
+html::-webkit-scrollbar-track {
+  background: #f1f5f9 !important;
+  border-radius: 6px !important;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1) !important;
+}
+
+html::-webkit-scrollbar-thumb {
+  background-color: #dc2626 !important;
+  background: #dc2626 !important;
+  background-image: linear-gradient(180deg, #dc2626 0%, #b91c1c 100%) !important;
+  border-radius: 6px !important;
+  border: 2px solid #f1f5f9 !important;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3) !important;
+}
+
+html::-webkit-scrollbar-thumb:hover {
+  background-color: #b91c1c !important;
+  background: #b91c1c !important;
+  background-image: linear-gradient(180deg, #b91c1c 0%, #991b1b 100%) !important;
+}
+
+html::-webkit-scrollbar-thumb:active {
+  background-color: #991b1b !important;
+  background: #991b1b !important;
+  background-image: linear-gradient(180deg, #991b1b 0%, #7f1d1d 100%) !important;
+}
+
+body {
+  scrollbar-width: thin !important;
+  scrollbar-color: #dc2626 #f1f5f9 !important;
+}
+
+body::-webkit-scrollbar {
+  width: 12px !important;
+  height: 12px !important;
+  -webkit-appearance: none !important;
+}
+
+body::-webkit-scrollbar-track {
+  background: #f1f5f9 !important;
+  border-radius: 6px !important;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #dc2626 !important;
+  background: #dc2626 !important;
+  background-image: linear-gradient(180deg, #dc2626 0%, #b91c1c 100%) !important;
+  border-radius: 6px !important;
+  border: 2px solid #f1f5f9 !important;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background-color: #b91c1c !important;
+  background: #b91c1c !important;
+  background-image: linear-gradient(180deg, #b91c1c 0%, #991b1b 100%) !important;
+}
+
+body::-webkit-scrollbar-thumb:active {
+  background-color: #991b1b !important;
+  background: #991b1b !important;
+  background-image: linear-gradient(180deg, #991b1b 0%, #7f1d1d 100%) !important;
+}

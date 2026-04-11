@@ -1,0 +1,1364 @@
+[
+  {
+    "title": "Test 1",
+    "type": "academic",
+    "duration": 60,
+    "parts": [
+      {
+        "title": "READING  PASSAGE  1",
+        "instructions": "You should spend about 20 minutes on Questions 1-13, which are based on Reading Passage 1 below.",
+        "passage_title": "How tennis rackets have changed",
+        "passage_subtitle": "",
+        "passage": [
+          "In 2016, the British professional tennis player Andy Murray was ranked as the world's number one. II was an incredible achievement by any standard\tmade even more remarkable by the fact that he did this during a period considered to be one of the strongest in the sport's histo1y, competing against the likes of Rafael Nadal, Roger Federer and Novak Djokovic, to name just a few. Yet five years previously, he had been regarded as a talented outsider who entered but never won the major tournaments.",
+          "Of the changes that account for this transformation, one was visible and widely publicised: in 20 I I, Murray invited former number one player Ivan LendI onto his coaching team - a valuable addition that had a visible impact on the player's playing style. Another change was so subtle\nas lo pass more or less unnoticed. Like many players, Murray has long preferred a racket that consists of two types of string: one for the mains (verticals) and another for the crosses (horizontals). While he continued to use natural string in the crosses, in 2012 he switched to a synthetic string for the mains. A small change, perhaps, but its importance should not be underestimated.",
+          "The modification that Murray made is just one of a number or options available to players looking lo tweak their rackets in order to improve their games. 'Touring professionals have their rackets customised to their specific needs,' says Colin Triplow, a UK-based professional racket stringer. 'It's a highly important part of performance maximisation.' Consequently, the specific rackets used by the world's elite are not actually readily available lo the public; rather, each racket is individually made lo suit the player who uses it. Take the US professional tennis players Mike and Bob Bryan, for example: 'We're very particular with our racket specifications,' they say. 'All our rackets are sent fom our manufacturer lo Tampa, Florida, where our frames go through a ... thorough customisation process.' They explain how they have adjusted not only racket length, but even experimented with diITercnl kinds or paint. The rackets they use now weigh more than the average model and also have a denser siring pallern (i.e. more crosses and mains).",
+          "The primary reason for these modifications is simple: as the line between winning and losing becomes thinner and thinner, even these slight chm1gcs become more and more important. As a result, players and their learns are becoming increasingly creative with the modifications lo their rackets as they look lo maximise their competitive advantage.",
+          "Racket modifications mainly dale back to the 1970s, when the amateur German tennis player Werner Fischer started playing with the so-called spaghetti-strung racket. It created a string bed that generated so much topspin that it was quickly banned by the International Tennis Federation. However, within a decade or two, racket modification became a regularity. Today it is, in many ways, an aspect of the game that is equal in significance to nutrition or training.",
+          "Modifications can be divided into two categories: those to the string bed and those to the racket frame. The former is far more common than the latter: the choice of the strings and the tension with which they are installed is something that nearly all professional players experiment with. They will continually change it depending on various factors including the court surface, climatic conditions, and game styles. Some will even change it depending on how they feel at the time.",
+          "At one time, all tennis rackets were strung with natural gut made from the outer layer of sheep or cow intestines. This all changed in the early 1990s with the development of synthetic strings that were cheaper and more durable. They are made from three materials: nylon (relatively durable and affordable), Kevlar (too stiff to be used alone) or co-polyester (polyester combined with additives that enhance its performance). Even so, many professional players continue to use a 'hybrid set-up', where a combination of both synthetic and natural strings are used.",
+          "Of the synthetics, co-polyester is by far the most widely used. It's a perfect fit for the style of tennis now played, where players tend to battle it out from the back of the court rather than coming to the net. Studies indicate that the average spin from a co-polyester string is 25% greater than that from natural string or other synthetics. In a sense, the development of co-polyester strings has revolutionised the game.",
+          "However, many players go beyond these basic adjustments to the strings and make changes to the racket frame itself. For example, much of the serving power of US professional player Pete Sampras was attributed to the addition of four to five lead weights onto his rackets, and today many professionals have the weight adjusted during the manufacturing process.",
+          "Other changes to the frame involve the handle. Players have individual preferences for the shape of the handle and some will have the handle of one racket moulded onto the frame of a different racket. Other players make different changes. The professional Portuguese player\nGon9alo Oliveira replaced the original grips of his rackets with something thinner because they had previously felt uncomfortable to hold.\n",
+          "Racket customisation and modification have pushed the standards of the game to greater levels that few could have anticipated in the days of natural strings and heavy, wooden frames, and it's exciting to see what further developments there will be in the future."
+        ],
+        "image": "",
+        "questions": [
+          {
+            "instructions": "In boxes 1-7 on your answer sheet, write\n\n \nTRUE\tif the statement agrees with the information \nFALSE\t\tif the statement contradicts the information \nNOT GIVEN\tif there is no information on this\n",
+            "true_false_not_given": [
+              {
+                "question_number": 1,
+                "question": "People had expected Andy Murray to become the world's top tennis player for at least five years before 2016.",
+                "input_type": "dropdown",
+                "answer": "True"
+              },
+              {
+                "question_number": 2,
+                "question": "The change that Andy Murray made to his rackets attracted a lot of attention.",
+                "input_type": "dropdown",
+                "answer": "Not Given"
+              },
+              {
+                "question_number": 3,
+                "question": "Most of the world's top players take a professional racket stringer on tour with them.",
+                "input_type": "dropdown",
+                "answer": "False"
+              },
+              {
+                "question_number": 4,
+                "question": "Mike and Bob Bryan use rackets that are light in comparison to the majority of rackets.",
+                "input_type": "dropdown",
+                "answer": "False"
+              },
+              {
+                "question_number": 5,
+                "question": "Werner Fischer played with a spaghetti-strung racket that he designed himself. ",
+                "input_type": "dropdown",
+                "answer": "False"
+              },
+              {
+                "question_number": 6,
+                "question": "The weather can affect how professional players adjust the strings on their rackets.",
+                "input_type": "dropdown",
+                "answer": "Not Given"
+              },
+              {
+                "question_number": 7,
+                "question": "It was believed that the change Pete Sampras made to his rackets contributed to his strong serve.",
+                "input_type": "dropdown",
+                "answer": "False"
+              }
+            ]
+          },
+          {
+            "instructions": "Complete the sentences below. Write NO MORE THAN THREE WORDS for each answer.",
+            "fill_in_the_blanks": [
+              {
+                "question_number": 8,
+                "question": "Mike and Bob Bryan made changes to the types of __________ used on their racket frames.",
+                "input_type": "text",
+                "answer": ""
+              },
+              {
+                "question_number": 9,
+                "question": "Players were not allowed to use the spaghetti-strung racket because of the amount of __________ it created.",
+                "input_type": "text",
+                "answer": ""
+              },
+              {
+                "question_number": 10,
+                "question": "Changes to rackets can be regarded as being as important as players' diets or the __________ they do.",
+                "input_type": "text",
+                "answer": ""
+              },
+              {
+                "question_number": 11,
+                "question": "All rackets used to have natural strings made from the __________ of animals.",
+                "input_type": "text",
+                "answer": ""
+              },
+              {
+                "question_number": 12,
+                "question": "Pete Sampras had metal __________ put into the frames of his rackets.",
+                "input_type": "text",
+                "answer": ""
+              },
+              {
+                "question_number": 13,
+                "question": "Goncalo Oliveira changed the __________\ton his racket handles.",
+                "input_type": "text",
+                "answer": ""
+              }
+            ]
+          }
+        ],
+        "passageType": "type1"
+      },
+      {
+        "title": "READING PASSAGE 2",
+        "instructions": "You should spend about 20 minutes on Questions 14-26, which are based on Reading Passage 2 below.",
+        "passage_title": "The pirates of the ancient Mediterranean",
+        "passage_subtitle": "In the first and second millennia BCE, pirates sailed around the Mediterranean, attacking ships and avoiding pursuers",
+        "passage": {
+          "A": "A\tWhen one mentions pirates, an image springs to mosl people's minds of a crew of misfits, daredevils and adventurers in command of a tall sailing ship in the Caribbean Sea. Yet from\nthe first to the third millennium BCE, thousands of years before these swashbucklers began spreading fear across the Caribbean, pirates prowled the Mediterranean, raiding merchant ships and threatening vital trade routes. However, despite all efforts and the might of various ancient states, piracy could not be stopped. The situation remained unchanged for thousands of years. Only when the pirates directly threatened the interests of ancient Rome did the Roman Republic organise a massive fleet to eliminate piracy. Under the command of the Roman general Pompey, Rome eradicated piracy, transforming the Mediterranean into 'Mare Noslrnm' (Our Sea).",
+          "B": "B\tAlthough piracy in the Mediterranean is first recorded in ancient Egypt during the reign of Pharaoh Amenhotep Ill (c 1390-1353 BCE), it is reasonable to assume it predated this powerful civilisation. This is partly due to the great importance the Mediterranean held at\nthis time, and partly due to its geography. While the Mediterranean region is predominantly fertile, some parts are rugged and hilly, even mountainous. In the ancient times, the inhabitants of these areas relied heavily on marine resources, including fish and salt. Most had their own boats, possessed good seafaring skills, and unsurpassed knowledge of the local coastline and sailing routes. Thus, it is not surprising that during hardships, these men turned to piracy. Geography itself further benefited the pirates, with the numerous coves along the coast providing places for them to hide their boats and strike undetected. Before the invention of ocean-going caravels• in the 15th century, ships could not easily cross long distances over open waler. Thus, in the ancient world most were restricted lo a few well­ known navigable routes that followed the coastline. Caught in a trap, a slow merchant ship laden with goods had no other option but Lo surrender. In addition, knowledge of the local area helped the pirates to avoid retaliation once a state fleet arrived.",
+          "C": "C\tOne should also add that it was not unknown in the first and second millennia BCE for governments to resort to pirates' services, especially during wartime, employing their skills and numbers against their opponents. A pirate fleet would serve in the first wave of allack, preparing the way for the navy. Some of the regions were known for providing safe\nharbours to pirates, who, in return, boosted the local economy.",
+          "D": "D\tThe first known record ofa named group ofMedite1nnean pirates, made during the rule of ancient Egyptian Pharaoh Akhenaten (c 1353-1336 BCE), was in the Amarna Letters. These were extracts ofdiplomatic correspondence between the pharaoh and his allies, and covered many pressing issues, including piracy. It seems the pharaoh was troubled by two distinct pirate groups, the Lukka and the Sherden. Despite the Egyptian fleet's best efforts, the pirates continued to cause substantial disruption to regional commerce. Jn the letters, the king of Alashiya (modern Cyprus) rejected Akhenaten's claims ofa connection with the Lukka (based in modern-day Turkey). The king assured Akhenaten he was prepared to punish any ofhis subjects involved in piracy.",
+          "E": "E\tThe ancient Greek world's experience ofpiracy was different from that ofEgyptian rulers.\nWhile Egypt's power was land-based, the ancient Greeks relied on the Mediterranean in almost all aspects oflife, from trade to warfare. Interestingly, in his works the Iliad and the Odyssey, the ancient Greek writer Homer not only condones, but praises the lifestyle and actions ofpirates. The opinion remained unchanged in the following centuries. The ancient Greek historian Thucydides, for instance, glorified pirates' daring attacks on ships or even cities. For Greeks, piracy was a part ofeveryday life. Even high-ranking members ofthe state were not beyond engaging in such activities. According to the Greek orator Demosthenes, in 355 BCE, Athenian ambassadors made a detour from their official travel to capture a ship sailing from Egypt, taking the wealth found onboard for themselves!\nThe Greeks' liberal approach towards piracy does not mean they always tolerated it,\nbut attempts to curtail piracy were hampered by the large number ofpirates operating in the Mediterranean.",
+          "F": "F\tThe rising power ofancient Rome required the Roman Republic to deal with piracy in the Mediterranean. While piracy was a serious issue for the Republic, Rome profited greatly from its existence. Pirate raids provided a steady source ofslaves, essential for Rome's agriculture and mining industries. But this arrangement could work only while the pirates left Roman interests alone. Pirate attacks on grain ships, which were essential to Roman citizens, led to angry voices in the Senate, demanding punishment ofthe culprits. Rome, however, did nothing, further encouraging piracy. By the 1st centu,y BCE, emboldened pirates kidnapped prominent Roman dignitaries, asking for a large ransom to be paid. Their most famous hostage was none other than Julius Caesar, captured in 75 BCE.",
+          "G": "G\tBy now, Rome was well aware that pirates had outlived their usefulness. The time had come for concerted action. In 67 BCE, a new law granted Pompey vast funds to combat the\nMediterranean menace. Taking personal command, Pompey divided the entire Mediterranean into 13 districts, assigning a fleet and commander to each. After cleansing one district of pirates, the fleet would join another in the next district. The process continued until the\nentire Mediterranean was free ofpirates. Although thousands ofpirates died at the hands of Pompey's troops, as a long-term solution to the problem, many more were offered land in fertile areas located far from the sea. Instead ofa maritime menace, Rome got productive farmers that further boosted its economy."
+        },
+        "image": "",
+        "questions": [
+          {
+            "instructions": "Write the correct letter, A-G, in boxes 14-19 on your answer sheet.\nNB  You may use any letter more than once.",
+            "paragraph_matching": [
+              {
+                "question_number": 14,
+                "question": "a reference to a denial of involvement in piracy",
+                "answer": "C",
+                "options": [
+                  {
+                    "label": "A",
+                    "value": "A"
+                  },
+                  {
+                    "label": "B",
+                    "value": "B"
+                  },
+                  {
+                    "label": "C",
+                    "value": "C"
+                  },
+                  {
+                    "label": "D",
+                    "value": "D"
+                  },
+                  {
+                    "label": "E",
+                    "value": "E"
+                  },
+                  {
+                    "label": "F",
+                    "value": "F"
+                  },
+                  {
+                    "label": "G",
+                    "value": "G"
+                  }
+                ],
+                "input_type": "dropdown"
+              },
+              {
+                "question_number": 15,
+                "question": "details of how a campaign to eradicate piracy was carried out",
+                "answer": "F",
+                "options": [
+                  {
+                    "label": "A",
+                    "value": "A"
+                  },
+                  {
+                    "label": "B",
+                    "value": "B"
+                  },
+                  {
+                    "label": "C",
+                    "value": "C"
+                  },
+                  {
+                    "label": "D",
+                    "value": "D"
+                  },
+                  {
+                    "label": "E",
+                    "value": "E"
+                  },
+                  {
+                    "label": "F",
+                    "value": "F"
+                  },
+                  {
+                    "label": "G",
+                    "value": "G"
+                  }
+                ],
+                "input_type": "dropdown"
+              },
+              {
+                "question_number": 16,
+                "question": "a mention of the circumstances in which states in the ancient world would make use of pirates",
+                "answer": "B",
+                "options": [
+                  {
+                    "label": "A",
+                    "value": "A"
+                  },
+                  {
+                    "label": "B",
+                    "value": "B"
+                  },
+                  {
+                    "label": "C",
+                    "value": "C"
+                  },
+                  {
+                    "label": "D",
+                    "value": "D"
+                  },
+                  {
+                    "label": "E",
+                    "value": "E"
+                  },
+                  {
+                    "label": "F",
+                    "value": "F"
+                  },
+                  {
+                    "label": "G",
+                    "value": "G"
+                  }
+                ],
+                "input_type": "dropdown"
+              },
+              {
+                "question_number": 17,
+                "question": "a reference to how people today commonly view pirates",
+                "answer": "E",
+                "options": [
+                  {
+                    "label": "A",
+                    "value": "A"
+                  },
+                  {
+                    "label": "B",
+                    "value": "B"
+                  },
+                  {
+                    "label": "C",
+                    "value": "C"
+                  },
+                  {
+                    "label": "D",
+                    "value": "D"
+                  },
+                  {
+                    "label": "E",
+                    "value": "E"
+                  },
+                  {
+                    "label": "F",
+                    "value": "F"
+                  },
+                  {
+                    "label": "G",
+                    "value": "G"
+                  }
+                ],
+                "input_type": "dropdown"
+              },
+              {
+                "question_number": 18,
+                "question": "an explanation of how some people were encouraged not to return to piracy",
+                "answer": "A",
+                "options": [
+                  {
+                    "label": "A",
+                    "value": "A"
+                  },
+                  {
+                    "label": "B",
+                    "value": "B"
+                  },
+                  {
+                    "label": "C",
+                    "value": "C"
+                  },
+                  {
+                    "label": "D",
+                    "value": "D"
+                  },
+                  {
+                    "label": "E",
+                    "value": "E"
+                  },
+                  {
+                    "label": "F",
+                    "value": "F"
+                  },
+                  {
+                    "label": "G",
+                    "value": "G"
+                  }
+                ],
+                "input_type": "dropdown"
+              },
+              {
+                "question_number": 19,
+                "question": "a mention of the need for many sailing vessels to stay relatively close to land",
+                "answer": "G",
+                "options": [
+                  {
+                    "label": "A",
+                    "value": "A"
+                  },
+                  {
+                    "label": "B",
+                    "value": "B"
+                  },
+                  {
+                    "label": "C",
+                    "value": "C"
+                  },
+                  {
+                    "label": "D",
+                    "value": "D"
+                  },
+                  {
+                    "label": "E",
+                    "value": "E"
+                  },
+                  {
+                    "label": "F",
+                    "value": "F"
+                  },
+                  {
+                    "label": "G",
+                    "value": "G"
+                  }
+                ],
+                "input_type": "dropdown"
+              }
+            ]
+          },
+          {
+            "instructions": "Choose TWO letters, A-E.\nWrite the correct letters in boxes 20 and 21 on your answer sheet.",
+            "multiple_mcq": [
+              {
+                "question_numbers": [
+                  20,
+                  21
+                ],
+                "question": "Which TWO of the following statements does the writer make about inhabitants of the Mediterranean region in the ancient world?",
+                "options": [
+                  {
+                    "label": "A",
+                    "value": "They often used stolen vessels to carry out pirate attacks."
+                  },
+                  {
+                    "label": "B",
+                    "value": "They managed to escape capture by the authorities because they knew the area so well."
+                  },
+                  {
+                    "label": "C",
+                    "value": "They paid for information about the routes merchant ships would take."
+                  },
+                  {
+                    "label": "D",
+                    "value": "They depended more on the sea for their livelihood than on farming."
+                  },
+                  {
+                    "label": "E",
+                    "value": "They stored many of the goods taken in pirate attacks in coves along the coastline."
+                  }
+                ],
+                "input_type": "checkbox",
+                "min_selection": 2,
+                "max_selection": 2,
+                "correct_mapping": [
+                  "B",
+                  "D"
+                ]
+              },
+              {
+                "question_numbers": [
+                  22,
+                  23
+                ],
+                "question": "Which TWO of the following statements does the writer make about piracy and ancient Greece?",
+                "options": [
+                  {
+                    "label": "A",
+                    "value": "The state estimated that very few people were involved in piracy."
+                  },
+                  {
+                    "label": "B",
+                    "value": "Attitudes towards piracy changed shortly after the Iliad and the Odyssey were written."
+                  },
+                  {
+                    "label": "C",
+                    "value": "Important officials were known to occasionally take part in piracy."
+                  },
+                  {
+                    "label": "D",
+                    "value": "Every citizen regarded pirate attacks on cities as unacceptable."
+                  },
+                  {
+                    "label": "E",
+                    "value": "A favourable view of piracy is evident in certain ancient Greek texts."
+                  }
+                ],
+                "input_type": "checkbox",
+                "min_selection": 2,
+                "max_selection": 2,
+                "correct_mapping": [
+                  "A",
+                  "E"
+                ]
+              }
+            ]
+          },
+          {
+            "instructions": "Complete the summary below. Choose ONE WORD ONLY from the passage for each answer.",
+            "passage_fill_in_the_blanks": [
+              {
+                "question_number": [
+                  24,
+                  25,
+                  26
+                ],
+                "text": "Piracy was an issue ancient Rome had to deal with, but it also brought some benefits for Rome. For example, pirates supplied slaves that were important for Rome's industries. However, attacks on vessels transporting __________ to Rome resulted in calls for __________ for the pirates responsible. Nevertheless, piracy continued, with some pirates demanding a __________ for the return of the Roman officials they captured.",
+                "blanks": [
+                  {
+                    "blank_number": 24,
+                    "input_type": "text",
+                    "answer": "Any "
+                  },
+                  {
+                    "blank_number": 25,
+                    "input_type": "text",
+                    "answer": "Thing"
+                  },
+                  {
+                    "blank_number": 26,
+                    "input_type": "text",
+                    "answer": "Can"
+                  }
+                ],
+                "instruction": "Complete the summary below. Choose ONE WORD ONLY from the passage for each answer. Write your answers in boxes 24-26 on your answer sheet."
+              }
+            ]
+          }
+        ],
+        "passageType": "type2"
+      },
+      {
+        "title": "READING PASSAGE 3",
+        "instructions": "You should spend about 20 minutes on Questions 27-40, which are based on Reading Passage 3 below.",
+        "passage_title": "The persistence and peril of misinformation",
+        "passage_subtitle": "Brian Southwell lools at how human brains verify information and discusses some of the challenges of battling widespread falsehoods",
+        "passage": [
+          "Misinformation - both deliberately promoted and accidentally shared - is perhaps an inevitable part of the world in which we live, but it is not a new problem. People likely have lied to one another for roughly as long as verbal communication has existed. Deceiving others can offer an apparent opportunity to gain strategic advantage, to motivate others to action, or even to protect interpersonal bonds. Moreover, people inadvertently have been sharing inaccurate information with one another for thousands of years.",
+          "However, we currently live in an era in which technology enables information lo reach large audiences distributed across the globe, and thus the potential for immediate and widespread effects from misinformation now looms larger than in the past. Yet the means to correct misinformation might, over time, be found in those same patterns of mass communication and of the facilitated spread of information.",
+          "The main worry regarding misinformation is its potential to unduly influence attitudes and behavior, leading people to think and act differently than they would if they were correctly informed, as suggested by the research teams of Stephan Lewandowsky of the University of Bristol and Elizabeth Marsh of Duke University, among others. In other words, we wony\nthat misinformation might lead people to hold misperceptions (or false beliefs) and that these misperceptions, especially when they occur among large groups of people, may have detrimental, downstream consequences for health, social harmony, and the political climate.",
+          "At least three observations related to misinformation in the contemporary mass-media environment warrant the attention of researchers, policy makers, and really everyone who watches television, listens to the radio, or reads information online. First of all, people who encounter misinformation tend to believe it, at least initially. Secondly, electronic and print media often do not block many types of misinformation before it appears in content available to large audiences. Thirdly, countering misinformation once it has enjoyed wide exposure can be a resource-intensive effort.",
+          "Knowing what happens when people initially encounter misinformation holds tremendous importance for estimating the potential for subsequent problems. Although it is fairly routine for individuals to come across information that is false, the question of exactly how - and when - we mentally label information as true or false has garnered philosophical debate. The dilemma is neatly summarized by a contrast between how the 17th-century philosophers Rene Descartes and Baruch Spinoza described human information engagement, with conflicting predictions that only recently have been empirically tested in robust ways. Descartes argued that a person only accepts or rejects information after considering its truth or falsehood; Spinoza argued that people accept all encountered information (or misinformation) by default and then subsequently verify or reject it through a separate cognitive process. In recent decades, empirical evidence from the research teams of Erik Asp ofthe University of Chicago and Daniel Gilbert at Harvard University, among others, has supported Spinoza's account: people appear to encode all new information as ifit were true, even ifonly momentarily, and later tag the information as being either true or false, a pattern that seems consistent with the observation that mental resources for skepticism physically reside in a different part of the brain than the resources used in perceiving and encoding.",
+          "W hat about our second observation that misinformation often can appear in electronic or print media without being preemptively blocked? In support of this, one might consider the nature ofregulato1y structures in the United States: regulatory agencies here tend to focus on post hoc detection of broadcast information. Organizations such as the Food and Drug Administration (FDA) offer considerable monitoring and notification functions, but these roles typically do\nnot involve preemptive censoring. The FDA oversees direct-to-consumer prescription drug advertising, for example, and has developed mechanisms such as the 'Bad Ad' program, through which people can report advertising in apparent violation of FDA guidelines on drug risks.\nSuch programs, although laudable and useful, do not keep false advertising off the airwaves. In addition, even misinformation that is successfully corrected can continue to affect attitudes.",
+          "This leads us to our third observation: a campaign to correct misinformation, even ifrhetorically compelling, requires resources and planning lo accomplish necessary reach and frequency. For corrective campaigns to be persuasive, audiences need to be able to comprehend them, which requires either effort to frame messages in ways that are accessible or effort lo educate and sensitize audiences to the possibility ofmisinfonnation. That some audiences might be unaware ofthe potential for misinformation also suggests the utility ofmedia literacy efforts as early\nas elementary school. Even with journalists and scholars pointing to the phenomenon of' fake news', people do not distinguish between demonstrably false stories and those based in fact when scanning and processing written information.\n",
+          "We live at a time when widespread misinformation is common. Yet al this time many people also are passionately developing potential solutions and remedies. The journey forward undoubtedly will be a long and arduous one. Future remedies will require not only continued theoretical consideration but also the development and maintenance ofconsistent monitoring tools - and a recognition among fellow members of society that claims which find prominence in the media that are insufficiently based in scientific consensus and social reality should be countered.\nMisinformation arises as a result of human fallibility and human information needs. To overcome the worst effects of the phenomenon, we will need coordinated efforts over time, rather than any singular one-lime panacea we could hope lo offer."
+        ],
+        "image": "",
+        "questions": [
+          {
+            "instructions": "Choose the correct letter, A, B, C or D.\n\nWrite the correct letter in boxes 27-30 on your answer sheet.",
+            "mcq": [
+              {
+                "question_number": 27,
+                "question": "What point does the writer make about misinformation in the first paragraph?",
+                "input_type": "radio",
+                "answer": [
+                  "B"
+                ],
+                "options": [
+                  {
+                    "label": "A",
+                    "value": "Misinformation is a relatively recent phenomenon."
+                  },
+                  {
+                    "label": "B",
+                    "value": "Some people find it easy to identify misinformation."
+                  },
+                  {
+                    "label": "C",
+                    "value": "Misinformation changes as it is passed from one person to another."
+                  },
+                  {
+                    "label": "D",
+                    "value": "There may be a number of reasons for the spread of misinformation."
+                  }
+                ],
+                "min_selection": 1,
+                "max_selection": 1
+              },
+              {
+                "question_number": 28,
+                "question": "What does the writer say about the role of technology?",
+                "input_type": "radio",
+                "answer": [
+                  "D"
+                ],
+                "options": [
+                  {
+                    "label": "A",
+                    "value": "It may at some point provide us with a solution to misinformation."
+                  },
+                  {
+                    "label": "B",
+                    "value": "It could fundamentally alter the way in which people regard information."
+                  },
+                  {
+                    "label": "C",
+                    "value": "It has changed the way in which organizations use misinformation."
+                  },
+                  {
+                    "label": "D",
+                    "value": "It has made it easier for people to check whether information is accurate."
+                  }
+                ],
+                "min_selection": 1,
+                "max_selection": 1
+              },
+              {
+                "question_number": 29,
+                "question": "What is the writer doing in the fourth paragraph?",
+                "input_type": "radio",
+                "answer": [
+                  "C"
+                ],
+                "options": [
+                  {
+                    "label": "A",
+                    "value": "comparing the different opinions people have of misinformation"
+                  },
+                  {
+                    "label": "B",
+                    "value": "explaining how the effects of misinformation have changed over time"
+                  },
+                  {
+                    "label": "C",
+                    "value": "outlining which issues connected with misinformation are significant today"
+                  },
+                  {
+                    "label": "D",
+                    "value": "describing the attitude of policy makers towards misinformation in the media"
+                  }
+                ],
+                "min_selection": 1,
+                "max_selection": 1
+              },
+              {
+                "question_number": 30,
+                "question": "What point does the writer make about regulation in the USA?",
+                "input_type": "radio",
+                "answer": [
+                  "A"
+                ],
+                "options": [
+                  {
+                    "label": "A",
+                    "value": "The guidelines issued by the FDA need to be simplified."
+                  },
+                  {
+                    "label": "B",
+                    "value": "Regulation does not affect people's opinions of new prescription drugs."
+                  },
+                  {
+                    "label": "C",
+                    "value": "The USA has more regulatory bodies than most other countries."
+                  },
+                  {
+                    "label": "D",
+                    "value": "Regulation fails to prevent misinformation from appearing in the media."
+                  }
+                ],
+                "min_selection": 1,
+                "max_selection": 1
+              }
+            ]
+          },
+          {
+            "instructions": "Complete the summary using the list of phrases, A-J, below.\nWrite the correct letter, A-J, in boxes 31-36 on your answer sheet.",
+            "summary_fill_in_the_blanks": [
+              {
+                "question_numbers": [
+                  31,
+                  32,
+                  33,
+                  34,
+                  35,
+                  36
+                ],
+                "passage": "Although people have __________ to misinformation, there is debate about\nprecisely how and when we label something as true or untrue. The philosophers Descartes and Spinoza had __________ about how people engage with information. While Descartes believed that people accept or reject information after considering whether it is true or not, Spinoza argued that people accepted an information they encountered (and by default misinformation) and did not verify or reject it until afterwards. Moreover, Spinoza believed that a distinct __________ is involved in these stages. Recent research has provided __________ for Spinoza's theory and it would appear that people accept all encountered information as if it were true, even if this is for an extremely __________ , and do not label the information as true or false until later. This is consistent with the fact that the resources for scepticism and the resources for perceiving and encoding are in __________ in the brain.\n\n",
+                "answers": [
+                  "F",
+                  "A",
+                  "G",
+                  "E",
+                  "J",
+                  "H"
+                ],
+                "options": [
+                  {
+                    "label": "A",
+                    "value": "constant conflict"
+                  },
+                  {
+                    "label": "B",
+                    "value": "additional evidence"
+                  },
+                  {
+                    "label": "C",
+                    "value": "different locations"
+                  },
+                  {
+                    "label": "D",
+                    "value": "experimental subjects"
+                  },
+                  {
+                    "label": "E",
+                    "value": "short period"
+                  },
+                  {
+                    "label": "F",
+                    "value": "extreme distrust"
+                  },
+                  {
+                    "label": "G",
+                    "value": "frequent exposure"
+                  },
+                  {
+                    "label": "H",
+                    "value": "mental operation"
+                  },
+                  {
+                    "label": "I",
+                    "value": "dubious reason"
+                  },
+                  {
+                    "label": "J",
+                    "value": "different ideas"
+                  }
+                ],
+                "input_type": "drag_and_drop",
+                "question": ""
+              }
+            ]
+          },
+          {
+            "instructions": "Do the following statements agree with the claims of the writer in Reading Passage 3?\nIn boxes 37-40 on your answer sheet, write\nYES\tif the statement agrees with the claims of the writer\nNO\tif the statement contradicts the claims of the writer\nNOT GIVEN  if it is impossible to say what the writer thinks about this",
+            "true_false_not_given": [
+              {
+                "question_number": 37,
+                "question": "Campaigns designed to correct misinformation will fail to achieve their purpose if people are unable to understand them.",
+                "input_type": "dropdown",
+                "answer": "False"
+              },
+              {
+                "question_number": 38,
+                "question": "Attempts to teach elementary school students about misinformation have been opposed.",
+                "input_type": "dropdown",
+                "answer": "True"
+              },
+              {
+                "question_number": 39,
+                "question": "It may be possible to overcome the problem of misinformation in a relatively short period.",
+                "input_type": "dropdown",
+                "answer": "Not Given"
+              },
+              {
+                "question_number": 40,
+                "question": "The need to keep up with new information is hugely exaggerated in today's world.",
+                "input_type": "dropdown",
+                "answer": "True"
+              }
+            ]
+          }
+        ],
+        "passageType": "type1"
+      }
+    ]
+  },
+  {
+    "title": "Test 2",
+    "type": "academic",
+    "duration": 60,
+    "parts": [
+      {
+        "title": "READING  PASSAGE  1",
+        "instructions": "You should spend about 20 minutes on Questions 1-13, which are based on Reading Passage 1 below.",
+        "passage_title": "The Industrial Revolution in Britain",
+        "passage_subtitle": "",
+        "passage": [
+          "The Industrial Revolution began in Britain in the mid-1700s and by the 1830s and 1840s had spread to many other parts of the world, including the United States. In Britain, it was a period when a largely rural, agrarian* society was transformed into an industrialised, urban one. Goods that had once been crafted by hand started to be produced in mass quantities by machines in factories, thanks to the invention of steam power and the introduction of new machines and manufacturing techniques in textiles, iron-making and other industries.",
+          "The foundations of the Industrial Revolution date back to the early 1700s, when the English inventor Thomas Newcomen designed the first modern steam engine. Called the 'atmospheric steam engine', Newcomen's invention was originally used to power machines that pumped water out of mines. In the 1760s, the Scottish engineer James Watt\nstarted to adapt one of Newcomen's models, and succeeded in making it far more efficient. Watt later worked with the English manufacturer Matthew Boulton to invent a new steam engine driven by both the forward and backward strokes of the piston, while the gear mechanism it was connected to produced rotary motion. It was a key innovation that would allow steam power to spread across British industries.",
+          "The demand for coal, which was a relatively cheap energy source, grew rapidly during the Industrial Revolution, as it was needed to run not only the factories used to produce manufactured goods, but also steam-powered transportation. In the early 1800s, the English engineer Richard Trevithick built a steam-powered locomotive, and by 1830 goods and passengers were being transported between the industrial centres of Manchester and Liverpool. In addition, steam-powered boats and ships were widely used to carry goods along Britain's canals as well as across the Atlantic.",
+          "Britain had produced textiles like wool, linen and cotton, for hundreds of years, but prior to the Industrial Revolution, the British textile business was a true 'cottage industry', with the work performed in small workshops or even homes by individual spinners, weavers and dyers. Starting in the mid-1700s, innovations like the spinning jenny and the power loom made weaving cloth and spinning yarn and thread much easier. With these machines, relatively little labour was required to produce cloth, and the new, mechanised textile factories that opened around the country were quickly able to meet customer demand for cloth both at home and abroad.",
+          "The British iron industry also underwent major change as it adopted new innovations. Chief among the new techniques was the smelting of iron ore with coke (a material made by heating coal) instead of the traditional charcoal. This method was cheaper and produced metals that were of a higher quality, enabling Britain's iron and steel\nproduction to expand in response to demand created by the Napoleonic Wars (1803-15) and the expansion of the railways from the 1830s.",
+          "The latter part of the Industrial Revolution also saw key advances in communication methods, as people increasingly saw the need to communicate efficiently over long distances. In 1837, British inventors William Cooke and Charles Wheatstone patented the first commercial telegraphy system. In the 1830s and 1840s, Samuel Morse\nand other inventors worked on their own versions in the United States. Cooke and Wheatstone's system was soon used for railway signalling in the UK. As the speed of the new locomotives increased, it was essential to have a fast and effective means of avoiding collisions.",
+          "The impact of the Industrial Revolution on people's lives was immense. Although many people in Britain had begun moving to the cities from rural areas before the Industrial Revolution, this accelerated dramatically with industrialisation, as the rise of large factories turned smaller towns into major cities in just a few decades. This\nrapid urbanisation brought significant challenges, as overcrowded cities suffered from pollution and inadequate sanitation.",
+          "Although industrialisation increased the country's economic output overall and improved the standard of living for the middle and upper classes, many poor people continued to struggle. Factory workers had to work long hours in dangerous conditions for extremely low wages. These conditions along with the rapid pace of change fuelled opposition\nto industrialisation. A group of British workers who became known as 'Luddites' were British weavers and textile workers who objected to the increased use of mechanised looms and knitting frames. Many had spent years learning their craft, and they feared that unskilled machine operators were robbing them of their livelihood. A few-desperate weavers began breaking into factories and smashing textile machines. They called themselves Luddites after Ned Ludd, a young apprentice who was rumoured to have wrecked a textile machine in 1779.",
+          "The first major instances of machine breaking took place in 1811 in the city of Nottingham, and the practice soon spread across the country. Machine-breaking Luddites attacked and burned factories, and in some cases they even exchanged gunfire with company guards and soldiers. The workers wanted employers to stop installing new machinery, but the British government responded to the uprisings by making machine-breaking punishable by death. The unrest finally reached its peak in April 1812, when a few Luddites were shot during an attack on a mill near Huddersfield. In the days that followed, other Luddites were arrested, and dozens were hanged or transported to Australia. By 1813, the Luddite resistance had all but vanished."
+        ],
+        "image": "",
+        "questions": [
+          {
+            "instructions": "Complete the notes below.\n\nChoose ONE WORD ONLY from the passage for each answer. \nWrite your answers in boxes [b]1-7[/b] on your answer sheet.\n",
+            "fill_in_the_blanks_with_subtitle": [
+              {
+                "title": "Britain's Industrial Revolution",
+                "subtitle": "Steam power",
+                "extra": [
+                  "Newcomen's steam engine was used in mines to remove water.",
+                  "In Watt and Boulton's steam engine, the movement of the __________ was linked to a gear system.",
+                  "A greater supply of __________ was required to power steam engines."
+                ],
+                "questions": [
+                  {
+                    "question_number": 1,
+                    "answer": "Answer1",
+                    "input_type": "text"
+                  },
+                  {
+                    "question_number": 2,
+                    "answer": "Answer2",
+                    "input_type": "text"
+                  }
+                ]
+              },
+              {
+                "subtitle": "Textile industry",
+                "extra": [
+                  "Before the Industrial Revolution, spinners and weavers worked at home and in __________.\n",
+                  "Not as much __________ was needed to produce cloth once the spinning jenny and power loom were invented.\n"
+                ],
+                "questions": [
+                  {
+                    "question_number": 3,
+                    "answer": "Answer3",
+                    "input_type": "text"
+                  },
+                  {
+                    "question_number": 4,
+                    "answer": "Answer4",
+                    "input_type": "text"
+                  }
+                ]
+              },
+              {
+                "subtitle": "Iron industry",
+                "extra": [
+                  "Smelting of iron ore with coke resulted in material that was better __________.\n",
+                  "Demand for iron increased with the growth of the __________."
+                ],
+                "questions": [
+                  {
+                    "question_number": 5,
+                    "answer": "Answer5",
+                    "input_type": "text"
+                  },
+                  {
+                    "question_number": 6,
+                    "answer": "Answer6",
+                    "input_type": "text"
+                  }
+                ]
+              },
+              {
+                "subtitle": "Communications",
+                "extra": [
+                  "Cooke and Wheatstone patented the first telegraphy system.",
+                  "The telegraphy system was used to prevent locomotives colliding."
+                ],
+                "questions": []
+              },
+              {
+                "subtitle": "Urbanisation",
+                "extra": [
+                  "Small towns turned into cities very quickly.",
+                  "The new cities were dirty, crowded and lacked sufficient __________."
+                ],
+                "questions": [
+                  {
+                    "question_number": 7,
+                    "answer": "Answer7",
+                    "input_type": "text"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "instructions": "Do the following statements agree with the information given in Reading Passage 1?\n\nIn boxes 8-13 on your answer sheet, write\nTRUE\t if the statement agrees with the information \nFALSE\tif the statement contradicts the information \nNOT GIVEN if there is no information on this\n",
+            "true_false_not_given": [
+              {
+                "question_number": 8,
+                "question": "Britain's canal network grew rapidly so that more goods could be transported around the country.",
+                "input_type": "dropdown",
+                "answer": "False"
+              },
+              {
+                "question_number": 9,
+                "question": "Costs in the iron industry rose when the technique of smelting iron ore with coke was introduced.",
+                "input_type": "dropdown",
+                "answer": "Not Given"
+              },
+              {
+                "question_number": 10,
+                "question": "Samuel Morse's communication system was more reliable than that developed by William Cooke and Charles Wheatstone.",
+                "input_type": "dropdown",
+                "answer": "True"
+              },
+              {
+                "question_number": 11,
+                "question": "The economic benefits of industrialisation were limited to certain sectors of society.",
+                "input_type": "dropdown",
+                "answer": "False"
+              },
+              {
+                "question_number": 12,
+                "question": "Some skilled weavers believed that the introduction of the new textile machines would lead to job losses.",
+                "input_type": "dropdown",
+                "answer": "True"
+              },
+              {
+                "question_number": 13,
+                "question": "There was some sympathy among local people for the Luddites who were arrested near Huddersfield.",
+                "input_type": "dropdown",
+                "answer": "False"
+              }
+            ]
+          }
+        ],
+        "passageType": "type1"
+      },
+      {
+        "title": "READING PASSAGE 2",
+        "instructions": "You should spend about 20 minutes on Questions [b]14-26[/b], which are based on Reading Passage 2 below.",
+        "passage_title": "Athletes and stress",
+        "passage_subtitle": "",
+        "passage": {
+          "A": "It isn't easy being a professional athlete. Not only are the physical demands greater than most people could handle, athletes also face intense psychological pressure during competition. This is something that British tennis player Emma Raducanu wrote about on social media following her withdrawal from the 2021 Wimbledon tournament. Though the young player had been doing well in the tournament, she began having difficulty regulating her breathing and heart rate during a match, which she later attributed to 'the accumulation of the excitement and the buzz'.",
+          "B": "For athletes, some level of performance stress is almost unavoidable. But there are many different factors that dictate just how people's minds and bodies respond to stressful events. Typically, stress is the result of an exchange between two factors: demands and resources. An athlete may feel stressed about an event if they feel the demands on them are greater than they can handle. These demands include the high level of physical and mental effort required to succeed, and also the athlete's concerns about the difficulty of the event, their chance of succeeding, and any potential dangers such as injury. Resources, on the other hand, are a person's ability to cope with these demands. These include factors such as the competitor's degree of confidence, how much they believe they can control the situation's outcome, and whether they're looking forward to the event or not.",
+          "C": "Each new demand or change in circumstances affects whether a person responds positively or negatively to stress. Typically, the more resources a person feels they have in handling the situation, the more positive their stress response. This positive stress response is called a challenge state. But should the person feel there are too many demands placed on them, the more likely they are to experience a negative stress response - known as a threat state. Research shows that the challenge states lead to good performance, while threat states lead to poorer performance.\nSo, in Emma Raducanu's case, a much larger audience, higher expectations and facing a more skilful opponent, may all have led her to feel there were greater demands being placed on her at Wimbledon - but she didn't have the resources to tackle them. This led to her experiencing a threat response.",
+          "D": "Our challenge and threat responses essentially influence how our body responds to stressful situations, as both affect the production of adrenaline and cortisol - also known as 'stress hormones'. During a challenge state, adrenaline increases the amount of blood pumped from the heart and expands the blood vessels, which allows more energy to be delivered to the muscles and brain. This increase of blood and decrease of pressure in the blood vessels has been consistently related to superior sport performance in everything from cricket batting, to golf putting and football penalty taking. But during a threat state, cortisol inhibits the positive effect of adrenaline, resulting in tighter blood vessels, higher blood pressure, slower psychological responses, and a faster heart rate. In short, a threat state makes people more anxious - they make worse decisions and perform more poorly. In tennis players, cortisol has been associated with more unsuccessful serves and greater anxiety.",
+          "E": "That said, anxiety is also a common experience for athletes when they're under pressure. Anxiety can increase heart rate and perspiration, cause heart palpitations, muscle tremors and shortness of breath, as well as headaches, nausea, stomach pain, weakness and a desire to escape in more extreme cases. Anxiety can also reduce concentration and self-control and cause overthinking. The intensity with which a person experiences anxiety depends on the demands and resources they have. Anxiety may also manifest itself in the form of excitement or nervousness depending on the stress response. Negative stress responses can be damaging to both physical and mental health - and repeated episodes of anxiety coupled with negative responses can increase risk of heart disease and depression.",
+          "F": "But there are many ways athletes can ensure they respond positively under pressure. Positive stress responses can be promoted through the language that they and others - such as coaches or parents - use. Psychologists can also help athletes change how they see their physiological responses - such as helping them see a higher heart rate as excitement, rather than nerves. Developing psychological skills, such as visualisation, can also help decrease physiological responses to threat. Visualisation may involve the athlete recreating a mental picture of a time when they performed well, or picturing themselves doing well in the future. This\ncan help create a feeling of control over the stressful event. Recreating competitive pressure during training can also help athletes learn how to deal with stress. An example of this might be scoring athletes against their peers to create a sense of competition. This would increase the demands which players experience compared to a normal training session, while still allowing them to practise coping with stress.\n"
+        },
+        "image": "",
+        "questions": [
+          {
+            "instructions": "Reading Passage 2 has six paragraphs, A-F.\n\nWhich paragraph contains the following information?\n\nWrite the correct letter, A-F, in boxes 14-18 on your answer sheet.\n\nNB\tYou may use any letter more than once.\n",
+            "paragraph_matching": [
+              {
+                "question_number": 14,
+                "question": "reference to two chemical compounds which impact on performance",
+                "answer": "C",
+                "options": [
+                  {
+                    "label": "A",
+                    "value": "A"
+                  },
+                  {
+                    "label": "B",
+                    "value": "B"
+                  },
+                  {
+                    "label": "C",
+                    "value": "C"
+                  },
+                  {
+                    "label": "D",
+                    "value": "D"
+                  },
+                  {
+                    "label": "E",
+                    "value": "E"
+                  },
+                  {
+                    "label": "F",
+                    "value": "F"
+                  }
+                ],
+                "input_type": "dropdown"
+              },
+              {
+                "question_number": 15,
+                "question": "examples of strategies for minimising the effects of stress",
+                "answer": "B",
+                "options": [
+                  {
+                    "label": "A",
+                    "value": "A"
+                  },
+                  {
+                    "label": "B",
+                    "value": "B"
+                  },
+                  {
+                    "label": "C",
+                    "value": "C"
+                  },
+                  {
+                    "label": "D",
+                    "value": "D"
+                  },
+                  {
+                    "label": "E",
+                    "value": "E"
+                  },
+                  {
+                    "label": "F",
+                    "value": "F"
+                  }
+                ],
+                "input_type": "dropdown"
+              },
+              {
+                "question_number": 16,
+                "question": "how a sportsperson accounted for their own experience of stress",
+                "answer": "E",
+                "options": [
+                  {
+                    "label": "A",
+                    "value": "A"
+                  },
+                  {
+                    "label": "B",
+                    "value": "B"
+                  },
+                  {
+                    "label": "C",
+                    "value": "C"
+                  },
+                  {
+                    "label": "D",
+                    "value": "D"
+                  },
+                  {
+                    "label": "E",
+                    "value": "E"
+                  },
+                  {
+                    "label": "F",
+                    "value": "F"
+                  }
+                ],
+                "input_type": "dropdown"
+              },
+              {
+                "question_number": 17,
+                "question": "study results indicating links between stress responses and performance",
+                "answer": "D",
+                "options": [
+                  {
+                    "label": "A",
+                    "value": "A"
+                  },
+                  {
+                    "label": "B",
+                    "value": "B"
+                  },
+                  {
+                    "label": "C",
+                    "value": "C"
+                  },
+                  {
+                    "label": "D",
+                    "value": "D"
+                  },
+                  {
+                    "label": "E",
+                    "value": "E"
+                  },
+                  {
+                    "label": "F",
+                    "value": "F"
+                  }
+                ],
+                "input_type": "dropdown"
+              },
+              {
+                "question_number": 18,
+                "question": "mention of people who can influence how athletes perceive their stress responses",
+                "answer": "F",
+                "options": [
+                  {
+                    "label": "A",
+                    "value": "A"
+                  },
+                  {
+                    "label": "B",
+                    "value": "B"
+                  },
+                  {
+                    "label": "C",
+                    "value": "C"
+                  },
+                  {
+                    "label": "D",
+                    "value": "D"
+                  },
+                  {
+                    "label": "E",
+                    "value": "E"
+                  },
+                  {
+                    "label": "F",
+                    "value": "F"
+                  }
+                ],
+                "input_type": "dropdown"
+              }
+            ]
+          },
+          {
+            "instructions": "Complete the sentences below.\n\nChoose ONE WORD ONLY from the passage for each answer. \nWrite your answers in boxes 19-22 on your answer sheet.\n",
+            "fill_in_the_blanks": [
+              {
+                "question_number": 19,
+                "question": "Performance stress involves many demands on the athlete, for example, coping with the possible risk of __________.",
+                "input_type": "text",
+                "answer": "Answer1"
+              },
+              {
+                "question_number": 20,
+                "question": "Cortisol can cause tennis players to produce fewer good __________.",
+                "input_type": "text",
+                "answer": "Answer2"
+              },
+              {
+                "question_number": 21,
+                "question": "Psychologists can help athletes to view their physiological responses as the effect of a positive feeling such as __________.",
+                "input_type": "text",
+                "answer": "Answer3"
+              },
+              {
+                "question_number": 22,
+                "question": "__________ is an example of a psychological technique which can reduce an athlete's stress responses.",
+                "input_type": "text",
+                "answer": "Answer4"
+              }
+            ]
+          },
+          {
+            "instructions": "Choose TWO letters, A-E.\n\nWrite the correct letters in boxes 23 and 24 on your answer sheet.\n",
+            "multiple_mcq": [
+              {
+                "question_numbers": [
+                  23,
+                  24
+                ],
+                "question": "Which TWO facts about Emma Raducanu's withdrawal from the Wimbledon tournament are mentioned in the text?",
+                "options": [
+                  {
+                    "label": "A",
+                    "value": "the stage at which she dropped out of the tournament"
+                  },
+                  {
+                    "label": "B",
+                    "value": "symptoms of her performance stress at the tournament"
+                  },
+                  {
+                    "label": "C",
+                    "value": "measures which she had taken to manage her stress levels"
+                  },
+                  {
+                    "label": "D",
+                    "value": "aspects of the Wimbledon tournament which increased her stress levels"
+                  },
+                  {
+                    "label": "E",
+                    "value": "reactions to her social media posts about her experience at Wimbledon"
+                  }
+                ],
+                "input_type": "checkbox",
+                "min_selection": 2,
+                "max_selection": 2,
+                "correct_mapping": [
+                  "B",
+                  "E"
+                ]
+              },
+              {
+                "question_numbers": [
+                  25,
+                  26
+                ],
+                "question": "Which TWO facts about anxiety are mentioned in Paragraph E of the text?",
+                "options": [
+                  {
+                    "label": "A",
+                    "value": "Which TWO facts about anxiety are mentioned in Paragraph E of the text?"
+                  },
+                  {
+                    "label": "B",
+                    "value": "B\thow long it takes for its effects to become apparent"
+                  },
+                  {
+                    "label": "C",
+                    "value": "C\twhich of its symptoms is most frequently encountered"
+                  },
+                  {
+                    "label": "D",
+                    "value": "D\tthe types of athletes who are most likely to suffer from it"
+                  },
+                  {
+                    "label": "E",
+                    "value": "E\tthe harm that can result if athletes experience it too often"
+                  }
+                ],
+                "input_type": "checkbox",
+                "min_selection": 2,
+                "max_selection": 2,
+                "correct_mapping": [
+                  "C",
+                  "E"
+                ]
+              }
+            ]
+          }
+        ],
+        "passageType": "type2"
+      },
+      {
+        "title": "READING PASSAGE 3",
+        "instructions": "You should spend about 20 minutes on Questions 27-40, which are based on Reading Passage 3 below.",
+        "passage_title": "An inquiry into the existence of the gifted child",
+        "passage_subtitle": "",
+        "passage": [
+          "Let us start by looking at a modern 'genius', Maryam Mirzakhani, who died at the early age of 40. She was the only woman to win the Fields Medal - the mathematical equivalent of a Nobel prize. It would be easy to assume that someone as special as Mirzakhani must have been one of those 'gifted' children, those who have an extraordinary ability in a specific sphere of activity or knowledge. But look closer and a different story emerges. Mirzakhani was born in Tehran, Iran. She went to a highly selective girls' school but maths wasn't her interest - reading was.She loved novels and would read anything she could lay her hands on. As for maths, she did rather poorly al it for the first couple of years in her middle school, but became interested when her elder brother told her about what he'd learned. He shared a famous maths problem from a magazine that fascinated\nher - and she was hooked.",
+          "In adult life it is clear that she was curious, excited by what she did and also resolute in the face of setbacks.One of her comments sums it up. 'Of course, the most rewarding part is the \"Aha\" moment, the excitement or discovery and enjoyment of understanding something new ... But most of the time, doing mathematics for me is like being on a long hike with no trail and no end in sight.' That trail took her to the heights of original research\ninto mathematics.",
+          "Is her background unusual? Apparently not. Most Nobel prize winners were unexceptional in childhood. Einstein was slow to talk as a baby. He failed the general part of the entry test to Zurich Polytechnic - though they let him in because of high physics and maths scores. He struggled at work initially, but he kept plugging away and eventually rewrote the laws of Newtonian mechanics with his theory of relativity.",
+          "There has been a considerable amount of research on high performance over the last century that suggests it goes way beyond tested intelligence. On lop of that, research is clear that brains are flexible, new neural pathways can be created, and JQ isn't fixed. For example, just because you can read stories with hundreds of pages al the age of five doesn't mean you will still be ahead of your contemporaries in your teens.",
+          "While the jury is out on giftedness being innate and other factors potentially making the difference, what is certain is that the behaviours associated with high levels of performance arc replicable and most can be taught - even traits such as curiosity.",
+          "According lo my colleague Prof Deborah Eyre, with whom I've collaborated on the book Creal Minds and Ilow lo Gro111 The111, the latest neuroscience and psychological research suggests most individuals can reach levels of'perforrnance associated in school with the gifted and talented. I lowcvcr, they must be taught the right altitudes and approaches to their learning and develop the allributes of high performers - curiosity, persistence and hard work, for example - an approach Eyre calls 'high performance learning'. Critically, they need the right support in developing those approaches at home as well as at school.",
+          "Prof Anders Ericsson, an eminent education psychologist at Florida State University, US, is the co-author of Pea/(.' Secrets/i'Oln the New Science ofExpertise. After research going back to 1980 into diverse achievements, from music to memory to sport, he docsn't think unique and innate talents are at the heart of performance. Deliberate practice, that stretches you every step of the way, and around 10,000 hours of it, is what produces the goods. It's not a magic number - the highest performers move on to doing a whole lot more, of course. Ericsson's memory research is particularly interesting because random students, trained in memory techniques for the study, went on to outperform others thought to have innately superior memories - those who you might call gifted.",
+          "But it is perhaps the work of Benjamin Bloom, another distinguished American educationist working in the 1980s, that gives the most pause for thought. Bloom's team looked at a group of extraordinarily high achieving people in disciplines as varied as ballet, swimming, piano, tennis, maths, sculpture and neurology.\nHe found a pattern of parents encouraging and supporting their children, often in areas they enjoyed themselves. Bloom's outstanding people had worked very hard and consistently at something they had become hooked on when at a young age, and their parents all emerged as having strong work ethics themselves.",
+          "Eyre says we know how high performers learn. From that she has developed a high performing learning approach. She is working on this with a group of schools, both in Britain and abroad. Some spin-off research, which looked in detail at 24 of the 3,000 children being studied who were succeeding despite difficult circumstances, found something remarkable. Half were getting free school meals because ofpoverty, more than half were living with a single parent, and four in five were living in disadvantaged areas. Interviews\nuncovered strong evidence of an adult or adults in the child's life who valued and supported education, either in the immediate or extended family or in the child's wider community.\nChildren talked about the need to work hard at school, to listen in class and keep trying.",
+          "Let us end with Einstein, the epitome of a genius. He clearly had curiosity, character and determination. He struggled against rejection in early life but was undeterred. Did he think he was a genius or even gifted? He once wrote: 'It's not that I'm so smart, it's just that I stay with problems longer. Most people say it is the intellect which makes a great scientist. They are wrong: it is character.'"
+        ],
+        "image": "",
+        "questions": [
+          {
+            "instructions": "Complete the summary below. Choose your answers from the list of words below.",
+            "summary_fill_in_the_blanks": [
+              {
+                "question_numbers": [
+                  27,
+                  28,
+                  29,
+                  30,
+                  31,
+                  32
+                ],
+                "passage": "Maryam Mirzakhani is regarded as __________ in the field of mathematics because she was the only female holder of the prestigious Fields Medal - a record that she retained at the time of her death. However, maths held little __________ for her as a child and in fact her performance was below average until she was __________ by a difficult puzzle that one of her siblings showed her.\nLater, as a professional mathematician, she had an inquiring mind and proved herself to be __________ when things did not go smoothly. She said she got the greatest __________ from making ground-breaking discoveries and in fact she was responsible for some extremely __________ mathematical studies.",
+                "answers": [
+                  "",
+                  "",
+                  "",
+                  "",
+                  "",
+                  ""
+                ],
+                "options": [
+                  {
+                    "label": "A",
+                    "value": "appeal"
+                  },
+                  {
+                    "label": "B",
+                    "value": "determined"
+                  },
+                  {
+                    "label": "C",
+                    "value": "intrigued"
+                  },
+                  {
+                    "label": "D",
+                    "value": "single"
+                  },
+                  {
+                    "label": "E",
+                    "value": "achievement"
+                  },
+                  {
+                    "label": "F",
+                    "value": "devoted"
+                  },
+                  {
+                    "label": "G",
+                    "value": "involved"
+                  },
+                  {
+                    "label": "H",
+                    "value": "unique"
+                  },
+                  {
+                    "label": "I",
+                    "value": "innovative"
+                  },
+                  {
+                    "label": "J",
+                    "value": "satisfaction"
+                  },
+                  {
+                    "label": "K",
+                    "value": "intent"
+                  }
+                ],
+                "input_type": "drag_and_drop",
+                "question": ""
+              }
+            ]
+          },
+          {
+            "instructions": "Do the following statements agree with the information given in the passage? Write TRUE, FALSE or NOT GIVEN.",
+            "true_false_not_given": [
+              {
+                "question_number": 33,
+                "question": "Many people who ended up winning prestigious intellectual prizes only reached an average standard when young.",
+                "input_type": "dropdown",
+                "answer": "False"
+              },
+              {
+                "question_number": 34,
+                "question": "Einstein's failures as a young man were due to his lack of confidence.",
+                "input_type": "dropdown",
+                "answer": "Not Given"
+              },
+              {
+                "question_number": 35,
+                "question": "It is difficult to reach agreement on whether some children are actually born gifted.",
+                "input_type": "dropdown",
+                "answer": "True"
+              },
+              {
+                "question_number": 36,
+                "question": "Einstein was upset by the public's view of his life's work.",
+                "input_type": "dropdown",
+                "answer": "False"
+              },
+              {
+                "question_number": 37,
+                "question": "Einstein was upset by the public's view of his life's work.",
+                "input_type": "dropdown",
+                "answer": "Not Given"
+              }
+            ]
+          },
+          {
+            "instructions": "Choose the correct letter, A, B, C or D.\nWrite the correct letter in boxes 38-40 on your answer sheet.",
+            "mcq": [
+              {
+                "question_number": 38,
+                "question": "What does Eyre believe is needed for children to equal 'gifted' standards?",
+                "input_type": "radio",
+                "answer": [
+                  "C"
+                ],
+                "options": [
+                  {
+                    "label": "A",
+                    "value": "strict discipline from the teaching staff"
+                  },
+                  {
+                    "label": "B",
+                    "value": "assistance from their peers in the classroom"
+                  },
+                  {
+                    "label": "C",
+                    "value": "the development of a spirit of inquiry towards their studies"
+                  },
+                  {
+                    "label": "D",
+                    "value": "the determination to surpass everyone else's achievements"
+                  }
+                ],
+                "min_selection": 1,
+                "max_selection": 1
+              },
+              {
+                "question_number": 39,
+                "question": "What is the result of Ericsson's research?",
+                "input_type": "radio",
+                "answer": [
+                  "A"
+                ],
+                "options": [
+                  {
+                    "label": "A",
+                    "value": "Very gifted students do not need to work on improving memory skills."
+                  },
+                  {
+                    "label": "B",
+                    "value": "Being born with a special gift is not the key factor in becoming expert."
+                  },
+                  {
+                    "label": "C",
+                    "value": "Being born with a special gift is not the key factor in becoming expert."
+                  },
+                  {
+                    "label": "D",
+                    "value": "10,000 hours of relevant and demanding work will create a genius."
+                  }
+                ],
+                "min_selection": 1,
+                "max_selection": 1
+              },
+              {
+                "question_number": 40,
+                "question": "In the penultimate paragraph, it is stated the key to some deprived children's success is",
+                "input_type": "radio",
+                "answer": [
+                  "C"
+                ],
+                "options": [
+                  {
+                    "label": "A",
+                    "value": "a regular and nourishing diet at home."
+                  },
+                  {
+                    "label": "B",
+                    "value": "the loving support of more than one parent."
+                  },
+                  {
+                    "label": "C",
+                    "value": "a community which has well-funded facilities for learning."
+                  },
+                  {
+                    "label": "D",
+                    "value": "the guidance of someone who recognises the benefits of learning."
+                  }
+                ],
+                "min_selection": 1,
+                "max_selection": 1
+              }
+            ]
+          }
+        ],
+        "passageType": "type1"
+      }
+    ]
+  }
+]

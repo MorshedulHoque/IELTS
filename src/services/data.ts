@@ -26,15 +26,11 @@ export async function getSingleUser(paramsId: any) {
 
 export async function postUser(formData: any) {
   try {
-    const response = await axios.post(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/users`,
-      formData,
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const response = await axios.post("/api/users", formData, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     return response.data;
   } catch (error) {
     console.error(error);
@@ -79,9 +75,7 @@ export async function deleteUser(paramsId: any) {
 
 export async function getOnboardingData(userId: any) {
   try {
-    const response = await axios.get(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/onboarding/${userId}`
-    );
+    const response = await axios.get(`/api/onboarding/${userId}`);
     return response.data;
   } catch (error) {
     console.error("Error fetching onboarding data:", error);

@@ -48,14 +48,11 @@ const SignInForm = () => {
     }
 
     try {
-      const userResponse = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/auth/login`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email, password }),
-        },
-      );
+      const userResponse = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
 
       const userData = await userResponse.json();
       const userId = userData?.data?.[0]?._id;
@@ -89,14 +86,11 @@ const SignInForm = () => {
     } catch (error) {
       console.error("Error after sign in:", error);
       try {
-        const userResponse = await fetch(
-          `${process.env.NEXT_PUBLIC_BASE_URL}/api/auth/login`,
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email, password }),
-          },
-        );
+        const userResponse = await fetch("/api/auth/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password }),
+        });
         const userData = await userResponse.json();
         const userRole = userData?.data?.[0]?.role;
 

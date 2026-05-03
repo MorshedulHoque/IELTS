@@ -105,6 +105,10 @@ const SpeakingCreationPage: React.FC = () => {
   };
 
   const guidance = getTestTypeGuidance();
+  const isCueCardQuestion = currentQuestion.question_type === "cue_card";
+  const canAddCurrentQuestion = isCueCardQuestion
+    ? cueTitle.trim().length > 0 && cuePoints.trim().length > 0
+    : currentQuestion.question.trim().length > 0;
 
   // Update question type when test type changes
   React.useEffect(() => {
@@ -128,6 +132,8 @@ const SpeakingCreationPage: React.FC = () => {
   };
 
   const addQuestion = () => {
+    const hasCueCard = test.questions.some((q) => q.question_type === "cue_card");
+
     if (currentQuestion.question_type === "cue_card") {
       if (!cueTitle.trim()) {
         toast.error("Please enter the cue card title/topic");
@@ -147,6 +153,26 @@ const SpeakingCreationPage: React.FC = () => {
     // Validate question count based on test type
     if (test.type === "part2" && test.questions.length >= 1) {
       toast.error("Part 2 typically has only 1 cue card question");
+      return;
+    }
+
+    if (
+      test.type === "full_test" &&
+      currentQuestion.question_type === "cue_card" &&
+      hasCueCard
+    ) {
+      toast.error("A full test should contain only one Part 2 cue card");
+      return;
+    }
+
+    if (
+      test.type === "full_test" &&
+      currentQuestion.question_type === "discussion" &&
+      !hasCueCard
+    ) {
+      toast.error(
+        "Add the Part 2 cue card first, then continue with Part 3 discussion questions"
+      );
       return;
     }
 
@@ -490,7 +516,10 @@ const SpeakingCreationPage: React.FC = () => {
                   <button
                     onClick={addQuestion}
                     className="btn btn-primary"
-                    disabled={!currentQuestion.question.trim() || (test.type === "part2" && test.questions.length >= 1)}
+                    disabled={
+                      !canAddCurrentQuestion ||
+                      (test.type === "part2" && test.questions.length >= 1)
+                    }
                   >
                     <FaPlus className="h-4 w-4 mr-2" />
                     Add Question

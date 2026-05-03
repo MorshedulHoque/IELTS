@@ -1,30 +1,13 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import Loader from "@/components/Common/Loader";
+
+import type { BlogPost } from "@/lib/contentful";
 import Link from "next/link";
-import { BlogPost, getBlogPosts } from "@/lib/contentful";
+import React from "react";
 
-const BlogClient: React.FC = () => {
-  const [posts, setPosts] = useState<BlogPost[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+type Props = { initialPosts: BlogPost[] };
 
-  useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        setLoading(true);
-        const data = await getBlogPosts();
-        setPosts(data);
-      } catch (err) {
-        console.error("Error fetching blog posts:", err);
-        setError("Failed to load blog posts");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchPosts();
-  }, []);
+const BlogClient: React.FC<Props> = ({ initialPosts }) => {
+  const posts = initialPosts;
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString("en-US", {
@@ -40,7 +23,7 @@ const BlogClient: React.FC = () => {
 
     const text = body.content
       .map((node: any) =>
-        node.content?.map((child: any) => child.value || "").join(" ")
+        node.content?.map((child: any) => child.value || "").join(" "),
       )
       .join(" ")
       .trim();
@@ -48,24 +31,6 @@ const BlogClient: React.FC = () => {
     if (text.length <= maxLength) return text;
     return text.slice(0, maxLength) + "...";
   };
-
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <Loader message="Loading blog posts..." />
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="alert alert-error max-w-md">
-          <span>{error}</span>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen bg-gray-50 select-none">
@@ -162,4 +127,3 @@ const BlogClient: React.FC = () => {
 };
 
 export default BlogClient;
-

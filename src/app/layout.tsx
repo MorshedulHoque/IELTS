@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Layout/Navbar";
 import SessionWrapper from "@/components/Auth/SessionWrapper";
 import Footer from "@/components/Layout/Footer";
+import ScrollToTop from "@/components/Layout/ScrollToTop";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,12 +30,12 @@ export default function RootLayout({
     <html lang="en" data-theme="light">
       <SessionWrapper>
         <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}
+          className={`${geistSans.variable} ${geistMono.variable} antialiased flex min-h-screen flex-col`}
         >
-          <div>
-            <Navbar />
-          </div>
-          <div>{children}</div>
+          <ScrollToTop />
+          <Navbar />
+          <div className="flex-1 min-w-0 overflow-x-hidden">{children}</div>
+          <Footer />
         </body>
       </SessionWrapper>
     </html>

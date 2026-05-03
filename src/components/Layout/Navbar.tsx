@@ -2,10 +2,10 @@
 "use client";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import LoginButton from "../Auth/LoginButton";
 import { usePathname, useRouter } from "next/navigation";
 import { useSession, signOut } from "next-auth/react";
-import { Session } from "next-auth";
 import { getSingleUser } from "@/services/data";
 import userImage from "../../../public/images/user.jpg";
 import NotificationBell from "@/components/Common/NotificationBell";
@@ -24,7 +24,16 @@ declare module "next-auth" {
 const Navbar: React.FC = () => {
   const pathName = usePathname();
   const { data } = useSession();
-  const [userData, setUserData]: any = useState();
+  const queryClient = useQueryClient();
+  const userId = data?.user?.id;
+  const { data: profilePayload } = useQuery({
+    queryKey: ["user-profile", userId],
+    queryFn: () => getSingleUser(userId as string),
+    enabled: Boolean(userId),
+    staleTime: 60 * 1000,
+  });
+  const userData = profilePayload?.data;
+  const [scrolled, setScrolled] = useState(false);
   const router = useRouter();
 
   // Navigation links data
@@ -49,15 +58,13 @@ const Navbar: React.FC = () => {
   ];
 
   useEffect(() => {
-    const fetchSingleUser = async () => {
-      if (data) {
-        const result = await getSingleUser(data?.user.id);
-        setUserData(result?.data);
-        return result;
-      }
+    const onScroll = () => {
+      setScrolled(window.scrollY > 8);
     };
-    fetchSingleUser();
-  }, [data]);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const hideForUserRoute =
     pathName.startsWith("/user/") &&
@@ -67,26 +74,62 @@ const Navbar: React.FC = () => {
     pathName !== "/user/signup/";
 
   return (
-    <div>
+    <div className={pathName.startsWith("/test/reading/") ||
+      pathName.startsWith("/test/writing/") ||
+      pathName.startsWith("/test/listening/") ||
+      pathName.startsWith("/admin") ||
+      hideForUserRoute ||
+      pathName.startsWith("/writing-samples/")
+      ? ""
+      : "sticky top-0 z-50"}>
       {!pathName.startsWith("/test/reading/") &&
         !pathName.startsWith("/test/writing/") &&
         !pathName.startsWith("/test/listening/") &&
         !pathName.startsWith("/admin") &&
         !hideForUserRoute &&
         !pathName.startsWith("/writing-samples/") && (
-          <nav className="bg-white/80 backdrop-blur-md border-b border-gray-200/50 shadow-sm sticky top-0 z-50 transition-all duration-300">
+          <nav
+            className={[
+              "w-full border-b transition-[background-color,box-shadow,backdrop-filter,border-color,padding] duration-300 ease-out",
+              scrolled
+                ? "bg-white/95 backdrop-blur-xl border-gray-200/90 shadow-[0_8px_30px_-6px_rgba(0,0,0,0.12)]"
+                : "bg-white/75 backdrop-blur-md border-gray-200/45 shadow-sm",
+            ].join(" ")}
+          >
             <div className="container mx-auto px-4">
-              <div className="navbar py-2">
+              <div
+                className={[
+                  "navbar transition-[padding,min-height] duration-300 ease-out",
+                  scrolled ? "py-1.5 min-h-[3.25rem]" : "py-2.5 min-h-[3.5rem]",
+                ].join(" ")}
+              >
                 {/* Logo */}
                 <div className="navbar-start">
                   <Link 
                     href="/" 
                     className="flex items-center space-x-3 group transition-transform duration-300 hover:scale-105"
                   >
-                    <div className="w-10 h-10 bg-gradient-to-br from-red-600 to-red-700 rounded-full flex items-center justify-center shadow-lg shadow-red-500/30 transition-all duration-300 group-hover:shadow-xl group-hover:shadow-red-500/50 group-hover:scale-110">
-                      <span className="text-white font-bold text-xl">I</span>
+                    <div
+                      className={[
+                        "bg-gradient-to-br from-red-600 to-red-700 rounded-full flex items-center justify-center shadow-lg shadow-red-500/30 transition-all duration-300 ease-out group-hover:shadow-xl group-hover:shadow-red-500/50 group-hover:scale-110",
+                        scrolled ? "w-9 h-9" : "w-10 h-10",
+                      ].join(" ")}
+                    >
+                      <span
+                        className={[
+                          "text-white font-bold transition-all duration-300 ease-out",
+                          scrolled ? "text-lg" : "text-xl",
+                        ].join(" ")}
+                      >
+                        I
+                      </span>
                     </div>
-                    <span className="text-2xl font-bold text-gray-800 hidden sm:block transition-colors duration-300 group-hover:text-gray-900">
+                    <span
+                      className={[
+                        "font-bold text-gray-800 hidden sm:block transition-all duration-300 ease-out group-hover:text-gray-900",
+                        scrolled ? "text-xl" : "text-2xl",
+                      ].join(" ")}
+                    >
                       IELTS<span className="text-red-700 group-hover:text-red-600 transition-colors duration-300">Prep</span>
                     </span>
                   </Link>
@@ -94,7 +137,12 @@ const Navbar: React.FC = () => {
 
                 {/* Desktop Navigation */}
                 <div className="navbar-center hidden lg:flex">
-                  <ul className="menu menu-horizontal px-1 py-3 gap-1">
+                  <ul
+                    className={[
+                      "menu menu-horizontal px-1 gap-1 transition-[padding] duration-300 ease-out",
+                      scrolled ? "py-2" : "py-3",
+                    ].join(" ")}
+                  >
                     {navLinks.map((link) => (
                       <li key={link.href} className="relative group">
                         {link.hasSubmenu ? (
@@ -315,6 +363,9 @@ const Navbar: React.FC = () => {
                           type="button"
                           onClick={async () => {
                             await signOut({ redirect: false });
+                            queryClient.removeQueries({
+                              queryKey: ["user-profile"],
+                            });
                             router.push("/");
                           }}
                           className="mt-3 w-full rounded-xl px-3 py-2 text-left text-sm text-gray-700 hover:bg-rose-50 hover:text-rose-700 transition-colors duration-150 border-t border-rose-100/80"

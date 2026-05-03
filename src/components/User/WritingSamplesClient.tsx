@@ -1,56 +1,63 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import Loader from "@/components/Common/Loader";
-import { getWritingSamples, WritingSample } from "@/lib/contentful";
+import React, { useCallback, useEffect, useState } from "react";
+import type { WritingSample } from "@/lib/contentful";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 
-const WritingSamplesPage = () => {
-  const [samples, setSamples] = useState<WritingSample[]>([]);
-  const [filteredSamples, setFilteredSamples] = useState<WritingSample[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+type Props = { initialSamples: WritingSample[] };
+
+const WritingSamplesPage = ({ initialSamples }: Props) => {
+  const [samples, setSamples] = useState<WritingSample[]>(initialSamples);
+  const [filteredSamples, setFilteredSamples] =
+    useState<WritingSample[]>(initialSamples);
   const [activeFilter, setActiveFilter] = useState<string>("all");
   const [selectedTask, setSelectedTask] = useState<string>("all");
   const [selectedQuestionType, setSelectedQuestionType] =
     useState<string>("all");
   const searchParams = useSearchParams();
 
-  useEffect(() => {
-    const fetchSamples = async () => {
-      try {
-        setLoading(true);
-        const data = await getWritingSamples();
-        setSamples(data);
-        setFilteredSamples(data);
-      } catch (err) {
-        setError("Failed to load writing samples");
-        console.error("Error fetching samples:", err);
-      } finally {
-        setLoading(false);
+  const filterSamples = useCallback(
+    (data: WritingSample[], task: string, questionType: string) => {
+      let filtered = data;
+
+      if (task === "task1") {
+        filtered = filtered.filter(
+          (sample) => sample.fields.taskType === "Task 1",
+        );
+      } else if (task === "task2") {
+        filtered = filtered.filter(
+          (sample) => sample.fields.taskType === "Task 2",
+        );
       }
-    };
 
-    fetchSamples();
-  }, []);
+      if (questionType !== "all") {
+        filtered = filtered.filter(
+          (sample) => sample.fields.questionType === questionType,
+        );
+      }
 
-  // Handle URL parameters for filtering
+      setFilteredSamples(filtered);
+    },
+    [],
+  );
+
   useEffect(() => {
+    setSamples(initialSamples);
     const taskParam = searchParams.get("task");
     if (taskParam === "1") {
       setSelectedTask("task1");
       setSelectedQuestionType("all");
-      filterSamples("task1", "all");
+      filterSamples(initialSamples, "task1", "all");
     } else if (taskParam === "2") {
       setSelectedTask("task2");
       setSelectedQuestionType("all");
-      filterSamples("task2", "all");
+      filterSamples(initialSamples, "task2", "all");
     } else {
       setSelectedTask("all");
       setSelectedQuestionType("all");
-      setFilteredSamples(samples);
+      setFilteredSamples(initialSamples);
     }
-  }, [searchParams, samples]);
+  }, [initialSamples, searchParams, filterSamples]);
 
   // Question types for each task
   const task1QuestionTypes = [
@@ -75,39 +82,15 @@ const WritingSamplesPage = () => {
     "Problem and Solutions",
   ];
 
-  const filterSamples = (task: string, questionType: string) => {
-    let filtered = samples;
-
-    // Filter by task
-    if (task === "task1") {
-      filtered = filtered.filter(
-        (sample) => sample.fields.taskType === "Task 1"
-      );
-    } else if (task === "task2") {
-      filtered = filtered.filter(
-        (sample) => sample.fields.taskType === "Task 2"
-      );
-    }
-
-    // Filter by question type
-    if (questionType !== "all") {
-      filtered = filtered.filter(
-        (sample) => sample.fields.questionType === questionType
-      );
-    }
-
-    setFilteredSamples(filtered);
-  };
-
   const handleTaskSelect = (task: string) => {
     setSelectedTask(task);
     setSelectedQuestionType("all");
-    filterSamples(task, "all");
+    filterSamples(samples, task, "all");
   };
 
   const handleQuestionTypeSelect = (questionType: string) => {
     setSelectedQuestionType(questionType);
-    filterSamples(selectedTask, questionType);
+    filterSamples(samples, selectedTask, questionType);
   };
 
   const formatDate = (dateString: string) => {
@@ -117,44 +100,6 @@ const WritingSamplesPage = () => {
       day: "numeric",
     });
   };
-
-  const renderRichText = (content: any) => {
-    if (!content || !content.content) return "";
-
-    return content.content.map((node: any, index: number) => {
-      if (node.nodeType === "paragraph") {
-        return (
-          <p key={index} className="mb-4">
-            {node.content?.map((textNode: any, textIndex: number) => {
-              if (textNode.nodeType === "text") {
-                return <span key={textIndex}>{textNode.value}</span>;
-              }
-              return null;
-            })}
-          </p>
-        );
-      }
-      return null;
-    });
-  };
-
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <Loader message="Loading writing samples..." />
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="alert alert-error max-w-md">
-          <span>{error}</span>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen bg-gray-50">

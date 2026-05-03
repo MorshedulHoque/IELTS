@@ -453,13 +453,11 @@ ul[class*="country-list"],
   animation: bounce-slow 3s ease-in-out infinite;
 }
 
-/* Smooth scroll behavior - Main page scrollbar */
-html {
-  scroll-behavior: smooth !important;
-}
-
-body {
-  scroll-behavior: smooth !important;
+/* Smooth scroll for in-page anchors only; avoid `*` / !important so route changes can jump to y=0 */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 /* Custom Scrollbar Styling - Red/IELTS Theme for Main Page */
@@ -535,11 +533,6 @@ html {
 body {
   scrollbar-width: thin !important;
   scrollbar-color: #dc2626 #f1f5f9 !important;
-}
-
-/* Smooth scrolling for all scrollable elements */
-* {
-  scroll-behavior: smooth !important;
 }
 
 /* Custom scrollbar for specific containers */

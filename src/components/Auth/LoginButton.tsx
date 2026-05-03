@@ -1,4 +1,5 @@
 "use client";
+import { useQueryClient } from "@tanstack/react-query";
 import { useSession, signIn, signOut } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -6,9 +7,11 @@ import { useRouter } from "next/navigation";
 export default function LoginButton() {
   const { data: session } = useSession();
   const router = useRouter();
-  
+  const queryClient = useQueryClient();
+
   const handleSignOut = async () => {
     await signOut({ redirect: false });
+    queryClient.removeQueries({ queryKey: ["user-profile"] });
     router.push("/");
   };
 

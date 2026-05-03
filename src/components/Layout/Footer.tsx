@@ -37,7 +37,12 @@ const Footer = () => {
     },
     {
       title: "Company",
-      links: ["About Us", "Contact", "Testimonials", "Careers"],
+      links: [
+        { text: "About Us", href: "/about" },
+        { text: "Contact", href: "/contact" },
+        "Testimonials",
+        "Careers",
+      ],
     },
   ];
 
@@ -64,6 +69,7 @@ const Footer = () => {
     !pathName.startsWith("/test/reading/") &&
     !pathName.startsWith("/test/writing/") &&
     !pathName.startsWith("/test/listening/") &&
+    !pathName.startsWith("/test/speaking/") &&
     !pathName.startsWith("/admin") &&
     !pathName.startsWith("/user/") && (
       <footer className="border-t border-rose-100 bg-gradient-to-b from-rose-50/60 via-white to-rose-50/80 text-gray-700">

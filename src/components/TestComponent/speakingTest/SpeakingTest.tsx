@@ -530,18 +530,22 @@ const SpeakingTest: React.FC<SpeakingTestProps> = ({ test }) => {
               )}
             </div>
 
-            {/* Next Question Button - Always available when recording */}
-              {isRecording && currentQuestionIndex < test.questions.length - 1 && (
+            {/* Next / Finish Button - available during recording */}
+            {isRecording && (
               <div className="mt-4 text-center">
                 <button
                   onClick={handleNextQuestion}
-                    className="btn btn-lg bg-red-500 hover:bg-red-600 text-white border-none"
+                  className="btn btn-lg bg-red-500 hover:bg-red-600 text-white border-none"
                 >
                   <FaArrowRight className="h-5 w-5 mr-2" />
-                  Next Question
+                  {currentQuestionIndex < test.questions.length - 1
+                    ? "Next Question"
+                    : "Finish Test"}
                 </button>
                 <p className="text-sm text-gray-600 mt-2">
-                  Click when ready to move to the next question
+                  {currentQuestionIndex < test.questions.length - 1
+                    ? "Click when ready to move to the next question"
+                    : "Click to finish recording and go to submission"}
                 </p>
               </div>
             )}

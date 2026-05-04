@@ -29,10 +29,13 @@ const AuthAnimated: React.FC<AuthAnimatedProps> = ({ initialMode = "signin" }) =
 
   const [mode, setMode] = useState<Mode>(urlMode);
 
+  useEffect(() => {
+    setMode(urlMode);
+  }, [urlMode]);
+
   // Sign in state
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [signInError, setSignInError] = useState<string | null>(null);
   const [signInLoading, setSignInLoading] = useState(false);
 
   // Sign up state
@@ -41,7 +44,6 @@ const AuthAnimated: React.FC<AuthAnimatedProps> = ({ initialMode = "signin" }) =
     password: "",
     role: "user",
   });
-  const [signUpError, setSignUpError] = useState<string | null>(null);
   const [signUpLoading, setSignUpLoading] = useState(false);
 
   const isSignUp = mode === "signup";
@@ -73,7 +75,6 @@ const AuthAnimated: React.FC<AuthAnimatedProps> = ({ initialMode = "signin" }) =
   const handleSignInSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSignInLoading(true);
-    setSignInError(null);
 
     const res = await signIn("credentials", {
       redirect: false,
@@ -84,13 +85,13 @@ const AuthAnimated: React.FC<AuthAnimatedProps> = ({ initialMode = "signin" }) =
 
     if (res?.error) {
       setSignInLoading(false);
+      let errorMessage = "Invalid Email or Password!";
       if (res.error.includes("Please sign in with")) {
-        setSignInError(res.error);
+        errorMessage = res.error;
       } else if (res.error.includes("Password not set")) {
-        setSignInError(res.error);
-      } else {
-        setSignInError("Invalid Email or Password!");
+        errorMessage = res.error;
       }
+      toast.error(errorMessage);
       return;
     }
 
@@ -163,7 +164,6 @@ const AuthAnimated: React.FC<AuthAnimatedProps> = ({ initialMode = "signin" }) =
   const handleSignUpSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setSignUpLoading(true);
-    setSignUpError(null);
 
     try {
       const usernameFallback =
@@ -180,24 +180,31 @@ const AuthAnimated: React.FC<AuthAnimatedProps> = ({ initialMode = "signin" }) =
       console.log("sign up", res);
 
       if (res.success) {
-        toast.success("Account created successfully!", {
-          onClose: () => router.push("/user/signin"),
-          autoClose: 2000,
+        toast.success("Account created successfully! Redirecting to sign in...", {
+          autoClose: 1500,
         });
+        setTimeout(() => {
+          window.location.assign("/user/signin");
+        }, 1600);
       } else {
         throw new Error(res.error || "Failed to create account");
       }
     } catch (err: any) {
-      setSignUpError(err.message);
-      toast.error(err.message || "Something went wrong");
+      const message =
+        err?.response?.data?.error ||
+        (err?.response?.status === 409
+          ? "This email already has an account. Please sign in instead."
+          : err?.message) ||
+        "Something went wrong";
+      toast.error(message);
     } finally {
       setSignUpLoading(false);
     }
   };
 
   return (
-    <div className="flex h-[calc(100vh-4rem)] w-full items-center justify-center bg-gray-50 font-sans antialiased overflow-hidden px-4">
-      <div className="relative w-full max-w-6xl min-h-[min(680px,calc(100vh-6rem))] rounded-3xl bg-white shadow-2xl overflow-hidden">
+    <div className="grid h-[calc(100dvh-4rem)] w-full place-items-center bg-gray-50 font-sans antialiased overflow-hidden px-4">
+      <div className="relative w-full max-w-6xl h-[min(640px,calc(100dvh-6rem))] rounded-3xl bg-white shadow-2xl overflow-hidden">
         {/* Sliding track */}
         <div
           className="absolute inset-0 flex transition-transform duration-500 ease-out"
@@ -233,40 +240,16 @@ const AuthAnimated: React.FC<AuthAnimatedProps> = ({ initialMode = "signin" }) =
             </div>
 
             {/* Sign in form */}
-            <div className="flex w-full md:w-1/2 flex-col justify-center px-8 py-10 md:px-12 lg:px-16 overflow-hidden">
+            <div className="flex w-full md:w-1/2 flex-col justify-center px-8 py-[22px] md:px-12 lg:px-16 overflow-hidden">
               <div className="w-full max-w-md mx-auto">
                 <div className="mb-8">
-                  <h1 className="text-3xl font-bold text-gray-900 mb-2">
+                  <h1 className="text-3xl font-bold text-gray-900 mb-2 text-center">
                     Welcome back
                   </h1>
-                  <p className="text-gray-600 text-sm">
+                  <p className="text-gray-600 text-sm text-center">
                     Sign in to continue your learning journey.
                   </p>
                 </div>
-
-                {signInError && (
-                  <div className="mb-6 rounded-lg border border-red-200 bg-red-50 p-4">
-                    <div className="flex items-start">
-                      <svg
-                        className="h-5 w-5 text-red-400 mt-0.5 mr-3"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                        />
-                      </svg>
-                      <div className="text-sm text-red-800">
-                        <p className="font-medium">Error</p>
-                        <p className="mt-1">{signInError}</p>
-                      </div>
-                    </div>
-                  </div>
-                )}
 
                 <div className="space-y-6">
                   <div>
@@ -368,40 +351,16 @@ const AuthAnimated: React.FC<AuthAnimatedProps> = ({ initialMode = "signin" }) =
           {/* RIGHT HALF (Sign Up view) */}
           <div className="flex w-1/2">
             {/* Sign up form (left in sign-up mode) */}
-            <div className="flex w-full md:w-1/2 flex-col justify-center px-8 py-10 md:px-12 lg:px-16 overflow-hidden">
+            <div className="flex w-full md:w-1/2 flex-col justify-center px-8 py-12 md:px-12 lg:px-16 overflow-hidden">
               <div className="w-full max-w-md mx-auto">
                 <div className="mb-8">
-                  <h1 className="text-3xl font-bold text-gray-900">
+                  <h1 className="text-3xl font-bold text-gray-900 text-center">
                     Create Account
                   </h1>
-                  <p className="mt-2 text-gray-600 text-sm">
+                  <p className="mt-2 text-gray-600 text-sm text-center">
                     Start your IELTS preparation journey today.
                   </p>
                 </div>
-
-                {signUpError && (
-                  <div className="mb-6 rounded-lg border border-red-200 bg-red-50 p-4">
-                    <div className="flex items-start">
-                      <svg
-                        className="h-5 w-5 text-red-400 mt-0.5 mr-3"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                        />
-                      </svg>
-                      <div className="text-sm text-red-800">
-                        <p className="font-medium">Error</p>
-                        <p className="mt-1">{signUpError}</p>
-                      </div>
-                    </div>
-                  </div>
-                )}
 
                 <div className="space-y-6">
                   <div>
@@ -525,7 +484,28 @@ const AuthAnimated: React.FC<AuthAnimatedProps> = ({ initialMode = "signin" }) =
         </div>
 
       </div>
-      <ToastContainer />
+      <ToastContainer
+        position="top-right"
+        autoClose={2600}
+        hideProgressBar
+        newestOnTop
+        closeOnClick
+        pauseOnHover
+        draggable={false}
+        theme="light"
+        toastClassName={() =>
+          "relative rounded-xl border border-gray-200 bg-white text-gray-800 text-sm font-medium leading-5 whitespace-normal break-words shadow-lg px-3 py-2 pr-8"
+        }
+        closeButton={({ closeToast }) => (
+          <button
+            onClick={closeToast}
+            className="absolute right-2 top-2 text-gray-400 hover:text-gray-600 transition-colors"
+            aria-label="Close notification"
+          >
+            ×
+          </button>
+        )}
+      />
     </div>
   );
 };

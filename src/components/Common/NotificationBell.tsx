@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { FaBell, FaCheck, FaEnvelopeOpen, FaInbox } from "react-icons/fa";
 import { useSession } from "next-auth/react";
+import { createPortal } from "react-dom";
 
 interface Notification {
   _id: string;
@@ -130,7 +131,7 @@ const NotificationBell = () => {
       </div>
       <div
         tabIndex={0}
-        className="dropdown-content z-[100] mt-3 card card-compact w-80 bg-base-100 shadow-xl border border-slate-100"
+        className="dropdown-content z-[1000] mt-3 card card-compact w-80 bg-base-100 shadow-xl border border-slate-100"
       >
         <div className="card-body">
           <div className="flex items-center justify-between">
@@ -204,58 +205,64 @@ const NotificationBell = () => {
       </div>
 
       {/* Notification Detail Modal */}
-      {selectedNotification && (
-        <dialog className="modal modal-open" onClick={() => setSelectedNotification(null)}>
-          <div className="modal-box max-w-2xl" onClick={(e) => e.stopPropagation()}>
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-3">
-                <span className={`badge ${typeBadgeClasses[selectedNotification.type]}`}>
-                  {selectedNotification.type}
-                </span>
-                <span className="text-sm text-slate-500">
-                  {formatTimeAgo(selectedNotification.createdAt)}
-                </span>
+      {selectedNotification &&
+        typeof window !== "undefined" &&
+        createPortal(
+          <div
+            className="fixed inset-0 z-[9999] flex items-start justify-center overflow-y-auto bg-rose-900/30 p-4 pt-16"
+            onClick={() => setSelectedNotification(null)}
+          >
+            <div
+              className="my-4 w-full max-w-2xl rounded-2xl border border-rose-100 bg-white p-6 shadow-2xl shadow-rose-200/40 max-h-[calc(100dvh-8rem)] overflow-y-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="mb-4 flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <span className={`badge ${typeBadgeClasses[selectedNotification.type]} border-0`}>
+                    {selectedNotification.type}
+                  </span>
+                  <span className="text-sm text-rose-500">
+                    {formatTimeAgo(selectedNotification.createdAt)}
+                  </span>
+                </div>
+                <button
+                  className="btn btn-sm btn-circle btn-ghost text-rose-500 hover:bg-rose-50 hover:text-rose-700"
+                  onClick={() => setSelectedNotification(null)}
+                >
+                  ✕
+                </button>
               </div>
-              <button
-                className="btn btn-sm btn-circle btn-ghost"
-                onClick={() => setSelectedNotification(null)}
-              >
-                ✕
-              </button>
+              <h3 className="font-bold text-lg text-rose-900 mb-3">
+                {selectedNotification.title}
+              </h3>
+              <p className="text-slate-700 whitespace-pre-line mb-4 leading-relaxed">
+                {selectedNotification.message}
+              </p>
+              {selectedNotification.link && (
+                <a
+                  href={selectedNotification.link}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn btn-outline border-rose-300 text-rose-700 hover:bg-rose-50 hover:border-rose-400 inline-flex items-center gap-2 mb-4"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                  Go to Dashboard
+                </a>
+              )}
+              <div className="modal-action">
+                <button
+                  className="btn bg-gradient-to-r from-red-600 to-red-500 text-white border-0 hover:from-red-700 hover:to-red-600"
+                  onClick={() => setSelectedNotification(null)}
+                >
+                  Close
+                </button>
+              </div>
             </div>
-            <h3 className="font-bold text-lg text-slate-800 mb-3">
-              {selectedNotification.title}
-            </h3>
-            <p className="text-slate-700 whitespace-pre-line mb-4">
-              {selectedNotification.message}
-            </p>
-            {selectedNotification.link && (
-              <a
-                href={selectedNotification.link}
-                target="_blank"
-                rel="noreferrer"
-                className="btn btn-outline btn-primary inline-flex items-center gap-2 mb-4"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                </svg>
-                Open link
-              </a>
-            )}
-            <div className="modal-action">
-              <button
-                className="btn btn-primary"
-                onClick={() => setSelectedNotification(null)}
-              >
-                Close
-              </button>
-            </div>
-          </div>
-          <form method="dialog" className="modal-backdrop" onClick={() => setSelectedNotification(null)}>
-            <button>close</button>
-          </form>
-        </dialog>
-      )}
+          </div>,
+          document.body
+        )}
     </div>
   );
 };

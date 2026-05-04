@@ -22,7 +22,6 @@ const SignUp = () => {
     password: "",
     role: "user",
   });
-  const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [activeMethod, setActiveMethod] = useState<"oauth" | "email">("oauth");
 
@@ -33,7 +32,6 @@ const SignUp = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setError(null);
 
     try {
       const usernameFallback =
@@ -50,16 +48,23 @@ const SignUp = () => {
       console.log("sign up", res);
 
       if (res.success) {
-        toast.success("Account created successfully! 🎉", {
-          onClose: () => router.push("/user/signin"),
-          autoClose: 2000,
+        toast.success("Account created successfully! Redirecting to sign in...", {
+          autoClose: 1500,
         });
+        setTimeout(() => {
+          window.location.assign("/user/signin");
+        }, 1600);
       } else {
         throw new Error(res.error || "Failed to create account");
       }
     } catch (err: any) {
-      setError(err.message);
-      toast.error(err.message || "Something went wrong");
+      const message =
+        err?.response?.data?.error ||
+        (err?.response?.status === 409
+          ? "This email already has an account. Please sign in instead."
+          : err?.message) ||
+        "Something went wrong";
+      toast.error(message);
     } finally {
       setLoading(false);
     }
@@ -117,31 +122,6 @@ const SignUp = () => {
                 Start your IELTS preparation journey today
               </p>
             </div>
-
-            {/* Error Alert */}
-            {error && (
-              <div className="mb-6 rounded-lg border border-red-200 bg-red-50 p-4">
-                <div className="flex items-start">
-                  <svg
-                    className="h-5 w-5 text-red-400 mt-0.5 mr-3"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
-                  <div className="text-sm text-red-800">
-                    <p className="font-medium">Error</p>
-                    <p className="mt-1">{error}</p>
-                  </div>
-                </div>
-              </div>
-            )}
 
             {/* Sign Up Method Tabs */}
             <div className="mb-6">
@@ -364,7 +344,29 @@ const SignUp = () => {
           </div>
         </div>
       </div>
-      <ToastContainer />
+      <ToastContainer
+        position="top-right"
+        autoClose={2600}
+        hideProgressBar
+        newestOnTop
+        closeOnClick
+        pauseOnHover
+        draggable={false}
+        theme="light"
+        toastClassName={() =>
+          "relative rounded-xl border border-gray-200 bg-white text-gray-800 shadow-lg px-3 py-2 pr-8"
+        }
+        bodyClassName={() => "text-sm font-medium leading-5 whitespace-normal break-words pr-1"}
+        closeButton={({ closeToast }) => (
+          <button
+            onClick={closeToast}
+            className="absolute right-2 top-2 text-gray-400 hover:text-gray-600 transition-colors"
+            aria-label="Close notification"
+          >
+            ×
+          </button>
+        )}
+      />
     </div>
   );
 };

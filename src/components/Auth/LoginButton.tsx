@@ -25,16 +25,16 @@ export default function LoginButton() {
   return (
     <div className="flex gap-2">
       <button
-        className="btn btn-sm btn-outline btn-neutral hidden sm:inline-flex"
+        className="btn h-10 min-h-10 px-5 text-sm border-0 bg-gradient-to-r from-red-600 to-red-500 text-white shadow-md shadow-red-500/30 transition-all duration-300 hover:from-red-700 hover:to-red-600 hover:shadow-lg hover:shadow-red-500/40 hover:-translate-y-0.5 active:translate-y-0"
         onClick={() => signIn()}
       >
         Sign In
       </button>
-      <Link href={"/user/signup"}>
+      {/* <Link href={"/user/signup"}>
         <button className="btn btn-sm btn-primary bg-red-600 hover:bg-red-700 border-0">
           Get Started
-        </button>
-      </Link>
+        </button> 
+      </Link> */}
     </div>
   );
 }

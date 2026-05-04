@@ -133,7 +133,7 @@ export default function IELTSLandingPage(): any {
               <div className="flex flex-wrap gap-3 md:gap-4 mb-9">
                 <Link
                   href="/test/reading"
-                  className="group relative inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-rose-600 via-red-600 to-orange-500 px-7 md:px-9 py-3.5 md:py-4 text-sm md:text-base font-semibold text-white shadow-[0_14px_35px_rgba(248,113,113,0.6)] hover:shadow-[0_18px_45px_rgba(220,38,38,0.8)] transform hover:-translate-y-0.5 transition-all duration-300 overflow-hidden"
+                  className="group relative inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-rose-600 via-red-600 to-orange-500 px-7 md:px-9 py-3.5 md:py-4 text-sm md:text-base font-semibold text-white shadow-[0_14px_35px_rgba(248,113,113,0.6)] hover:shadow-[0_18px_45px_rgba(220,38,38,0.8)] transform hover:-translate-y-0.5 transition-all duration-300 overflow-hidden"
                 >
                   <span className="relative z-10 flex items-center gap-2">
                     Start a free practice test
@@ -143,7 +143,7 @@ export default function IELTSLandingPage(): any {
                 </Link>
                 <Link
                   href="#how-it-works"
-                  className="inline-flex items-center gap-2 rounded-full bg-white/80 border border-rose-200 px-7 md:px-8 py-3.5 md:py-4 text-sm md:text-base font-semibold text-rose-700 hover:border-rose-400 hover:bg-rose-50/70 hover:text-rose-700 transform hover:-translate-y-0.5 transition-all duration-300 shadow-md hover:shadow-lg"
+                  className="inline-flex items-center gap-2 rounded-xl bg-white/80 border border-rose-200 px-7 md:px-8 py-3.5 md:py-4 text-sm md:text-base font-semibold text-rose-700 hover:border-rose-400 hover:bg-rose-50/70 hover:text-rose-700 transform hover:-translate-y-0.5 transition-all duration-300 shadow-md hover:shadow-lg"
                 >
                   See how it works
                 </Link>

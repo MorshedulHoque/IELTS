@@ -354,7 +354,7 @@ const ContactPage: React.FC = () => {
                       isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
                     }`}
                   >
-                    <div className="px-6 pb-6 pt-0">
+                    <div className="px-6 pb-6 pt-2">
                       <p className="text-gray-600 leading-relaxed">{faq.answer}</p>
                     </div>
                   </div>

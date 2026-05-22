@@ -1,5 +1,7 @@
 "use client";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
+import Image from "next/image";
 import React from "react";
 import {
   FaFacebook,
@@ -77,22 +79,18 @@ const Footer = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[minmax(0,1.6fr)_repeat(3,minmax(0,1fr))] gap-10 md:gap-12 mb-10">
             {/* Brand section */}
             <div className="flex flex-col gap-5">
-              <div className="flex items-center space-x-3">
-                <div className="relative">
-                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-rose-300 via-red-300 to-orange-200 blur-md opacity-70" />
-                  <div className="relative w-10 h-10 bg-gradient-to-r from-rose-600 via-red-600 to-orange-500 rounded-2xl flex items-center justify-center shadow-md">
-                    <span className="text-white font-bold text-lg tracking-tight">
-                      B
-                    </span>
-                  </div>
-                </div>
-                <div>
-                  <span className="text-xl font-semibold text-gray-900 tracking-tight">
-                    BandGrowth
-                  </span>
-                  <div className="text-xs text-gray-500">
-                    IELTS practice • analytics • progress
-                  </div>
+              <div className="flex flex-col gap-2">
+                <Link href="/" className="inline-block w-fit">
+                  <Image
+                    src="/logo/BandGrowth_Logo_with_text.png"
+                    alt="Band Growth"
+                    width={240}
+                    height={56}
+                    className="h-12 w-auto object-contain"
+                  />
+                </Link>
+                <div className="text-xs text-gray-500">
+                  IELTS practice • analytics • progress
                 </div>
               </div>
 

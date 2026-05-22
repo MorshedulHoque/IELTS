@@ -1,6 +1,7 @@
 // components/Navbar.tsx
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import LoginButton from "../Auth/LoginButton";
 import { usePathname, useRouter } from "next/navigation";
@@ -106,33 +107,21 @@ const Navbar: React.FC = () => {
               >
                 {/* Logo */}
                 <div className="navbar-start">
-                  <Link 
-                    href="/" 
-                    className="flex items-center space-x-3 group transition-transform duration-300 hover:scale-105"
+                  <Link
+                    href="/"
+                    className="group transition-transform duration-300 hover:scale-[1.02]"
                   >
-                    <div
+                    <Image
+                      src="/logo/BandGrowth_Logo_with_text.png"
+                      alt="Band Growth"
+                      width={220}
+                      height={52}
+                      priority
                       className={[
-                        "bg-gradient-to-br from-red-600 to-red-700 rounded-full flex items-center justify-center shadow-lg shadow-red-500/30 transition-all duration-300 ease-out group-hover:shadow-xl group-hover:shadow-red-500/50 group-hover:scale-110",
-                        scrolled ? "w-9 h-9" : "w-10 h-10",
+                        "w-auto object-contain transition-all duration-300 ease-out",
+                        scrolled ? "h-9" : "h-10",
                       ].join(" ")}
-                    >
-                      <span
-                        className={[
-                          "text-white font-bold transition-all duration-300 ease-out",
-                          scrolled ? "text-lg" : "text-xl",
-                        ].join(" ")}
-                      >
-                        I
-                      </span>
-                    </div>
-                    <span
-                      className={[
-                        "font-bold text-gray-800 hidden sm:block transition-all duration-300 ease-out group-hover:text-gray-900",
-                        scrolled ? "text-xl" : "text-2xl",
-                      ].join(" ")}
-                    >
-                      IELTS<span className="text-red-700 group-hover:text-red-600 transition-colors duration-300">Prep</span>
-                    </span>
+                    />
                   </Link>
                 </div>
 

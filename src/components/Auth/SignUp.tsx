@@ -354,9 +354,8 @@ const SignUp = () => {
         draggable={false}
         theme="light"
         toastClassName={() =>
-          "relative rounded-xl border border-gray-200 bg-white text-gray-800 shadow-lg px-3 py-2 pr-8"
+          "relative rounded-xl border border-gray-200 bg-white text-gray-800 text-sm font-medium leading-5 whitespace-normal break-words shadow-lg px-3 py-2 pr-8"
         }
-        bodyClassName={() => "text-sm font-medium leading-5 whitespace-normal break-words pr-1"}
         closeButton={({ closeToast }) => (
           <button
             onClick={closeToast}

@@ -19,6 +19,7 @@
     "cloudinary": "^2.7.0",
     "contentful": "^11.8.7",
     "formidable": "^3.5.4",
+    "geist": "^1.7.1",
     "libphonenumber-js": "^1.12.26",
     "lucide-react": "^0.475.0",
     "mongoose": "^8.10.0",

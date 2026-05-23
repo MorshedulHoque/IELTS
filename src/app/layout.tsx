@@ -1,20 +1,11 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 import Navbar from "@/components/Layout/Navbar";
 import SessionWrapper from "@/components/Auth/SessionWrapper";
 import Footer from "@/components/Layout/Footer";
 import ScrollToTop from "@/components/Layout/ScrollToTop";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "BandGrowth",
@@ -33,7 +24,7 @@ export default function RootLayout({
     <html lang="en" data-theme="light">
       <SessionWrapper>
         <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased flex min-h-screen flex-col`}
+          className={`${GeistSans.variable} ${GeistMono.variable} antialiased flex min-h-screen flex-col`}
         >
           <ScrollToTop />
           <Navbar />

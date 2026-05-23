@@ -1,0 +1,65 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    image: ielts-app:latest
+    container_name: ielts_app
+
+    restart: unless-stopped
+
+    ports:
+      - "3005:3000"
+
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+
+      MONGODB_URI: mongodb://admin:admin4321@mongodb:27017/ielts_db?authSource=admin
+
+      NEXTAUTH_URL: http://72.61.253.183:3005
+      NEXT_PUBLIC_BASE_URL: http://72.61.253.183:3005
+
+      GOOGLE_CLIENT_ID: YOUR_GOOGLE_CLIENT_ID
+      GOOGLE_CLIENT_SECRET: YOUR_GOOGLE_CLIENT_SECRET
+
+      CLOUDINARY_CLOUD_NAME: dcagneweq
+      CLOUDINARY_API_KEY: YOUR_CLOUDINARY_API_KEY
+      CLOUDINARY_API_SECRET: YOUR_CLOUDINARY_API_SECRET
+
+      NEXTAUTH_SECRET: YOUR_NEXTAUTH_SECRET
+
+      RESEND_API_KEY: YOUR_RESEND_API_KEY
+      NEXT_PUBLIC_GOOGLE_AI_API_KEY: YOUR_GOOGLE_AI_API_KEY
+
+    depends_on:
+      - mongodb
+
+    networks:
+      - ielts_default
+
+  mongodb:
+    image: mongo:7
+    container_name: ielts_mongodb
+
+    restart: unless-stopped
+
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin4321
+
+    ports:
+      - "27017:27017"
+
+    volumes:
+      - mongodb_data:/data/db
+
+    networks:
+      - ielts_default
+
+networks:
+  ielts_default:
+
+volumes:
+  mongodb_data:

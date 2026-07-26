@@ -20,12 +20,17 @@ interface AuthAnimatedProps {
   initialMode?: Mode;
 }
 
-const AuthAnimated: React.FC<AuthAnimatedProps> = ({ initialMode = "signin" }) => {
+const AuthAnimated: React.FC<AuthAnimatedProps> = ({
+  initialMode = "signin",
+}) => {
   const searchParams = useSearchParams();
   const router = useRouter();
 
   const callbackUrl = searchParams.get("callbackUrl") || "/";
   const urlMode = (searchParams.get("mode") as Mode) || initialMode;
+  const verificationPending =
+    searchParams.get("verification_pending") === "true";
+  const verified = searchParams.get("verified") === "true";
 
   const [mode, setMode] = useState<Mode>(urlMode);
 
@@ -37,6 +42,9 @@ const AuthAnimated: React.FC<AuthAnimatedProps> = ({ initialMode = "signin" }) =
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [signInLoading, setSignInLoading] = useState(false);
+  const [signInError, setSignInError] = useState<string | null>(null);
+  const [isVerificationError, setIsVerificationError] = useState(false);
+  const [resendLoading, setResendLoading] = useState(false);
 
   // Sign up state
   const [signUpForm, setSignUpForm] = useState<SignUpData>({
@@ -48,7 +56,7 @@ const AuthAnimated: React.FC<AuthAnimatedProps> = ({ initialMode = "signin" }) =
 
   const isSignUp = mode === "signup";
 
-  // Prevent page scroll on auth screens (lock body scroll)
+  // Prevent page scroll on auth screens
   useEffect(() => {
     const previousBodyOverflow = document.body.style.overflow;
     const previousHtmlOverflow = document.documentElement.style.overflow;
@@ -65,16 +73,40 @@ const AuthAnimated: React.FC<AuthAnimatedProps> = ({ initialMode = "signin" }) =
   const handleOAuthSignIn = (provider: string) => {
     signIn(provider, {
       callbackUrl: `/api/auth/oauth-redirect?callbackUrl=${encodeURIComponent(
-        callbackUrl,
+        callbackUrl
       )}`,
       redirect: true,
     });
   };
 
-  // SIGN IN HANDLER (copied from SignInForm with minimal changes)
+  const handleResendVerification = async () => {
+    if (!email) return;
+    setResendLoading(true);
+    try {
+      const res = await fetch("/api/auth/resend-verification", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        toast.success("Verification email resent! Please check your inbox.");
+      } else {
+        toast.error(data.error || "Failed to resend verification email.");
+      }
+    } catch (error) {
+      toast.error("An error occurred. Please try again.");
+    } finally {
+      setResendLoading(false);
+    }
+  };
+
+  // SIGN IN HANDLER
   const handleSignInSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSignInLoading(true);
+    setSignInError(null);
+    setIsVerificationError(false);
 
     const res = await signIn("credentials", {
       redirect: false,
@@ -85,13 +117,16 @@ const AuthAnimated: React.FC<AuthAnimatedProps> = ({ initialMode = "signin" }) =
 
     if (res?.error) {
       setSignInLoading(false);
-      let errorMessage = "Invalid Email or Password!";
-      if (res.error.includes("Please sign in with")) {
-        errorMessage = res.error;
+      if (res.error.toLowerCase().includes("verify your email")) {
+        setIsVerificationError(true);
+        setSignInError("Please verify your email before signing in.");
+      } else if (res.error.includes("Please sign in with")) {
+        setSignInError(res.error);
       } else if (res.error.includes("Password not set")) {
-        errorMessage = res.error;
+        setSignInError(res.error);
+      } else {
+        setSignInError("Invalid Email or Password!");
       }
-      toast.error(errorMessage);
       return;
     }
 
@@ -156,7 +191,7 @@ const AuthAnimated: React.FC<AuthAnimatedProps> = ({ initialMode = "signin" }) =
     }
   };
 
-  // SIGN UP HANDLERS (based on existing SignUp component)
+  // SIGN UP HANDLERS
   const handleSignUpChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSignUpForm({ ...signUpForm, [e.target.name]: e.target.value });
   };
@@ -177,15 +212,17 @@ const AuthAnimated: React.FC<AuthAnimatedProps> = ({ initialMode = "signin" }) =
       };
 
       const res = await postUser(JSON.stringify(payload));
-      console.log("sign up", res);
 
       if (res.success) {
-        toast.success("Account created successfully! Redirecting to sign in...", {
-          autoClose: 1500,
-        });
+        toast.success(
+          "Account created! Please check your email to verify your account.",
+          {
+            autoClose: 4000,
+          }
+        );
         setTimeout(() => {
-          window.location.assign("/user/signin");
-        }, 1600);
+          router.push("/user/signin?verification_pending=true");
+        }, 2000);
       } else {
         throw new Error(res.error || "Failed to create account");
       }
@@ -234,7 +271,8 @@ const AuthAnimated: React.FC<AuthAnimatedProps> = ({ initialMode = "signin" }) =
                 </div>
                 <h2 className="text-3xl font-bold mb-4">IELTS Workspace</h2>
                 <p className="text-red-100 text-sm leading-relaxed">
-                  Your comprehensive platform for IELTS preparation and practice.
+                  Your comprehensive platform for IELTS preparation and
+                  practice.
                 </p>
               </div>
             </div>
@@ -250,6 +288,43 @@ const AuthAnimated: React.FC<AuthAnimatedProps> = ({ initialMode = "signin" }) =
                     Sign in to continue your learning journey.
                   </p>
                 </div>
+
+                {/* Verification Pending Banner */}
+                {verificationPending && (
+                  <div className="mb-4 rounded-lg border border-blue-200 bg-blue-50 p-3">
+                    <p className="text-sm text-blue-800">
+                      ✅ We sent a verification link to your email. Please check
+                      your inbox.
+                    </p>
+                  </div>
+                )}
+
+                {/* Verified Success Banner */}
+                {verified && (
+                  <div className="mb-4 rounded-lg border border-green-200 bg-green-50 p-3">
+                    <p className="text-sm text-green-800">
+                      ✅ Your email has been verified! You can now sign in.
+                    </p>
+                  </div>
+                )}
+
+                {/* Sign In Error */}
+                {signInError && (
+                  <div className="mb-4 rounded-lg border border-red-200 bg-red-50 p-3">
+                    <p className="text-sm text-red-800">{signInError}</p>
+                    {isVerificationError && (
+                      <button
+                        onClick={handleResendVerification}
+                        disabled={resendLoading}
+                        className="mt-2 text-sm font-medium text-red-700 hover:text-red-800 disabled:opacity-50"
+                      >
+                        {resendLoading
+                          ? "Sending..."
+                          : "Resend verification email"}
+                      </button>
+                    )}
+                  </div>
+                )}
 
                 <div className="space-y-6">
                   <div>
@@ -278,60 +353,60 @@ const AuthAnimated: React.FC<AuthAnimatedProps> = ({ initialMode = "signin" }) =
                   </div>
 
                   <form onSubmit={handleSignInSubmit} className="space-y-5">
-                  <div>
-                    <label
-                      htmlFor="signin-email"
-                      className="block text-sm font-medium text-gray-700 mb-1.5"
-                    >
-                      Email Address
-                    </label>
-                    <input
-                      id="signin-email"
-                      type="email"
-                      className="block w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 focus:border-red-700 focus:ring-2 focus:ring-red-700 focus:outline-none"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      required
-                      placeholder="you@university.edu"
-                      autoComplete="email"
-                    />
-                  </div>
-
-                  <div>
-                    <div className="flex items-center justify-between mb-1.5">
+                    <div>
                       <label
-                        htmlFor="signin-password"
-                        className="block text-sm font-medium text-gray-700"
+                        htmlFor="signin-email"
+                        className="block text-sm font-medium text-gray-700 mb-1.5"
                       >
-                        Password
+                        Email Address
                       </label>
-                      <Link
-                        href="/user/forgot-password"
-                        className="text-sm font-medium text-red-700 hover:text-red-800"
-                      >
-                        Forgot password?
-                      </Link>
+                      <input
+                        id="signin-email"
+                        type="email"
+                        className="block w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 focus:border-red-700 focus:ring-2 focus:ring-red-700 focus:outline-none"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                        placeholder="you@university.edu"
+                        autoComplete="email"
+                      />
                     </div>
-                    <input
-                      id="signin-password"
-                      type="password"
-                      className="block w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 focus:border-red-700 focus:ring-2 focus:ring-red-700 focus:outline-none"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      required
-                      placeholder="••••••••"
-                      autoComplete="current-password"
-                    />
-                  </div>
 
-                  <button
-                    type="submit"
-                    disabled={signInLoading}
-                    className="w-full rounded-lg bg-red-700 px-4 py-3 text-white font-medium hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-700/50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-                  >
-                    {signInLoading ? "Signing in..." : "Sign In"}
-                  </button>
-                </form>
+                    <div>
+                      <div className="flex items-center justify-between mb-1.5">
+                        <label
+                          htmlFor="signin-password"
+                          className="block text-sm font-medium text-gray-700"
+                        >
+                          Password
+                        </label>
+                        <Link
+                          href="/user/forgot-password"
+                          className="text-sm font-medium text-red-700 hover:text-red-800"
+                        >
+                          Forgot password?
+                        </Link>
+                      </div>
+                      <input
+                        id="signin-password"
+                        type="password"
+                        className="block w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 focus:border-red-700 focus:ring-2 focus:ring-red-700 focus:outline-none"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                        placeholder="••••••••"
+                        autoComplete="current-password"
+                      />
+                    </div>
+
+                    <button
+                      type="submit"
+                      disabled={signInLoading}
+                      className="w-full rounded-lg bg-red-700 px-4 py-3 text-white font-medium hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-700/50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                    >
+                      {signInLoading ? "Signing in..." : "Sign In"}
+                    </button>
+                  </form>
                 </div>
 
                 <p className="mt-8 text-center text-sm text-gray-600">
@@ -482,7 +557,6 @@ const AuthAnimated: React.FC<AuthAnimatedProps> = ({ initialMode = "signin" }) =
             </div>
           </div>
         </div>
-
       </div>
       <ToastContainer
         position="top-right"
@@ -511,4 +585,3 @@ const AuthAnimated: React.FC<AuthAnimatedProps> = ({ initialMode = "signin" }) =
 };
 
 export default AuthAnimated;
-

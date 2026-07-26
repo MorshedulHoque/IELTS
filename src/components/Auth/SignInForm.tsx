@@ -3,6 +3,7 @@ import Link from "next/link";
 import { signIn } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { getOnboardingData } from "@/services/data";
+import { ToastContainer, toast } from "react-toastify";
 
 const SignInForm = () => {
   const [email, setEmail] = useState("");
@@ -10,23 +11,53 @@ const SignInForm = () => {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
+  // Verification related states
+  const [verificationError, setVerificationError] = useState(false);
+  const [verificationEmail, setVerificationEmail] = useState("");
+  const [resendLoading, setResendLoading] = useState(false);
+
   const router = useRouter();
   const params = useSearchParams();
   const callbackUrl = params.get("callbackUrl") || "/";
+  const verificationPending = params.get("verification_pending") === "true";
+  const verified = params.get("verified") === "true";
 
   const handleOAuthSignIn = (provider: string) => {
     signIn(provider, {
       callbackUrl: `/api/auth/oauth-redirect?callbackUrl=${encodeURIComponent(
-        callbackUrl,
+        callbackUrl
       )}`,
       redirect: true,
     });
+  };
+
+  const handleResendVerification = async () => {
+    if (!verificationEmail) return;
+    setResendLoading(true);
+    try {
+      const res = await fetch("/api/auth/resend-verification", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: verificationEmail }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        toast.success("Verification email resent! Please check your inbox.");
+      } else {
+        toast.error(data.error || "Failed to resend verification email.");
+      }
+    } catch (error) {
+      toast.error("An error occurred. Please try again.");
+    } finally {
+      setResendLoading(false);
+    }
   };
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
+    setVerificationError(false);
 
     const res = await signIn("credentials", {
       redirect: false,
@@ -37,7 +68,12 @@ const SignInForm = () => {
 
     if (res?.error) {
       setLoading(false);
-      if (res.error.includes("Please sign in with")) {
+      // Check for verification error
+      if (res.error.toLowerCase().includes("verify your email")) {
+        setVerificationError(true);
+        setVerificationEmail(email);
+        setError("Please verify your email before signing in.");
+      } else if (res.error.includes("Please sign in with")) {
         setError(res.error);
       } else if (res.error.includes("Password not set")) {
         setError(res.error);
@@ -113,7 +149,6 @@ const SignInForm = () => {
       <div className="flex w-full h-full overflow-hidden bg-white md:flex-row">
         {/* LEFT PANEL: Simple Branding */}
         <div className="relative hidden md:flex w-full md:w-[45%] flex-col items-center justify-center bg-gradient-to-br from-red-700 to-red-800 text-white px-12">
-          {/* Simple curved divider */}
           <div className="absolute right-0 top-0 h-full w-24 pointer-events-none z-10">
             <svg
               viewBox="0 0 100 100"
@@ -124,7 +159,6 @@ const SignInForm = () => {
             </svg>
           </div>
 
-          {/* Content */}
           <div className="text-center max-w-md z-0">
             <div className="mb-8 flex justify-center">
               <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-white/20 backdrop-blur-sm">
@@ -150,6 +184,26 @@ const SignInForm = () => {
               </p>
             </div>
 
+            {/* Verification Pending Banner */}
+            {verificationPending && (
+              <div className="mb-6 rounded-lg border border-blue-200 bg-blue-50 p-4">
+                <p className="text-sm text-blue-800">
+                  ✅ We sent a verification link to your email. Please check
+                  your inbox (and spam folder) and click the link before signing
+                  in.
+                </p>
+              </div>
+            )}
+
+            {/* Verified Success Banner */}
+            {verified && (
+              <div className="mb-6 rounded-lg border border-green-200 bg-green-50 p-4">
+                <p className="text-sm text-green-800">
+                  ✅ Your email has been verified! You can now sign in.
+                </p>
+              </div>
+            )}
+
             {/* Error Alert */}
             {error && (
               <div className="mb-6 rounded-lg border border-red-200 bg-red-50 p-4">
@@ -170,6 +224,17 @@ const SignInForm = () => {
                   <div className="text-sm text-red-800">
                     <p className="font-medium">Error</p>
                     <p className="mt-1">{error}</p>
+                    {verificationError && (
+                      <button
+                        onClick={handleResendVerification}
+                        disabled={resendLoading}
+                        className="mt-2 inline-flex items-center text-red-700 hover:text-red-800 font-medium text-sm focus:outline-none disabled:opacity-50"
+                      >
+                        {resendLoading
+                          ? "Sending..."
+                          : "Resend verification email"}
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>
@@ -330,6 +395,28 @@ const SignInForm = () => {
           </div>
         </div>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={2600}
+        hideProgressBar
+        newestOnTop
+        closeOnClick
+        pauseOnHover
+        draggable={false}
+        theme="light"
+        toastClassName={() =>
+          "relative rounded-xl border border-gray-200 bg-white text-gray-800 text-sm font-medium leading-5 whitespace-normal break-words shadow-lg px-3 py-2 pr-8"
+        }
+        closeButton={({ closeToast }) => (
+          <button
+            onClick={closeToast}
+            className="absolute right-2 top-2 text-gray-400 hover:text-gray-600 transition-colors"
+            aria-label="Close notification"
+          >
+            ×
+          </button>
+        )}
+      />
     </div>
   );
 };

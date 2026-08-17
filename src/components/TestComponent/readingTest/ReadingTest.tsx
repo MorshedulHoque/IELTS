@@ -12,7 +12,7 @@ import SumFillInTheBlanks from "../Common/SumFillInTheBlanks";
 import SubFillInTheBlanks from "../Common/SubFillInTheBlanks";
 import TextHighlighter from "./TextHighlighter";
 import { useSession } from "next-auth/react";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
 import { postSubmitReadingTest } from "@/services/data";
 
@@ -24,6 +24,7 @@ const ReadingTest = ({ test }: any) => {
   const [isTimeUp, setIsTimeUp] = useState(false);
   const [passageHighlights, setPassageHighlights] = useState<any[]>([]);
   const { data: session }: any = useSession();
+  const router = useRouter();
   const [hasStarted, setHasStarted] = useState(false);
   const [leftPanelWidth, setLeftPanelWidth] = useState<number>(50); // Percentage
   const [isResizing, setIsResizing] = useState<boolean>(false);
@@ -969,6 +970,11 @@ const ReadingTest = ({ test }: any) => {
     e.preventDefault(); // Prevent default form submission behavior
     const submissionTime = new Date();
 
+    if (Object.keys(answers).length === 0) {
+      toast.error("Please Select Answer");
+      return;
+    }
+
     const totalPoint =
       answers?.filter((answer: any) => answer.isCorrect === true).length || 0;
     const testData = {
@@ -990,23 +996,16 @@ const ReadingTest = ({ test }: any) => {
 
       // 4. Handle non-OK statuses
       if (!res.success) {
-        const err = await res.json();
-        throw new Error(err.error || res.statusText);
+        throw new Error(res.error || "Submission failed");
       }
 
       // 5. On success, optionally show a toast and redirect
       toast.success("Submission successful!");
-      redirect(`getSubmittedAnswers/${testData.testId}`); // client-side navigation after success
+      router.push(`/getSubmittedAnswers/${testData.testId}`);
     } catch (error: any) {
+      // Ignore Next.js internal redirect signal (defensive — router.push shouldn't throw it)
+      if (error?.message?.startsWith?.("NEXT_")) return;
       toast.error(`Submission failed: ${error.message}`);
-    }
-
-    if (Object.keys(answers).length === 0) {
-      toast.error("Please Select Answer");
-    } else {
-      redirect(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/getSubmittedAnswers/${testData.testId}`
-      );
     }
   };
 

@@ -25,7 +25,7 @@ function getOptionalHttpsAgent() {
 
   try {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const https = require("node:https") as typeof import("node:https");
+    const https = require("https") as typeof import("https");
     return new https.Agent({ rejectUnauthorized: false });
   } catch {
     return undefined;

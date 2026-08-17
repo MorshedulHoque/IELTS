@@ -10,10 +10,11 @@ export interface User extends mongoose.Document {
   bio: string;
   role: string;
   type: string;
-  // OAuth fields
   authProvider: string;
   providerId: string;
-  emailVerified: Date;
+  emailVerified: Date | null; // can be null (unverified) or Date (verified)
+  verificationToken?: string; // optional, only present when verification pending
+  verificationTokenExpiry?: Date; // optional, when token expires
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -30,31 +31,19 @@ const userSchema = new mongoose.Schema<User>(
     },
     password: {
       type: String,
-      // Make password optional for OAuth users
       required: function (this: User) {
         return this.authProvider === "credentials";
       },
     },
-    image: {
-      type: String,
-    },
-    phone: {
-      type: String,
-    },
-    location: {
-      type: String,
-    },
-    bio: {
-      type: String,
-    },
+    image: { type: String },
+    phone: { type: String },
+    location: { type: String },
+    bio: { type: String },
     role: {
       type: String,
-      default: "user", // Add default role
+      default: "user",
     },
-    type: {
-      type: String,
-    },
-    // OAuth fields
+    type: { type: String },
     authProvider: {
       type: String,
       enum: ["credentials", "google", "linkedin"],
@@ -62,20 +51,27 @@ const userSchema = new mongoose.Schema<User>(
     },
     providerId: {
       type: String,
-      sparse: true, // Allows multiple null values
+      sparse: true,
     },
     emailVerified: {
       type: Date,
       default: null,
     },
+    // NEW fields for email verification
+    verificationToken: {
+      type: String,
+      sparse: true, // allows multiple nulls, but we will unset it after verification
+    },
+    verificationTokenExpiry: { type: Date },
   },
   {
-    timestamps: true, // Adds createdAt and updatedAt automatically
+    timestamps: true,
   }
 );
 
-// Add index for OAuth queries
+// Indexes for performance
 userSchema.index({ email: 1, authProvider: 1 });
 userSchema.index({ providerId: 1, authProvider: 1 }, { sparse: true });
+userSchema.index({ verificationToken: 1 }, { sparse: true }); // added for faster token lookups
 
 export default mongoose.models.user || mongoose.model<User>("user", userSchema);

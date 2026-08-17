@@ -48,12 +48,15 @@ const SignUp = () => {
       console.log("sign up", res);
 
       if (res.success) {
-        toast.success("Account created successfully! Redirecting to sign in...", {
-          autoClose: 1500,
-        });
+        toast.success(
+          "Account created! Please check your email to verify your account.",
+          {
+            autoClose: 4000,
+          }
+        );
         setTimeout(() => {
-          window.location.assign("/user/signin");
-        }, 1600);
+          router.push("/user/signin?verification_pending=true");
+        }, 2000);
       } else {
         throw new Error(res.error || "Failed to create account");
       }
@@ -73,7 +76,7 @@ const SignUp = () => {
   const handleOAuthSignIn = (provider: string) => {
     signIn(provider, {
       callbackUrl: `/api/auth/oauth-redirect?callbackUrl=${encodeURIComponent(
-        callbackUrl,
+        callbackUrl
       )}`,
       redirect: true,
     });
@@ -354,9 +357,8 @@ const SignUp = () => {
         draggable={false}
         theme="light"
         toastClassName={() =>
-          "relative rounded-xl border border-gray-200 bg-white text-gray-800 shadow-lg px-3 py-2 pr-8"
+          "relative rounded-xl border border-gray-200 bg-white text-gray-800 text-sm font-medium leading-5 whitespace-normal break-words shadow-lg px-3 py-2 pr-8"
         }
-        bodyClassName={() => "text-sm font-medium leading-5 whitespace-normal break-words pr-1"}
         closeButton={({ closeToast }) => (
           <button
             onClick={closeToast}

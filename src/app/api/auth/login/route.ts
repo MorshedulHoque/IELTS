@@ -58,6 +58,19 @@ export const POST = async (request: Request) => {
       );
     }
 
+    // --- NEW: Check if email is verified ---
+    if (!user.emailVerified) {
+      return NextResponse.json(
+        {
+          success: false,
+          error:
+            "Please verify your email before logging in. Check your inbox for the verification link.",
+          code: "EMAIL_NOT_VERIFIED", // optional code for frontend handling
+        },
+        { status: 403 } // 403 Forbidden is appropriate
+      );
+    }
+
     // Check if this is a new user and create welcome notification
     try {
       // Check if welcome notification already exists for this user

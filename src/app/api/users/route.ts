@@ -2,21 +2,8 @@ import dbConnect from "@/lib/dbConnect";
 import UserModel from "@/models/UserModel";
 import { NextResponse } from "next/server";
 import bcrypt from "bcrypt";
-
-// GET - Fetch all users
-export async function GET() {
-  try {
-    await dbConnect();
-    const users = await UserModel.find({});
-    return NextResponse.json({ success: true, data: users }, { status: 200 });
-  } catch (error) {
-    console.error("GET Error:", error);
-    return NextResponse.json(
-      { success: false, error: "Failed to fetch users" },
-      { status: 500 }
-    );
-  }
-}
+import crypto from "crypto";
+import { sendVerificationEmail } from "@/lib/email";
 
 export async function POST(request: Request) {
   try {
@@ -30,11 +17,10 @@ export async function POST(request: Request) {
       phone,
       location,
       bio,
-      role = "user", // default role
+      role = "user",
       type = "free",
     } = body;
 
-    // ✅ Basic field validation
     if (!username || !email || !password) {
       return NextResponse.json(
         { success: false, error: "Username, email, and password are required" },
@@ -42,7 +28,7 @@ export async function POST(request: Request) {
       );
     }
 
-    // ✅ Check for existing user
+    // Check existing user
     const existingUser = await UserModel.findOne({
       email: email.toLowerCase().trim(),
     });
@@ -53,10 +39,14 @@ export async function POST(request: Request) {
       );
     }
 
-    // ✅ Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // ✅ Create user
+    // Generate verification token
+    const verificationToken = crypto.randomBytes(32).toString("hex");
+    const verificationTokenExpiry = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours
+
+    console.log("🔑 Generated token:", verificationToken); // DEBUG
+
     const newUser = await UserModel.create({
       username,
       email: email.toLowerCase().trim(),
@@ -66,13 +56,44 @@ export async function POST(request: Request) {
       bio,
       role,
       type,
+      authProvider: "credentials",
+      emailVerified: null,
+      verificationToken,
+      verificationTokenExpiry,
     });
 
-    // ✅ Strip password from response
+    console.log("User created with token:", verificationToken); // Debug log
+
+    // Send verification email
+    try {
+      await sendVerificationEmail(
+        newUser.email,
+        verificationToken,
+        newUser.username
+      );
+    } catch (emailError) {
+      console.error("Failed to send verification email:", emailError);
+      // We still return success because the user is created
+      return NextResponse.json(
+        {
+          success: true,
+          message:
+            "User created, but we couldn't send the verification email. Please request a new verification link.",
+          data: { id: newUser._id },
+        },
+        { status: 201 }
+      );
+    }
+
     const { password: _, ...userWithoutPassword } = newUser.toObject();
 
     return NextResponse.json(
-      { success: true, data: userWithoutPassword },
+      {
+        success: true,
+        message:
+          "User created. Please check your email to verify your account.",
+        data: userWithoutPassword,
+      },
       { status: 201 }
     );
   } catch (error) {

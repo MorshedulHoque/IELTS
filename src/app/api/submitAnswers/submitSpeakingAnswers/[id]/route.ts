@@ -9,18 +9,18 @@ export async function GET(
   try {
     await dbConnect();
     const { id } = await params;
-    
-    console.log("Fetching speaking submission with ID:", id);
-    
+
+    // console.log("Fetching speaking submission with ID:", id);
+
     const speakingAnswer = await SubmitSpeakingAnswerModel.findById(id);
-    
+
     if (!speakingAnswer) {
       return NextResponse.json(
         { success: false, error: "Speaking submission not found" },
         { status: 404 }
       );
     }
-    
+
     return NextResponse.json({
       success: true,
       data: speakingAnswer,
@@ -32,4 +32,4 @@ export async function GET(
       { status: 500 }
     );
   }
-} 
+}

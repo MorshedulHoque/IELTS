@@ -145,10 +145,10 @@ export interface BlogPost {
 export const getWritingSamples = async (): Promise<WritingSample[]> => {
   try {
     if (process.env.NODE_ENV === "development") {
-      console.log(
-        "Contentful writing samples: space",
-        process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID,
-      );
+      // console.log(
+      //   "Contentful writing samples: space",
+      //   process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID,
+      // );
     }
 
     const response = await getContentfulClient().getEntries({
@@ -158,22 +158,23 @@ export const getWritingSamples = async (): Promise<WritingSample[]> => {
 
     return response.items as unknown as WritingSample[];
   } catch (error) {
-    console.error('Error fetching writing samples:', error);
-    
+    console.error("Error fetching writing samples:", error);
+
     // Return mock data for development
     return [
       {
         sys: {
-          id: 'mock-1',
+          id: "mock-1",
           createdAt: new Date().toISOString(),
           updatedAt: new Date().toISOString(),
         },
         fields: {
-          question: 'Sample Writing Question - This is a mock question for testing purposes.',
-          slug: 'sample-writing-question',
+          question:
+            "Sample Writing Question - This is a mock question for testing purposes.",
+          slug: "sample-writing-question",
           date: new Date().toISOString(),
-          taskType: 'Task 1',
-          questionType: 'Academic',
+          taskType: "Task 1",
+          questionType: "Academic",
           answer: {
             content: [
               {
@@ -182,11 +183,12 @@ export const getWritingSamples = async (): Promise<WritingSample[]> => {
                   {
                     data: {},
                     marks: [],
-                    value: 'This is a sample answer to demonstrate the writing samples functionality. In a real scenario, this would be fetched from Contentful.',
-                    nodeType: 'text',
+                    value:
+                      "This is a sample answer to demonstrate the writing samples functionality. In a real scenario, this would be fetched from Contentful.",
+                    nodeType: "text",
                   },
                 ],
-                nodeType: 'paragraph',
+                nodeType: "paragraph",
               },
             ],
           },
@@ -196,32 +198,35 @@ export const getWritingSamples = async (): Promise<WritingSample[]> => {
   }
 };
 
-export const getWritingSampleBySlug = async (slug: string): Promise<WritingSample | null> => {
+export const getWritingSampleBySlug = async (
+  slug: string
+): Promise<WritingSample | null> => {
   try {
     const response = await getContentfulClient().getEntries({
-      content_type: 'ieltsWriting',
-      'fields.slug': slug,
+      content_type: "ieltsWriting",
+      "fields.slug": slug,
       limit: 1,
     });
-    
+
     return (response.items[0] as unknown as WritingSample) || null;
   } catch (error) {
-    console.error('Error fetching writing sample:', error);
-    
+    console.error("Error fetching writing sample:", error);
+
     // Return mock data for development
-    if (slug === 'sample-writing-question') {
+    if (slug === "sample-writing-question") {
       return {
         sys: {
-          id: 'mock-1',
+          id: "mock-1",
           createdAt: new Date().toISOString(),
           updatedAt: new Date().toISOString(),
         },
         fields: {
-          question: 'Sample Writing Question - This is a mock question for testing purposes.',
-          slug: 'sample-writing-question',
+          question:
+            "Sample Writing Question - This is a mock question for testing purposes.",
+          slug: "sample-writing-question",
           date: new Date().toISOString(),
-          taskType: 'Task 1',
-          questionType: 'Academic',
+          taskType: "Task 1",
+          questionType: "Academic",
           answer: {
             content: [
               {
@@ -230,18 +235,19 @@ export const getWritingSampleBySlug = async (slug: string): Promise<WritingSampl
                   {
                     data: {},
                     marks: [],
-                    value: 'This is a sample answer to demonstrate the writing samples functionality. In a real scenario, this would be fetched from Contentful.',
-                    nodeType: 'text',
+                    value:
+                      "This is a sample answer to demonstrate the writing samples functionality. In a real scenario, this would be fetched from Contentful.",
+                    nodeType: "text",
                   },
                 ],
-                nodeType: 'paragraph',
+                nodeType: "paragraph",
               },
             ],
           },
         },
       } as WritingSample;
     }
-    
+
     return null;
   }
 };
@@ -249,28 +255,30 @@ export const getWritingSampleBySlug = async (slug: string): Promise<WritingSampl
 export const getBlogPosts = async (): Promise<BlogPost[]> => {
   try {
     const response = await getContentfulClient().getEntries({
-      content_type: 'blogPage',
-      order: ['-fields.createdDate'],
+      content_type: "blogPage",
+      order: ["-fields.createdDate"],
     });
 
     return response.items as unknown as BlogPost[];
   } catch (error) {
-    console.error('Error fetching blog posts:', error);
+    console.error("Error fetching blog posts:", error);
     return [];
   }
 };
 
-export const getBlogPostBySlug = async (slug: string): Promise<BlogPost | null> => {
+export const getBlogPostBySlug = async (
+  slug: string
+): Promise<BlogPost | null> => {
   try {
     const response = await getContentfulClient().getEntries({
-      content_type: 'blogPage',
-      'fields.slug': slug,
+      content_type: "blogPage",
+      "fields.slug": slug,
       limit: 1,
     });
 
     return (response.items[0] as unknown as BlogPost) || null;
   } catch (error) {
-    console.error('Error fetching blog post:', error);
+    console.error("Error fetching blog post:", error);
     return null;
   }
 };

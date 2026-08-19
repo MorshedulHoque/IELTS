@@ -1,7 +1,7 @@
 "use client";
 import { getAllUsers, updateUser, deleteUser } from "@/services/data";
 import React, { useState, useEffect } from "react";
-import Loader from '@/components/Common/Loader';
+import Loader from "@/components/Common/Loader";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
@@ -44,7 +44,7 @@ const UserDashboard = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const { data }: any = useSession();
 
-  console.log("Session Data", data);
+  // console.log("Session Data", data);
 
   useEffect(() => {
     setCurrentUser(data?.user);

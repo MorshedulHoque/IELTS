@@ -1,15 +1,18 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
   try {
     // Check if cloudinary is available
-    let cloudinary;
+    let cloudinary: any;
     try {
-      cloudinary = require('cloudinary').v2;
+      cloudinary = require("cloudinary").v2;
     } catch (error) {
-      console.error('Cloudinary package not found:', error);
+      console.error("Cloudinary package not found:", error);
       return NextResponse.json(
-        { error: 'Cloudinary package not installed. Please run: npm install cloudinary' },
+        {
+          error:
+            "Cloudinary package not installed. Please run: npm install cloudinary",
+        },
         { status: 500 }
       );
     }
@@ -22,34 +25,41 @@ export async function POST(request: NextRequest) {
     });
 
     // Validate environment variables
-    if (!process.env.CLOUDINARY_CLOUD_NAME || !process.env.CLOUDINARY_API_KEY || !process.env.CLOUDINARY_API_SECRET) {
-      console.error('Missing Cloudinary environment variables');
+    if (
+      !process.env.CLOUDINARY_CLOUD_NAME ||
+      !process.env.CLOUDINARY_API_KEY ||
+      !process.env.CLOUDINARY_API_SECRET
+    ) {
+      console.error("Missing Cloudinary environment variables");
       return NextResponse.json(
-        { error: 'Cloudinary configuration missing. Please check your environment variables.' },
+        {
+          error:
+            "Cloudinary configuration missing. Please check your environment variables.",
+        },
         { status: 500 }
       );
     }
 
     const formData = await request.formData();
-    const audioFile = formData.get('audio') as File;
-    
+    const audioFile = formData.get("audio") as File;
+
     if (!audioFile) {
       return NextResponse.json(
-        { error: 'No audio file provided' },
+        { error: "No audio file provided" },
         { status: 400 }
       );
     }
 
-    console.log('Listening audio file received:', {
-      name: audioFile.name,
-      size: audioFile.size,
-      type: audioFile.type
-    });
+    // console.log('Listening audio file received:', {
+    //   name: audioFile.name,
+    //   size: audioFile.size,
+    //   type: audioFile.type
+    // });
 
     // Validate file type
-    if (!audioFile.type.startsWith('audio/')) {
+    if (!audioFile.type.startsWith("audio/")) {
       return NextResponse.json(
-        { error: 'Invalid file type. Please upload an audio file.' },
+        { error: "Invalid file type. Please upload an audio file." },
         { status: 400 }
       );
     }
@@ -58,7 +68,7 @@ export async function POST(request: NextRequest) {
     const maxSize = 50 * 1024 * 1024; // 50MB
     if (audioFile.size > maxSize) {
       return NextResponse.json(
-        { error: 'File size too large. Maximum size is 50MB.' },
+        { error: "File size too large. Maximum size is 50MB." },
         { status: 400 }
       );
     }
@@ -67,27 +77,27 @@ export async function POST(request: NextRequest) {
     const bytes = await audioFile.arrayBuffer();
     const buffer = Buffer.from(bytes);
 
-    console.log('Buffer created, size:', buffer.length);
+    // console.log('Buffer created, size:', buffer.length);
 
     // Upload to Cloudinary with specific settings for listening tests
     const result = await new Promise((resolve, reject) => {
       const uploadStream = cloudinary.uploader.upload_stream(
         {
-          resource_type: 'video', // Cloudinary uses 'video' for audio files
-          folder: 'ielts-listening-audio',
-          format: 'mp3',
+          resource_type: "video", // Cloudinary uses 'video' for audio files
+          folder: "ielts-listening-audio",
+          format: "mp3",
           public_id: `listening_${Date.now()}`,
           // Audio optimization settings
-          audio_codec: 'mp3',
-          bit_rate: '128k', // Good quality for listening tests
+          audio_codec: "mp3",
+          bit_rate: "128k", // Good quality for listening tests
           audio_frequency: 44100, // Standard frequency
         },
         (error: any, result: any) => {
           if (error) {
-            console.error('Cloudinary upload error:', error);
+            console.error("Cloudinary upload error:", error);
             reject(error);
           } else {
-            console.log('Cloudinary upload success:', result);
+            // console.log('Cloudinary upload success:', result);
             resolve(result);
           }
         }
@@ -104,15 +114,14 @@ export async function POST(request: NextRequest) {
       format: (result as any).format,
       size: (result as any).bytes,
     });
-
   } catch (error: any) {
-    console.error('Listening audio upload error:', error);
+    console.error("Listening audio upload error:", error);
     return NextResponse.json(
-      { 
-        error: 'Failed to upload audio file',
-        details: error.message || 'Unknown error'
+      {
+        error: "Failed to upload audio file",
+        details: error.message || "Unknown error",
       },
       { status: 500 }
     );
   }
-} 
+}

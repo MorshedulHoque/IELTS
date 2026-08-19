@@ -15,12 +15,12 @@ export async function GET(request: Request) {
       );
     }
 
-    console.log("Verifying token:", token); // Debug log
+    // console.log("Verifying token:", token); // Debug log
 
     const user = await UserModel.findOne({ verificationToken: token });
 
     if (!user) {
-      console.log("No user found with that token");
+      // console.log("No user found with that token");
       return NextResponse.json(
         { success: false, error: "Invalid or expired token" },
         { status: 400 }
@@ -32,7 +32,7 @@ export async function GET(request: Request) {
       user.verificationTokenExpiry &&
       new Date() > user.verificationTokenExpiry
     ) {
-      console.log("Token expired");
+      // console.log("Token expired");
       return NextResponse.json(
         { success: false, error: "Token has expired" },
         { status: 400 }
@@ -45,7 +45,7 @@ export async function GET(request: Request) {
     user.verificationTokenExpiry = undefined;
     await user.save();
 
-    console.log("User verified successfully");
+    // console.log("User verified successfully");
 
     // Redirect to sign-in with success param
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;

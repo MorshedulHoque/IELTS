@@ -57,7 +57,7 @@ export function getAuthOptions(): NextAuthOptions {
 
             const userData = response.data[0];
 
-            console.log("UserData", userData);
+            // console.log("UserData", userData);
 
             return {
               id: userData._id, // Map _id to id

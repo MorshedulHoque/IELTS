@@ -9,7 +9,7 @@ const HistoryTable = ({ selectedSkill, testHistory }: any) => {
   const { data: session } = useSession();
 
   const handleShowResult = (testId: string) => {
-    console.log("HistoryTable - Show Result clicked with testId:", testId);
+    // console.log("HistoryTable - Show Result clicked with testId:", testId);
     setSelectedTestId(testId);
     setModalOpen(true);
   };
@@ -19,7 +19,7 @@ const HistoryTable = ({ selectedSkill, testHistory }: any) => {
     setSelectedTestId(null);
   };
 
-  console.log("Test History", testHistory);
+  // console.log("Test History", testHistory);
 
   return (
     <div>

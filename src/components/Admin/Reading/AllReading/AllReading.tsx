@@ -66,7 +66,7 @@ const AllReading: React.FC<any> = ({ readingData, setReadingData }) => {
     try {
       await editReadingTest(selectedTest._id, editedTest); // Use editedTest, not readingData
 
-      console.log("Edited test", editedTest);
+      // console.log("Edited test", editedTest);
 
       // Update the readingData state with the edited test
       setReadingData((prev: any) =>
@@ -100,12 +100,17 @@ const AllReading: React.FC<any> = ({ readingData, setReadingData }) => {
       const group = newTest.parts?.[partIndex]?.questions?.[groupIndex] || {};
       const questionType = Object.keys(group).find((k) => k !== "instructions");
       if (!questionType) {
-        console.error("No question type found in group", { partIndex, groupIndex, group });
+        console.error("No question type found in group", {
+          partIndex,
+          groupIndex,
+          group,
+        });
         return prev;
       }
 
       // Update the specific question field
-      const target = newTest.parts[partIndex].questions[groupIndex][questionType][qIndex];
+      const target =
+        newTest.parts[partIndex].questions[groupIndex][questionType][qIndex];
       if (typeof target !== "object" || target === null) {
         console.error("Target question is not an object", target);
         return prev;
@@ -146,13 +151,15 @@ const AllReading: React.FC<any> = ({ readingData, setReadingData }) => {
       newTest.parts[partIndex] = {
         ...newTest.parts[partIndex],
       };
-      
+
       // Handle both array and object formats
       if (Array.isArray(newTest.parts[partIndex].passage)) {
         // Check if it's an array of objects (like [{A: "text1", B: "text2"}])
-        if (newTest.parts[partIndex].passage.length === 1 && 
-            typeof newTest.parts[partIndex].passage[0] === 'object' && 
-            !Array.isArray(newTest.parts[partIndex].passage[0])) {
+        if (
+          newTest.parts[partIndex].passage.length === 1 &&
+          typeof newTest.parts[partIndex].passage[0] === "object" &&
+          !Array.isArray(newTest.parts[partIndex].passage[0])
+        ) {
           // Object format wrapped in array: [{A: para1, B: para2, C: para3}]
           const obj = { ...newTest.parts[partIndex].passage[0] };
           const keys = Object.keys(obj);
@@ -161,7 +168,9 @@ const AllReading: React.FC<any> = ({ readingData, setReadingData }) => {
           newTest.parts[partIndex].passage = [obj];
         } else {
           // Regular array format: [para1, para2, para3]
-          newTest.parts[partIndex].passage = [...newTest.parts[partIndex].passage];
+          newTest.parts[partIndex].passage = [
+            ...newTest.parts[partIndex].passage,
+          ];
           newTest.parts[partIndex].passage[paraIndex] = value;
         }
       } else {
@@ -170,10 +179,10 @@ const AllReading: React.FC<any> = ({ readingData, setReadingData }) => {
         const keyToUpdate = keys[paraIndex];
         newTest.parts[partIndex].passage = {
           ...newTest.parts[partIndex].passage,
-          [keyToUpdate]: value
+          [keyToUpdate]: value,
         };
       }
-      
+
       return newTest;
     });
   };

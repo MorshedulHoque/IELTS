@@ -38,7 +38,7 @@ export const RenderQuestionInput = (
     setTest({ ...test, parts: updatedParts });
 
     // Debug log to verify the update
-    console.log(`Updated ${field} for question ${qIndex}:`, value);
+    // console.log(`Updated ${field} for question ${qIndex}:`, value);
   };
 
   // Add remove question function

@@ -45,7 +45,7 @@ const SignUp = () => {
       };
 
       const res = await postUser(JSON.stringify(payload));
-      console.log("sign up", res);
+      // console.log("sign up", res);
 
       if (res.success) {
         toast.success(

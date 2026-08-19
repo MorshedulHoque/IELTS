@@ -89,12 +89,12 @@ const ReadingTest = ({ test }: any) => {
       const questionNumbers: number[] = [];
 
       part.questions.forEach((questionSet: any, questionSetIndex: number) => {
-        console.log(
-          `Processing question set ${questionSetIndex} in part ${
-            partIndex + 1
-          }:`,
-          Object.keys(questionSet)
-        );
+        // console.log(
+        //   `Processing question set ${questionSetIndex} in part ${
+        //     partIndex + 1
+        //   }:`,
+        //   Object.keys(questionSet)
+        // );
         if (questionSet.true_false_not_given) {
           questionSet.true_false_not_given.forEach((q: any) => {
             questionNumbers.push(q.question_number);
@@ -143,19 +143,19 @@ const ReadingTest = ({ test }: any) => {
           });
         }
         if (questionSet.summary_fill_in_the_blanks) {
-          console.log(
-            `Found summary_fill_in_the_blanks in part ${partIndex + 1}:`,
-            questionSet.summary_fill_in_the_blanks
-          );
+          // console.log(
+          //   `Found summary_fill_in_the_blanks in part ${partIndex + 1}:`,
+          //   questionSet.summary_fill_in_the_blanks
+          // );
           questionSet.summary_fill_in_the_blanks.forEach((q: any) => {
             if (Array.isArray(q.question_numbers)) {
               q.question_numbers.forEach((num: number) =>
                 questionNumbers.push(num)
               );
-              console.log(`Added question numbers:`, q.question_numbers);
+              // console.log(`Added question numbers:`, q.question_numbers);
             } else if (q.question_number) {
               questionNumbers.push(q.question_number);
-              console.log(`Added question number:`, q.question_number);
+              // console.log(`Added question number:`, q.question_number);
             }
           });
         }
@@ -171,10 +171,10 @@ const ReadingTest = ({ test }: any) => {
       });
 
       partQuestions[partIndex] = questionNumbers.sort((a, b) => a - b);
-      console.log(
-        `Part ${partIndex + 1} question numbers:`,
-        partQuestions[partIndex]
-      );
+      // console.log(
+      //   `Part ${partIndex + 1} question numbers:`,
+      //   partQuestions[partIndex]
+      // );
     });
 
     return partQuestions;
@@ -182,9 +182,9 @@ const ReadingTest = ({ test }: any) => {
 
   const partQuestions = getPartQuestionNumbers();
 
-  console.log("Parts", test.parts);
+  // console.log("Parts", test.parts);
 
-  console.log("Current Part", currentPart);
+  // console.log("Current Part", currentPart);
 
   // useEffect(() => {
   //   // Flatten all questions from all parts
@@ -346,7 +346,7 @@ const ReadingTest = ({ test }: any) => {
     };
 
     const allQuestions = flattenQuestions(test.parts);
-    console.log("All Questions", allQuestions);
+    // console.log("All Questions", allQuestions);
 
     const initialAnswers = allQuestions.flatMap((q) => {
       if (q.input_type === "checkbox" && Array.isArray(q.question_numbers)) {
@@ -416,7 +416,7 @@ const ReadingTest = ({ test }: any) => {
       }
     });
 
-    console.log("Initial Answers:", initialAnswers);
+    // console.log("Initial Answers:", initialAnswers);
     setAnswers(initialAnswers);
   }, [test.parts]);
 
@@ -428,9 +428,9 @@ const ReadingTest = ({ test }: any) => {
     questionNumber: number,
     partIndex: number
   ) => {
-    console.log(
-      `Navigating to question ${questionNumber} in part ${partIndex}`
-    );
+    // console.log(
+    //   `Navigating to question ${questionNumber} in part ${partIndex}`
+    // );
 
     // First, change to the correct part
     setCurrentPartIndex(partIndex);
@@ -447,7 +447,7 @@ const ReadingTest = ({ test }: any) => {
       const questionsSection = document.querySelector(".space-y-6");
       if (questionsSection) {
         questionsContainer = questionsSection.parentElement;
-        console.log("Found questions container via parent of .space-y-6");
+        // console.log("Found questions container via parent of .space-y-6");
       }
 
       // If not found, look for the RIGHT side container specifically
@@ -465,9 +465,9 @@ const ReadingTest = ({ test }: any) => {
             container.textContent?.includes("instructions")
           ) {
             questionsContainer = container;
-            console.log(
-              "Found RIGHT side questions container by content check"
-            );
+            // console.log(
+            //   "Found RIGHT side questions container by content check"
+            // );
             break;
           }
         }
@@ -480,28 +480,28 @@ const ReadingTest = ({ test }: any) => {
           ".lg\\:h-\\[80vh\\].lg\\:overflow-y-auto.border-l"
         );
         if (questionsContainer) {
-          console.log("Found questions container via border-l class");
+          // console.log("Found questions container via border-l class");
         }
       }
 
       if (!questionsContainer) {
-        console.log("No questions container found");
+        // console.log("No questions container found");
         return;
       }
 
-      console.log("Using questions container:", questionsContainer);
+      // console.log("Using questions container:", questionsContainer);
 
       // Find the question element - first try direct ID, then look in groups
       let questionElement: any = document.getElementById(
         `question-${questionNumber}`
       );
-      console.log(`Looking for question-${questionNumber}:`, questionElement);
+      // console.log(`Looking for question-${questionNumber}:`, questionElement);
 
       // If not found by direct ID, look for the container that contains this question number
       if (!questionElement) {
-        console.log(
-          "Direct ID not found, looking for container with this question number"
-        );
+        // console.log(
+        //   "Direct ID not found, looking for container with this question number"
+        // );
         const allQuestionContainers = questionsContainer.querySelectorAll(
           "[data-question-numbers]"
         );
@@ -510,17 +510,17 @@ const ReadingTest = ({ test }: any) => {
             container.getAttribute("data-question-numbers")?.split(",") || [];
           if (questionNumbers.includes(questionNumber.toString())) {
             questionElement = container as HTMLElement;
-            console.log(
-              "Found question container with question number:",
-              questionNumber
-            );
+            // console.log(
+            //   "Found question container with question number:",
+            //   questionNumber
+            // );
             break;
           }
         }
       }
 
       if (questionElement) {
-        console.log("Found question element, scrolling to it");
+        // console.log("Found question element, scrolling to it");
         // Calculate the position of the question within the container
         const containerRect = questionsContainer.getBoundingClientRect();
         const questionRect = questionElement.getBoundingClientRect();
@@ -530,12 +530,12 @@ const ReadingTest = ({ test }: any) => {
 
         // Try to find the specific question within the group and scroll to it
         setTimeout(() => {
-          console.log(
-            "Looking for specific question",
-            questionNumber,
-            "within container:",
-            questionElement
-          );
+          // console.log(
+          //   "Looking for specific question",
+          //   questionNumber,
+          //   "within container:",
+          //   questionElement
+          // );
 
           // Check if this is a grouped question (multiple question numbers in one container)
           const questionNumbers =
@@ -545,34 +545,34 @@ const ReadingTest = ({ test }: any) => {
             questionNumber.toString()
           );
 
-          console.log("Question numbers in container:", questionNumbers);
-          console.log(
-            "Target question index:",
-            questionIndex,
-            "for question",
-            questionNumber
-          );
+          // console.log("Question numbers in container:", questionNumbers);
+          // console.log(
+          //   "Target question index:",
+          //   questionIndex,
+          //   "for question",
+          //   questionNumber
+          // );
 
           if (questionNumbers.length > 1 && questionIndex >= 0) {
-            console.log(
-              "This is a grouped question, trying to find specific question within group"
-            );
+            // console.log(
+            //   "This is a grouped question, trying to find specific question within group"
+            // );
 
             // Calculate the position of the specific question within the group
             const specificQuestionIndex = questionNumbers.indexOf(
               questionNumber.toString()
             );
-            console.log(
-              "Question index within group:",
-              specificQuestionIndex,
-              "for question",
-              questionNumber
-            );
+            // console.log(
+            //   "Question index within group:",
+            //   specificQuestionIndex,
+            //   "for question",
+            //   questionNumber
+            // );
 
             if (specificQuestionIndex >= 0) {
-              console.log(
-                "Looking for specific question within grouped container"
-              );
+              // console.log(
+              //   "Looking for specific question within grouped container"
+              // );
 
               // Try a different approach: look for elements with specific question numbers
               const allElements = questionElement.querySelectorAll("*");
@@ -594,30 +594,30 @@ const ReadingTest = ({ test }: any) => {
                     text.includes("Question") &&
                     text.includes(questionNumber.toString());
 
-                  console.log(
-                    "Found element with question",
-                    questionNumber,
-                    ":",
-                    {
-                      hasInputs: !!hasInputs,
-                      hasQuestionText,
-                      textLength: text.length,
-                      element: element.tagName,
-                    }
-                  );
+                  // console.log(
+                  //   "Found element with question",
+                  //   questionNumber,
+                  //   ":",
+                  //   {
+                  //     hasInputs: !!hasInputs,
+                  //     hasQuestionText,
+                  //     textLength: text.length,
+                  //     element: element.tagName,
+                  //   }
+                  // );
 
                   if (hasInputs && hasQuestionText) {
                     targetElement = element;
-                    console.log("Found specific question element with inputs");
+                    // console.log("Found specific question element with inputs");
                     break;
                   }
                 }
               }
 
               if (targetElement) {
-                console.log(
-                  "Scrolling to specific question element within container"
-                );
+                // console.log(
+                //   "Scrolling to specific question element within container"
+                // );
                 const containerRect2 =
                   questionsContainer.getBoundingClientRect();
                 const targetRect = (
@@ -638,9 +638,9 @@ const ReadingTest = ({ test }: any) => {
                 );
 
                 if (hasRadioButtons || hasCheckboxes) {
-                  console.log(
-                    "MCQ question detected, not focusing any input to avoid auto-selection"
-                  );
+                  // console.log(
+                  //   "MCQ question detected, not focusing any input to avoid auto-selection"
+                  // );
                   return;
                 }
 
@@ -650,12 +650,12 @@ const ReadingTest = ({ test }: any) => {
                 );
                 if (allInputs.length > 0) {
                   const targetInput = allInputs[0];
-                  console.log(
-                    "Focusing input for question",
-                    questionNumber,
-                    ":",
-                    targetInput
-                  );
+                  // console.log(
+                  //   "Focusing input for question",
+                  //   questionNumber,
+                  //   ":",
+                  //   targetInput
+                  // );
                   (targetInput as HTMLElement).focus();
 
                   // For text inputs, also select the text if it exists
@@ -668,9 +668,9 @@ const ReadingTest = ({ test }: any) => {
                 }
                 return;
               } else {
-                console.log(
-                  "Specific question element not found, using fallback approach"
-                );
+                // console.log(
+                //   "Specific question element not found, using fallback approach"
+                // );
                 // Fallback: compute a proportional offset within the group and do a single container scroll
                 const containerRect3 =
                   questionsContainer.getBoundingClientRect();
@@ -696,12 +696,12 @@ const ReadingTest = ({ test }: any) => {
           const allInputs = questionElement.querySelectorAll(
             "input, textarea, select, button"
           );
-          console.log(
-            "All inputs found for question",
-            questionNumber,
-            ":",
-            allInputs.length
-          );
+          // console.log(
+          //   "All inputs found for question",
+          //   questionNumber,
+          //   ":",
+          //   allInputs.length
+          // );
 
           // For MCQ questions, don't focus any input to avoid auto-selection
           const hasRadioButtons = questionElement.querySelector(
@@ -712,21 +712,21 @@ const ReadingTest = ({ test }: any) => {
           );
 
           if (hasRadioButtons || hasCheckboxes) {
-            console.log(
-              "MCQ question detected, not focusing any input to avoid auto-selection"
-            );
+            // console.log(
+            //   "MCQ question detected, not focusing any input to avoid auto-selection"
+            // );
             return;
           }
 
           // For other question types, focus the first input
           if (allInputs.length > 0) {
             const targetInput = allInputs[0];
-            console.log(
-              "Focusing input for question",
-              questionNumber,
-              ":",
-              targetInput
-            );
+            // console.log(
+            //   "Focusing input for question",
+            //   questionNumber,
+            //   ":",
+            //   targetInput
+            // );
             (targetInput as HTMLElement).focus();
 
             // For text inputs, also select the text if it exists
@@ -737,18 +737,18 @@ const ReadingTest = ({ test }: any) => {
               (targetInput as HTMLInputElement).select();
             }
           } else {
-            console.log("No input found for question", questionNumber);
+            // console.log("No input found for question", questionNumber);
           }
         }, 100);
       } else {
-        console.log(
-          "Question element not found, trying to find by question number"
-        );
+        // console.log(
+        //   "Question element not found, trying to find by question number"
+        // );
         // Alternative: find by looking for the question number in the text
         const allQuestionDivs = questionsContainer.querySelectorAll(
           'div[id^="question-"]'
         );
-        console.log("All question divs found:", allQuestionDivs);
+        // console.log("All question divs found:", allQuestionDivs);
 
         // Look for the question by checking the content
         let found = false;
@@ -759,7 +759,7 @@ const ReadingTest = ({ test }: any) => {
             questionText.includes(`${questionNumber}.`) ||
             div.id === `question-${questionNumber}`
           ) {
-            console.log("Found question by content, scrolling to it");
+            // console.log("Found question by content, scrolling to it");
             div.scrollIntoView({
               behavior: "smooth",
               block: "start",
@@ -779,7 +779,7 @@ const ReadingTest = ({ test }: any) => {
                 div.querySelector("button");
 
               if (inputElement) {
-                console.log("Focusing input element:", inputElement);
+                // console.log("Focusing input element:", inputElement);
                 (inputElement as HTMLElement).focus();
 
                 // For text inputs, also select the text if it exists
@@ -807,9 +807,9 @@ const ReadingTest = ({ test }: any) => {
 
         // If still not found, scroll to top of questions container
         if (!found) {
-          console.log(
-            "Question not found, scrolling to top of questions container"
-          );
+          // console.log(
+          //   "Question not found, scrolling to top of questions container"
+          // );
           questionsContainer.scrollTo({
             top: 0,
             behavior: "smooth",
@@ -909,7 +909,7 @@ const ReadingTest = ({ test }: any) => {
 
   const handleHighlightChange = (highlights: any[]) => {
     setPassageHighlights(highlights);
-    console.log("Passage highlights updated:", highlights);
+    // console.log("Passage highlights updated:", highlights);
   };
 
   const handleNextPart = () => {
@@ -990,9 +990,9 @@ const ReadingTest = ({ test }: any) => {
     try {
       const res = await postSubmitReadingTest(testData);
 
-      console.log("Response", res);
+      // console.log("Response", res);
 
-      console.log("This is Test Data", testData);
+      // console.log("This is Test Data", testData);
 
       // 4. Handle non-OK statuses
       if (!res.success) {
@@ -1303,11 +1303,11 @@ const ReadingTest = ({ test }: any) => {
                   const questionIds = createQuestionIds();
                   const firstQuestionNumber = questionIds[0] || index + 1;
 
-                  console.log(
-                    `Creating question container with IDs: ${questionIds.join(
-                      ", "
-                    )} for question set ${index}`
-                  );
+                  // console.log(
+                  //   `Creating question container with IDs: ${questionIds.join(
+                  //     ", "
+                  //   )} for question set ${index}`
+                  // );
 
                   return (
                     <div

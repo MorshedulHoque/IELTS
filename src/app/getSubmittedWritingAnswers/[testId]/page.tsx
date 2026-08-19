@@ -1,7 +1,7 @@
 "use client";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import Loader from '@/components/Common/Loader';
+import Loader from "@/components/Common/Loader";
 import { getSubmitWritingTest, getSingleWritingTest } from "@/services/data";
 import { useSession } from "next-auth/react";
 import WritingReview from "@/components/TestComponent/writingTest/WritingReview";
@@ -51,17 +51,20 @@ const SubmissionPage = () => {
   const { data: session } = useSession();
 
   // Helper function to get image for an answer
-  const getImageForAnswer = (answer: Answer, index: number): string | undefined => {
+  const getImageForAnswer = (
+    answer: Answer,
+    index: number
+  ): string | undefined => {
     // First try to get image from submission
     if (answer.image) {
       return answer.image;
     }
-    
+
     // If no image in submission, try to get from original test
     if (originalTest && originalTest.parts && originalTest.parts[index]) {
       return originalTest.parts[index].image;
     }
-    
+
     return undefined;
   };
 
@@ -71,16 +74,16 @@ const SubmissionPage = () => {
         const testIdStr = Array.isArray(testId) ? testId[0] : testId;
 
         if (!testIdStr || !session?.user?.id) {
-          console.log("Missing testId or userId:", {
-            testId: testIdStr,
-            userId: session?.user?.id,
-          });
+          // console.log("Missing testId or userId:", {
+          //   testId: testIdStr,
+          //   userId: session?.user?.id,
+          // });
           return;
         }
 
         const response = await getSubmitWritingTest(testIdStr, session.user.id);
-        console.log("Raw submission response:", response);
-        
+        // console.log("Raw submission response:", response);
+
         if (response && response.success) {
           const submissionData = response.data;
           if (!submissionData) {
@@ -89,17 +92,17 @@ const SubmissionPage = () => {
             return;
           }
 
-          console.log("Submission data:", submissionData);
-          console.log("Answers:", submissionData.answers);
-          
+          // console.log("Submission data:", submissionData);
+          // console.log("Answers:", submissionData.answers);
+
           // Check if answers have images
           if (submissionData.answers) {
             submissionData.answers.forEach((answer: any, index: number) => {
-              console.log(`Answer ${index + 1}:`, {
-                question: answer.question,
-                image: answer.image,
-                hasImage: !!answer.image
-              });
+              // console.log(`Answer ${index + 1}:`, {
+              //   question: answer.question,
+              //   image: answer.image,
+              //   hasImage: !!answer.image
+              // });
             });
           }
 
@@ -110,7 +113,7 @@ const SubmissionPage = () => {
             const originalTestResponse = await getSingleWritingTest(testIdStr);
             if (originalTestResponse && originalTestResponse.success) {
               setOriginalTest(originalTestResponse.data);
-              console.log("Original test data:", originalTestResponse.data);
+              // console.log("Original test data:", originalTestResponse.data);
             }
           } catch (err) {
             console.error("Failed to fetch original test data:", err);
@@ -201,8 +204,13 @@ const SubmissionPage = () => {
 
           {originalTest && submission && (
             <div className="mt-6">
-              <h2 className="text-xl font-bold mb-4">Review (same interface)</h2>
-              <WritingReview test={originalTest as any} submission={submission as any} />
+              <h2 className="text-xl font-bold mb-4">
+                Review (same interface)
+              </h2>
+              <WritingReview
+                test={originalTest as any}
+                submission={submission as any}
+              />
             </div>
           )}
         </div>

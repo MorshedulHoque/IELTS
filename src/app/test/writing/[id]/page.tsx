@@ -1,12 +1,11 @@
 "use client";
-import { useEffect, useState, useRef, useCallback } from 'react';
-import { redirect, useParams } from 'next/navigation';
-import { getSingleWritingTest, postSubmitWritingTest } from '@/services/data';
-import { useSession } from 'next-auth/react';
-import { toast } from 'react-toastify';
-import { useRouter } from 'next/navigation';
-import Loader from '@/components/Common/Loader';
-
+import { useEffect, useState, useRef, useCallback } from "react";
+import { redirect, useParams } from "next/navigation";
+import { getSingleWritingTest, postSubmitWritingTest } from "@/services/data";
+import { useSession } from "next-auth/react";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
+import Loader from "@/components/Common/Loader";
 
 interface TestPart {
   title: string;
@@ -29,13 +28,13 @@ export default function WritingTestPage() {
   const params = useParams();
   const [test, setTest] = useState<WritingTest | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [responses, setResponses] = useState<Record<string, string>>({});
   const [wordCounts, setWordCounts] = useState<Record<string, number>>({});
   const [activeTab, setActiveTab] = useState(0);
   const [panelWidths, setPanelWidths] = useState<Record<number, number>>({
     0: 50,
-    1: 50
+    1: 50,
   });
   const [isDragging, setIsDragging] = useState(false);
   const [currentTaskIndex, setCurrentTaskIndex] = useState<number | null>(null);
@@ -49,14 +48,20 @@ export default function WritingTestPage() {
 
   // Function to count words
   const countWords = (text: string): number => {
-    return text.trim().split(/\s+/).filter(word => word.length > 0).length;
+    return text
+      .trim()
+      .split(/\s+/)
+      .filter((word) => word.length > 0).length;
   };
 
   // Format time function
   const formatTime = (timeInSeconds: number) => {
     const minutes = Math.floor(timeInSeconds / 60);
     const seconds = timeInSeconds % 60;
-    return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+    return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(
+      2,
+      "0"
+    )}`;
   };
 
   const handleMouseDown = (e: React.MouseEvent, taskIndex: number) => {
@@ -68,18 +73,19 @@ export default function WritingTestPage() {
   const handleMouseMove = (e: MouseEvent) => {
     if (!isDragging || currentTaskIndex === null) return;
 
-    const containers = document.querySelectorAll('.split-container');
+    const containers = document.querySelectorAll(".split-container");
     const container = containers[currentTaskIndex];
     if (!container) return;
 
     const containerRect = container.getBoundingClientRect();
-    const newLeftWidth = ((e.clientX - containerRect.left) / containerRect.width) * 100;
-    
+    const newLeftWidth =
+      ((e.clientX - containerRect.left) / containerRect.width) * 100;
+
     // Limit the width between 20% and 80%
     if (newLeftWidth >= 20 && newLeftWidth <= 80) {
-      setPanelWidths(prev => ({
+      setPanelWidths((prev) => ({
         ...prev,
-        [currentTaskIndex]: newLeftWidth
+        [currentTaskIndex]: newLeftWidth,
       }));
     }
   };
@@ -91,12 +97,12 @@ export default function WritingTestPage() {
 
   useEffect(() => {
     if (isDragging) {
-      document.addEventListener('mousemove', handleMouseMove);
-      document.addEventListener('mouseup', handleMouseUp);
+      document.addEventListener("mousemove", handleMouseMove);
+      document.addEventListener("mouseup", handleMouseUp);
     }
     return () => {
-      document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseup', handleMouseUp);
+      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseup", handleMouseUp);
     };
   }, [isDragging, currentTaskIndex]);
 
@@ -109,7 +115,7 @@ export default function WritingTestPage() {
           setTimeLeft(data.data.duration * 60); // Initialize timer
         }
       } catch (err) {
-        setError('Failed to fetch writing test');
+        setError("Failed to fetch writing test");
       } finally {
         setLoading(false);
       }
@@ -135,14 +141,14 @@ export default function WritingTestPage() {
   }, [timeLeft, hasStarted]);
 
   const handleResponseChange = (partId: string, value: string) => {
-    setResponses(prev => ({
+    setResponses((prev) => ({
       ...prev,
-      [partId]: value
+      [partId]: value,
     }));
     // Update word count
-    setWordCounts(prev => ({
+    setWordCounts((prev) => ({
       ...prev,
-      [partId]: countWords(value)
+      [partId]: countWords(value),
     }));
   };
 
@@ -153,12 +159,12 @@ export default function WritingTestPage() {
     const submissionTime = new Date();
 
     // Create answers array in the requested format
-    const answers = test.parts.map(part => ({
+    const answers = test.parts.map((part) => ({
       partId: part._id,
-      question: part.Question.join(' '), // Combine question array
-      response: responses[part._id] || '',
+      question: part.Question.join(" "), // Combine question array
+      response: responses[part._id] || "",
       instructions: part.instruction,
-      image: part.image // Include the image URL
+      image: part.image, // Include the image URL
     }));
 
     // Create test data object exactly as requested
@@ -169,11 +175,11 @@ export default function WritingTestPage() {
       submittedAt: submissionTime.toLocaleString(),
     };
 
-    console.log("Test Submission Data:", testData);
+    // console.log("Test Submission Data:", testData);
 
     try {
       const data = await postSubmitWritingTest(testData);
-      console.log(data.success);
+      // console.log(data.success);
       if (data.success) {
         toast.success("Test Submitted successfully!");
         router.push(`/getSubmittedWritingAnswers/${testData.testId}`);
@@ -185,7 +191,6 @@ export default function WritingTestPage() {
       toast.error("An error occurred while creating the test.");
     }
   };
-
 
   if (loading) {
     return <Loader message="Loading writing test..." />;
@@ -251,35 +256,72 @@ export default function WritingTestPage() {
               <div className="flex items-start gap-4">
                 <div className="rounded-xl bg-red-100 text-red-700 p-3">
                   {/* writing icon */}
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 19l7-7 3 3-7 7-3-3z" fill="currentColor"/>
-                    <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" fill="currentColor"/>
-                    <path d="M2 2l7.586 7.586" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    <path d="M11 13H6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M12 19l7-7 3 3-7 7-3-3z" fill="currentColor" />
+                    <path
+                      d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"
+                      fill="currentColor"
+                    />
+                    <path
+                      d="M2 2l7.586 7.586"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M11 13H6"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
                   </svg>
                 </div>
                 <div className="flex-1">
-                  <h2 id="writing-start-title" className="text-xl font-semibold leading-tight text-gray-900">
+                  <h2
+                    id="writing-start-title"
+                    className="text-xl font-semibold leading-tight text-gray-900"
+                  >
                     Ready to begin your Writing test?
                   </h2>
                   <p className="mt-1 text-sm text-gray-600">
-                    The timer will start as soon as you click <strong>Start Test</strong>.
+                    The timer will start as soon as you click{" "}
+                    <strong>Start Test</strong>.
                   </p>
                 </div>
               </div>
 
               <div className="mt-5 grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <div className="rounded-lg border border-red-200 bg-red-50 p-3">
-                  <div className="text-xs uppercase tracking-wide text-red-600 font-medium">Duration</div>
-                  <div className="text-sm font-semibold text-gray-900">{test.duration} min</div>
+                  <div className="text-xs uppercase tracking-wide text-red-600 font-medium">
+                    Duration
+                  </div>
+                  <div className="text-sm font-semibold text-gray-900">
+                    {test.duration} min
+                  </div>
                 </div>
                 <div className="rounded-lg border border-red-200 bg-red-50 p-3">
-                  <div className="text-xs uppercase tracking-wide text-red-600 font-medium">Tasks</div>
-                  <div className="text-sm font-semibold text-gray-900">{test.parts?.length || 2}</div>
+                  <div className="text-xs uppercase tracking-wide text-red-600 font-medium">
+                    Tasks
+                  </div>
+                  <div className="text-sm font-semibold text-gray-900">
+                    {test.parts?.length || 2}
+                  </div>
                 </div>
                 <div className="rounded-lg border border-red-200 bg-red-50 p-3">
-                  <div className="text-xs uppercase tracking-wide text-red-600 font-medium">Type</div>
-                  <div className="text-sm font-semibold text-gray-900">{test.type}</div>
+                  <div className="text-xs uppercase tracking-wide text-red-600 font-medium">
+                    Type
+                  </div>
+                  <div className="text-sm font-semibold text-gray-900">
+                    {test.type}
+                  </div>
                 </div>
               </div>
 
@@ -287,7 +329,9 @@ export default function WritingTestPage() {
                 <button
                   type="button"
                   className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-                  onClick={() => { if (typeof window !== 'undefined') window.history.back(); }}
+                  onClick={() => {
+                    if (typeof window !== "undefined") window.history.back();
+                  }}
                 >
                   Back
                 </button>
@@ -335,24 +379,30 @@ export default function WritingTestPage() {
         <div className="card-body flex-1 overflow-hidden p-4">
           {/* Tab Content */}
           {test.parts.map((part: TestPart, index: number) => (
-            <div 
-              key={part._id} 
-              className={`h-full ${activeTab === index ? 'block' : 'hidden'}`}
+            <div
+              key={part._id}
+              className={`h-full ${activeTab === index ? "block" : "hidden"}`}
             >
               <h2 className="text-2xl font-semibold mb-4">{part.title}</h2>
-              
+
               <div className="split-container flex relative h-[calc(100vh-250px)]">
                 {/* Left Side - Question and Instructions */}
-                <div 
+                <div
                   className="bg-base-200 p-4 rounded-lg overflow-auto"
                   style={{ width: `${panelWidths[index]}%` }}
                 >
                   <h3 className="mb-2">{part.subtitle}</h3>
 
                   <div className="prose max-w-none mb-4 border border-gray-300 rounded-lg p-4 bg-gray-50 font-semibold">
-                    {Array.isArray(part.Question) && part.Question.length > 0 ? (
+                    {Array.isArray(part.Question) &&
+                    part.Question.length > 0 ? (
                       part.Question.map((question, index) => (
-                        <p key={index} className="mb-2 whitespace-pre-line leading-relaxed italic">{question}</p>
+                        <p
+                          key={index}
+                          className="mb-2 whitespace-pre-line leading-relaxed italic"
+                        >
+                          {question}
+                        </p>
                       ))
                     ) : (
                       <p>No questions available.</p>
@@ -370,7 +420,8 @@ export default function WritingTestPage() {
                   )}
 
                   <div className="mt-6 p-4 rounded-lg">
-                    {Array.isArray(part.instruction) && part.instruction.length > 0 ? (
+                    {Array.isArray(part.instruction) &&
+                    part.instruction.length > 0 ? (
                       part.instruction.map((instruction, index) => (
                         <p key={index}>{instruction}</p>
                       ))
@@ -383,13 +434,13 @@ export default function WritingTestPage() {
                 {/* Resizer */}
                 <div
                   className={`w-1 bg-base-300 hover:bg-primary cursor-col-resize transition-colors ${
-                    isDragging && currentTaskIndex === index ? 'bg-primary' : ''
+                    isDragging && currentTaskIndex === index ? "bg-primary" : ""
                   }`}
                   onMouseDown={(e) => handleMouseDown(e, index)}
                 />
 
                 {/* Right Side - Input Area */}
-                <div 
+                <div
                   className="bg-base-200 p-4 rounded-lg overflow-hidden flex flex-col"
                   style={{ width: `${100 - panelWidths[index]}%` }}
                 >
@@ -402,14 +453,15 @@ export default function WritingTestPage() {
                   <textarea
                     className="textarea textarea-bordered w-full flex-1 resize-none"
                     placeholder="Write your response here..."
-                    value={responses[part._id] || ''}
-                    onChange={(e) => handleResponseChange(part._id, e.target.value)}
+                    value={responses[part._id] || ""}
+                    onChange={(e) =>
+                      handleResponseChange(part._id, e.target.value)
+                    }
                   ></textarea>
                 </div>
               </div>
             </div>
           ))}
-
         </div>
       </div>
 
@@ -451,7 +503,9 @@ export default function WritingTestPage() {
 
             {/* Next Button */}
             <button
-              onClick={() => setActiveTab(Math.min(test.parts.length - 1, activeTab + 1))}
+              onClick={() =>
+                setActiveTab(Math.min(test.parts.length - 1, activeTab + 1))
+              }
               disabled={activeTab === test.parts.length - 1}
               className="btn bg-red-600 hover:bg-red-700 border-0 disabled:bg-gray-400 disabled:cursor-not-allowed mx-2 text-white"
               type="button"

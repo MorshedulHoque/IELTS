@@ -2,7 +2,7 @@
 import AllWriting from "@/components/Admin/Writing/AllWriting/AllWriting";
 import { getWritingTest } from "@/services/data";
 import React, { useEffect, useState } from "react";
-import Loader from '@/components/Common/Loader';
+import Loader from "@/components/Common/Loader";
 
 const page = () => {
   const [writingData, setWritingData]: any = useState();
@@ -25,7 +25,7 @@ const page = () => {
     fetchData();
   }, []);
 
-  console.log("writing data", writingData);
+  // console.log("writing data", writingData);
 
   if (isLoading) {
     return (

@@ -2,7 +2,7 @@
 import AllSpeaking from "@/components/Admin/Speaking/AllSpeaking/AllSpeaking";
 import { getSpeakingTests } from "@/services/data";
 import React, { useEffect, useState } from "react";
-import Loader from '@/components/Common/Loader';
+import Loader from "@/components/Common/Loader";
 
 const page = () => {
   const [speakingData, setSpeakingData]: any = useState([]);
@@ -25,7 +25,7 @@ const page = () => {
     fetchData();
   }, []);
 
-  console.log("speaking data", speakingData);
+  // console.log("speaking data", speakingData);
 
   if (isLoading) {
     return (
@@ -59,10 +59,12 @@ const page = () => {
   }
   return (
     <div>
-      <AllSpeaking speakingData={speakingData} setSpeakingData={setSpeakingData} />
+      <AllSpeaking
+        speakingData={speakingData}
+        setSpeakingData={setSpeakingData}
+      />
     </div>
   );
 };
 
 export default page;
-

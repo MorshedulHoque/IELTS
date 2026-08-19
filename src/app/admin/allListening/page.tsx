@@ -2,7 +2,7 @@
 import AllListening from "@/components/Admin/Listening/AllListening/AllListening";
 import { getListeningTests } from "@/services/data";
 import React, { useEffect, useState } from "react";
-import Loader from '@/components/Common/Loader';
+import Loader from "@/components/Common/Loader";
 
 const page = () => {
   const [listeningData, setListeningData]: any = useState();
@@ -25,7 +25,7 @@ const page = () => {
     fetchData();
   }, []);
 
-  console.log("reading data", listeningData);
+  // console.log("reading data", listeningData);
 
   if (isLoading) {
     return (

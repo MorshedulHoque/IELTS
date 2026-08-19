@@ -1,7 +1,7 @@
 "use client";
-import React, { useEffect, useState } from 'react';
-import Loader from '@/components/Common/Loader';
-import { getWritingSamples } from '@/lib/contentful';
+import React, { useEffect, useState } from "react";
+import Loader from "@/components/Common/Loader";
+import { getWritingSamples } from "@/lib/contentful";
 
 const TestPage = () => {
   const [samples, setSamples] = useState<any[]>([]);
@@ -13,11 +13,11 @@ const TestPage = () => {
       try {
         setLoading(true);
         const data = await getWritingSamples();
-        console.log('Fetched samples:', data);
+        // console.log('Fetched samples:', data);
         setSamples(data);
       } catch (err) {
-        setError('Failed to load writing samples');
-        console.error('Error fetching samples:', err);
+        setError("Failed to load writing samples");
+        console.error("Error fetching samples:", err);
       } finally {
         setLoading(false);
       }
@@ -47,7 +47,7 @@ const TestPage = () => {
   return (
     <div className="min-h-screen bg-base-100 p-8">
       <h1 className="text-3xl font-bold mb-6">Contentful Test</h1>
-      
+
       <div className="mb-4">
         <p className="text-lg">Samples found: {samples.length}</p>
       </div>

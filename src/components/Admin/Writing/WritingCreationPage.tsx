@@ -36,11 +36,11 @@ const WritingCreationPage: React.FC = () => {
         ...(part.image && { image: part.image }), // Only include image if it exists
       })),
     };
-    console.log("Writing Test JSON:", JSON.stringify(formattedTest, null, 2));
+    console.log("Writing Test:", JSON.stringify(formattedTest, null, 2));
 
     try {
       const data = await submitWritingQuestions(formattedTest);
-      console.log(data.success);
+      // console.log(data.success);
       if (data.success) {
         toast.success("Test created successfully!");
         // Optionally, redirect or reset the form
@@ -95,7 +95,9 @@ const WritingCreationPage: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="form-control">
               <label className="label">
-                <span className="label-text font-semibold text-black">Test Title</span>
+                <span className="label-text font-semibold text-black">
+                  Test Title
+                </span>
               </label>
               <input
                 type="text"
@@ -109,7 +111,9 @@ const WritingCreationPage: React.FC = () => {
 
             <div className="form-control">
               <label className="label">
-                <span className="label-text font-semibold text-black">Test Type</span>
+                <span className="label-text font-semibold text-black">
+                  Test Type
+                </span>
               </label>
               <select
                 value={testData.type}
@@ -123,7 +127,9 @@ const WritingCreationPage: React.FC = () => {
 
             <div className="form-control">
               <label className="label">
-                <span className="label-text font-semibold text-black">Duration (minutes)</span>
+                <span className="label-text font-semibold text-black">
+                  Duration (minutes)
+                </span>
               </label>
               <input
                 type="number"

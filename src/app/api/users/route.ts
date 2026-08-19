@@ -45,7 +45,7 @@ export async function POST(request: Request) {
     const verificationToken = crypto.randomBytes(32).toString("hex");
     const verificationTokenExpiry = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours
 
-    console.log("🔑 Generated token:", verificationToken); // DEBUG
+    // console.log("🔑 Generated token:", verificationToken); // DEBUG
 
     const newUser = await UserModel.create({
       username,
@@ -62,7 +62,7 @@ export async function POST(request: Request) {
       verificationTokenExpiry,
     });
 
-    console.log("User created with token:", verificationToken); // Debug log
+    // console.log("User created with token:", verificationToken); // Debug log
 
     // Send verification email
     try {

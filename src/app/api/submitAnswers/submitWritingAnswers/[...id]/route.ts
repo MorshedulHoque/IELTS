@@ -8,17 +8,17 @@ export async function GET(request: Request, { params }: { params: any }) {
     const resolvedParams = await params;
 
     const ids = resolvedParams.id;
-    console.log('API Route - Received IDs:', ids);
+    // console.log('API Route - Received IDs:', ids);
 
     // If single ID is passed (submission ID)
     if (Array.isArray(ids) && ids.length === 1) {
       const submissionId = ids[0];
-      console.log('API Route - Looking for submission by ID:', submissionId);
-      
+      // console.log('API Route - Looking for submission by ID:', submissionId);
+
       const result = await SubmitAnswerModel.findById(submissionId);
-      
+
       if (!result) {
-        console.log('API Route - No submission found with ID:', submissionId);
+        // console.log('API Route - No submission found with ID:', submissionId);
         return NextResponse.json(
           {
             success: false,
@@ -28,14 +28,14 @@ export async function GET(request: Request, { params }: { params: any }) {
         );
       }
 
-      console.log('API Route - Found submission:', result._id);
+      // console.log('API Route - Found submission:', result._id);
       return NextResponse.json({ success: true, data: result });
     }
 
     // If two IDs are passed (testId and userId) - keep for backward compatibility
     if (Array.isArray(ids) && ids.length === 2) {
       const [testId, userId] = ids;
-      console.log('API Route - Parsed IDs:', { testId, userId });
+      // console.log('API Route - Parsed IDs:', { testId, userId });
 
       // Try to find the submission with more flexible matching
       let result = await SubmitAnswerModel.findOne({ testId, userId }).sort({
@@ -44,17 +44,17 @@ export async function GET(request: Request, { params }: { params: any }) {
 
       // If not found, try with string comparison
       if (!result) {
-        console.log('API Route - Not found with exact match, trying string comparison');
+        // console.log('API Route - Not found with exact match, trying string comparison');
         result = await SubmitAnswerModel.findOne({
           testId: testId.toString(),
-          userId: userId.toString()
+          userId: userId.toString(),
         }).sort({
           submittedAt: -1,
         });
       }
 
       if (!result) {
-        console.log('API Route - No data found for:', { testId, userId });
+        // console.log('API Route - No data found for:', { testId, userId });
         return NextResponse.json(
           {
             success: false,
@@ -64,11 +64,11 @@ export async function GET(request: Request, { params }: { params: any }) {
         );
       }
 
-      console.log('API Route - Found result:', result._id);
+      // console.log('API Route - Found result:', result._id);
       return NextResponse.json({ success: true, data: result });
     }
 
-    console.log('API Route - Invalid IDs format:', ids);
+    // console.log('API Route - Invalid IDs format:', ids);
     return NextResponse.json(
       { success: false, error: "Invalid ID format" },
       { status: 400 }

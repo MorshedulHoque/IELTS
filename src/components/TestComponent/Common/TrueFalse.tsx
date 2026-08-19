@@ -10,7 +10,7 @@ const TrueFalse = ({
   setAnswers,
   handleQuestionFocus,
 }: any) => {
-  console.log("True false question", question);
+  // console.log("True false question", question);
   return (
     <div>
       {/* <h5 className="font-medium mb-2">True/False/Not Given</h5> */}

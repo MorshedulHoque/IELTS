@@ -33,7 +33,7 @@ const AllListening = ({ listeningData, setListeningData }: any) => {
     );
     setShowEditModal(false);
     editListeningTest(selectedTest._id, editedTest);
-    console.log("Listening Data", listeningData);
+    // console.log("Listening Data", listeningData);
     toast.success("Listening test updated successfully");
   };
 

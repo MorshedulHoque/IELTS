@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import Loader from '@/components/Common/Loader';
+import Loader from "@/components/Common/Loader";
 import { getReadingTest } from "@/services/data";
 import AllReading from "@/components/Admin/Reading/AllReading/AllReading";
 
@@ -26,7 +26,7 @@ const page: React.FC = () => {
     fetchData();
   }, []);
 
-  console.log("reading data", readingData);
+  // console.log("reading data", readingData);
 
   if (isLoading) {
     return (

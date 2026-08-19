@@ -188,9 +188,9 @@ const ListeningTest: React.FC<any> = ({ test }) => {
     questionNumber: number,
     partIndex: number
   ) => {
-    console.log(
-      `Navigating to question ${questionNumber} in part ${partIndex}`
-    );
+    // console.log(
+    //   `Navigating to question ${questionNumber} in part ${partIndex}`
+    // );
 
     // First, change to the correct part
     setCurrentPartIndex(partIndex);
@@ -213,7 +213,7 @@ const ListeningTest: React.FC<any> = ({ test }) => {
           container.textContent?.includes("instructions")
         ) {
           questionsContainer = container;
-          console.log("Found questions container by content check");
+          // console.log("Found questions container by content check");
           break;
         }
       }
@@ -224,28 +224,28 @@ const ListeningTest: React.FC<any> = ({ test }) => {
           ".card.bg-base-100.shadow-xl.flex-1.overflow-y-auto"
         );
         if (questionsContainer) {
-          console.log("Found questions container via card classes");
+          // console.log("Found questions container via card classes");
         }
       }
 
       if (!questionsContainer) {
-        console.log("No questions container found");
+        // console.log("No questions container found");
         return;
       }
 
-      console.log("Using questions container:", questionsContainer);
+      // console.log("Using questions container:", questionsContainer);
 
       // Find the question element - first try direct ID, then look in groups
-      let questionElement = document.getElementById(
+      let questionElement: any = document.getElementById(
         `question-${questionNumber}`
       );
-      console.log(`Looking for question-${questionNumber}:`, questionElement);
+      // console.log(`Looking for question-${questionNumber}:`, questionElement);
 
       // If not found by direct ID, look for the container that contains this question number
       if (!questionElement) {
-        console.log(
-          "Direct ID not found, looking for container with this question number"
-        );
+        // console.log(
+        //   "Direct ID not found, looking for container with this question number"
+        // );
         const allQuestionContainers = questionsContainer.querySelectorAll(
           "[data-question-numbers]"
         );
@@ -254,17 +254,17 @@ const ListeningTest: React.FC<any> = ({ test }) => {
             container.getAttribute("data-question-numbers")?.split(",") || [];
           if (questionNumbers.includes(questionNumber.toString())) {
             questionElement = container as HTMLElement;
-            console.log(
-              "Found question container with question number:",
-              questionNumber
-            );
+            // console.log(
+            //   "Found question container with question number:",
+            //   questionNumber
+            // );
             break;
           }
         }
       }
 
       if (questionElement) {
-        console.log("Found question element, scrolling to it");
+        // console.log("Found question element, scrolling to it");
 
         // Check if this is a grouped question (multiple question numbers in one container)
         const questionNumbers =
@@ -274,18 +274,18 @@ const ListeningTest: React.FC<any> = ({ test }) => {
           questionNumber.toString()
         );
 
-        console.log("Question numbers in container:", questionNumbers);
-        console.log(
-          "Target question index:",
-          questionIndex,
-          "for question",
-          questionNumber
-        );
+        // console.log("Question numbers in container:", questionNumbers);
+        // console.log(
+        //   "Target question index:",
+        //   questionIndex,
+        //   "for question",
+        //   questionNumber
+        // );
 
         if (questionNumbers.length > 1 && questionIndex >= 0) {
-          console.log(
-            "This is a grouped question, trying to find specific question within group"
-          );
+          // console.log(
+          //   "This is a grouped question, trying to find specific question within group"
+          // );
 
           // Try to find the specific question within the group
           const allElements = questionElement.querySelectorAll("*");
@@ -315,16 +315,16 @@ const ListeningTest: React.FC<any> = ({ test }) => {
                 text.includes(`Question ${questionNumber}`);
               const hasExactPattern = specificPattern.test(text);
 
-              console.log("Found element with question", questionNumber, ":", {
-                hasInputs: !!hasInputs,
-                hasQuestionText,
-                textLength: text.length,
-                element: element.tagName,
-                elementRect: rect,
-                isReasonableSize,
-                hasSpecificQuestion,
-                hasExactPattern,
-              });
+              // console.log("Found element with question", questionNumber, ":", {
+              //   hasInputs: !!hasInputs,
+              //   hasQuestionText,
+              //   textLength: text.length,
+              //   element: element.tagName,
+              //   elementRect: rect,
+              //   isReasonableSize,
+              //   hasSpecificQuestion,
+              //   hasExactPattern,
+              // });
 
               if (hasInputs && hasQuestionText) {
                 // Much higher score for exact pattern match
@@ -352,24 +352,24 @@ const ListeningTest: React.FC<any> = ({ test }) => {
           if (candidates.length > 0) {
             candidates.sort((a, b) => b.score - a.score);
             targetElement = candidates[0].element;
-            console.log("Selected best candidate:", {
-              textLength: candidates[0].textLength,
-              score: candidates[0].score,
-              isReasonableSize: candidates[0].isReasonableSize,
-              hasSpecificQuestion: candidates[0].hasSpecificQuestion,
-              hasExactPattern: candidates[0].hasExactPattern,
-            });
+            // console.log("Selected best candidate:", {
+            //   textLength: candidates[0].textLength,
+            //   score: candidates[0].score,
+            //   isReasonableSize: candidates[0].isReasonableSize,
+            //   hasSpecificQuestion: candidates[0].hasSpecificQuestion,
+            //   hasExactPattern: candidates[0].hasExactPattern,
+            // });
           }
 
           if (targetElement) {
-            console.log(
-              "Scrolling to specific question element within container"
-            );
-            console.log("Target element:", targetElement);
-            console.log(
-              "Target element position:",
-              (targetElement as HTMLElement).getBoundingClientRect()
-            );
+            // console.log(
+            //   "Scrolling to specific question element within container"
+            // );
+            // console.log("Target element:", targetElement);
+            // console.log(
+            //   "Target element position:",
+            //   (targetElement as HTMLElement).getBoundingClientRect()
+            // );
 
             // Use the target element directly, but ensure it's not the group container
             let questionContainer = targetElement;
@@ -381,9 +381,9 @@ const ListeningTest: React.FC<any> = ({ test }) => {
             ).getBoundingClientRect();
             if (targetRect.height > 300) {
               // Likely the group container
-              console.log(
-                "Target element seems too large, looking for smaller child"
-              );
+              // console.log(
+              //   "Target element seems too large, looking for smaller child"
+              // );
 
               // Look for a child element that's more specific to this question
               const childElements = (
@@ -404,10 +404,10 @@ const ListeningTest: React.FC<any> = ({ test }) => {
                   )
                 ) {
                   questionContainer = child as HTMLElement;
-                  console.log(
-                    "Found smaller, more specific question container:",
-                    questionContainer
-                  );
+                  // console.log(
+                  //   "Found smaller, more specific question container:",
+                  //   questionContainer
+                  // );
                   break;
                 }
               }
@@ -419,14 +419,14 @@ const ListeningTest: React.FC<any> = ({ test }) => {
             ).getBoundingClientRect();
             const targetRelativeTop = finalTargetRect.top - containerRect.top;
 
-            console.log("Container rect:", containerRect);
-            console.log("Target rect:", finalTargetRect);
-            console.log("Relative top:", targetRelativeTop);
-            console.log("Current scroll top:", questionsContainer.scrollTop);
-            console.log(
-              "New scroll position:",
-              questionsContainer.scrollTop + targetRelativeTop - 50
-            );
+            // console.log("Container rect:", containerRect);
+            // console.log("Target rect:", finalTargetRect);
+            // console.log("Relative top:", targetRelativeTop);
+            // console.log("Current scroll top:", questionsContainer.scrollTop);
+            // console.log(
+            //   "New scroll position:",
+            //   questionsContainer.scrollTop + targetRelativeTop - 50
+            // );
 
             // Try scrollTo first
             questionsContainer.scrollTo({
@@ -452,9 +452,9 @@ const ListeningTest: React.FC<any> = ({ test }) => {
             );
 
             if (hasRadioButtons || hasCheckboxes) {
-              console.log(
-                "MCQ question detected, not focusing any input to avoid auto-selection"
-              );
+              // console.log(
+              //   "MCQ question detected, not focusing any input to avoid auto-selection"
+              // );
               return;
             }
 
@@ -464,12 +464,12 @@ const ListeningTest: React.FC<any> = ({ test }) => {
             );
             if (allInputs.length > 0) {
               const targetInput = allInputs[0];
-              console.log(
-                "Focusing input for question",
-                questionNumber,
-                ":",
-                targetInput
-              );
+              // console.log(
+              //   "Focusing input for question",
+              //   questionNumber,
+              //   ":",
+              //   targetInput
+              // );
               (targetInput as HTMLElement).focus();
 
               // For text inputs, also select the text if it exists
@@ -482,9 +482,9 @@ const ListeningTest: React.FC<any> = ({ test }) => {
             }
             return;
           } else {
-            console.log(
-              "Specific question element not found, using fallback approach"
-            );
+            // console.log(
+            //   "Specific question element not found, using fallback approach"
+            // );
             // Fallback: compute a proportional offset within the group and do a single container scroll
             const containerRect = questionsContainer.getBoundingClientRect();
             const groupRect = (
@@ -503,7 +503,7 @@ const ListeningTest: React.FC<any> = ({ test }) => {
         }
 
         // For single questions or if specific question not found in group
-        console.log("Treating as single question or fallback");
+        // console.log("Treating as single question or fallback");
         const containerRect = questionsContainer.getBoundingClientRect();
         const questionRect = questionElement.getBoundingClientRect();
         const relativeTop = questionRect.top - containerRect.top;
@@ -524,9 +524,9 @@ const ListeningTest: React.FC<any> = ({ test }) => {
           );
 
           if (hasRadioButtons || hasCheckboxes) {
-            console.log(
-              "MCQ question detected, not focusing any input to avoid auto-selection"
-            );
+            // console.log(
+            //   "MCQ question detected, not focusing any input to avoid auto-selection"
+            // );
             return;
           }
 
@@ -536,12 +536,12 @@ const ListeningTest: React.FC<any> = ({ test }) => {
           );
           if (allInputs.length > 0) {
             const targetInput = allInputs[0];
-            console.log(
-              "Focusing input for question",
-              questionNumber,
-              ":",
-              targetInput
-            );
+            // console.log(
+            //   "Focusing input for question",
+            //   questionNumber,
+            //   ":",
+            //   targetInput
+            // );
             (targetInput as HTMLElement).focus();
 
             // For text inputs, also select the text if it exists
@@ -554,14 +554,14 @@ const ListeningTest: React.FC<any> = ({ test }) => {
           }
         }, 100);
       } else {
-        console.log(
-          "Question element not found, trying to find by question number"
-        );
+        // console.log(
+        //   "Question element not found, trying to find by question number"
+        // );
         // Alternative: find by looking for the question number in the text
         const allQuestionDivs = questionsContainer.querySelectorAll(
           'div[id^="question-"]'
         );
-        console.log("All question divs found:", allQuestionDivs);
+        // console.log("All question divs found:", allQuestionDivs);
 
         // Look for the question by checking the content
         let found = false;
@@ -572,7 +572,7 @@ const ListeningTest: React.FC<any> = ({ test }) => {
             questionText.includes(`${questionNumber}.`) ||
             div.id === `question-${questionNumber}`
           ) {
-            console.log("Found question by content, scrolling to it");
+            // console.log("Found question by content, scrolling to it");
             div.scrollIntoView({
               behavior: "smooth",
               block: "start",
@@ -584,9 +584,9 @@ const ListeningTest: React.FC<any> = ({ test }) => {
 
         // If still not found, scroll to top of questions container
         if (!found) {
-          console.log(
-            "Question not found, scrolling to top of questions container"
-          );
+          // console.log(
+          //   "Question not found, scrolling to top of questions container"
+          // );
           questionsContainer.scrollTo({
             top: 0,
             behavior: "smooth",
@@ -693,8 +693,8 @@ const ListeningTest: React.FC<any> = ({ test }) => {
 
       const res = await postSubmitListeningTest(testData);
 
-      console.log("This is Test Data", testData);
-      console.log("Result", res);
+      // console.log("This is Test Data", testData);
+      // console.log("Result", res);
 
       toast.success("Submission successful!");
       router.push(`/getSubmittedListeningAnswers/${testData.testId}`);

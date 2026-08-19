@@ -57,7 +57,7 @@ const SumFillInTheBlanks = ({
     }
   };
 
-  console.log("Summary", question);
+  // console.log("Summary", question);
 
   return (
     <div>

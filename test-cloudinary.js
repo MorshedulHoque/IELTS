@@ -5,7 +5,7 @@ const cloudinary = require('cloudinary').v2;
 const fs = require('fs');
 const path = require('path');
 
-console.log('🔍 Testing Cloudinary Configuration...\n');
+// console.log('🔍 Testing Cloudinary Configuration...\n');
 
 // Manually load .env.local file
 function loadEnvFile() {
@@ -24,20 +24,20 @@ function loadEnvFile() {
         }
       }
     });
-    console.log('✅ .env.local file loaded');
+    // console.log('✅ .env.local file loaded');
   } else {
-    console.log('⚠️  .env.local file not found');
+    // console.log('⚠️  .env.local file not found');
   }
 }
 
 loadEnvFile();
 
 // Check environment variables
-console.log('\nEnvironment Variables:');
-console.log('CLOUDINARY_CLOUD_NAME:', process.env.CLOUDINARY_CLOUD_NAME ? '✅ Set' : '❌ Missing');
-console.log('CLOUDINARY_API_KEY:', process.env.CLOUDINARY_API_KEY ? '✅ Set' : '❌ Missing');
-console.log('CLOUDINARY_API_SECRET:', process.env.CLOUDINARY_API_SECRET ? '✅ Set' : '❌ Missing');
-console.log('');
+// console.log('\nEnvironment Variables:');
+// console.log('CLOUDINARY_CLOUD_NAME:', process.env.CLOUDINARY_CLOUD_NAME ? '✅ Set' : '❌ Missing');
+// console.log('CLOUDINARY_API_KEY:', process.env.CLOUDINARY_API_KEY ? '✅ Set' : '❌ Missing');
+// console.log('CLOUDINARY_API_SECRET:', process.env.CLOUDINARY_API_SECRET ? '✅ Set' : '❌ Missing');
+// console.log('');
 
 if (!process.env.CLOUDINARY_CLOUD_NAME || !process.env.CLOUDINARY_API_KEY || !process.env.CLOUDINARY_API_SECRET) {
   console.error('❌ Missing Cloudinary environment variables!');
@@ -52,24 +52,24 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-console.log('🔧 Testing Cloudinary connection...');
+// console.log('🔧 Testing Cloudinary connection...');
 
 // Test the connection by getting account info
 cloudinary.api.ping()
   .then(result => {
-    console.log('✅ Cloudinary connection successful!');
-    console.log('Response:', result);
+    // console.log('✅ Cloudinary connection successful!');
+    // console.log('Response:', result);
 
     // Test upload capabilities
-    console.log('\n🔧 Testing upload capabilities...');
+    // console.log('\n🔧 Testing upload capabilities...');
     return cloudinary.api.resources({
       type: 'upload',
       max_results: 1
     });
   })
   .then(result => {
-    console.log('✅ Upload capabilities working!');
-    console.log('Account has', result.total_count, 'resources');
+    // console.log('✅ Upload capabilities working!');
+    // console.log('Account has', result.total_count, 'resources');
   })
   .catch(error => {
     console.error('❌ Cloudinary test failed:', error.message);

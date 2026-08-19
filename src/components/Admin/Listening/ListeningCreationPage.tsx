@@ -173,11 +173,11 @@ const ListeningCreationPage = () => {
       return;
     }
 
-    console.log("Submitting test:", JSON.stringify(test, null, 2));
+    console.log("Listening test:", JSON.stringify(test, null, 2));
 
     try {
       const data = await submitListeningQuestions(JSON.stringify(test));
-      console.log(data.success);
+      // console.log("Listening test", data);
       if (data.success) {
         toast.success("Test created successfully!");
         // Reset form after successful creation

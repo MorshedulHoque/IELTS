@@ -36,17 +36,17 @@ const SubmissionPage = () => {
   const { data: session }: any = useSession();
   const [expandedRowKey, setExpandedRowKey] = useState<string | null>(null);
 
-  console.log("Submission", submission);
+  // console.log("Submission", submission);
 
-  console.log("user id", session?.user?.id);
+  // console.log("user id", session?.user?.id);
 
-  console.log(testId, "submissionId");
+  // console.log(testId, "submissionId");
 
   useEffect(() => {
     const fetchSubmission = async () => {
       try {
         const response = await getSubmitReadingTest(testId, session?.user?.id);
-        console.log("Response", response);
+        // console.log("Response", response);
 
         if (response.success) {
           // Handle array response or single object
@@ -92,7 +92,9 @@ const SubmissionPage = () => {
       <div className="mx-auto max-w-6xl px-4 py-12">
         <div className="rounded-2xl border border-gray-200 bg-white p-8 text-center shadow-sm">
           <span className="loading loading-spinner loading-md text-red-600" />
-          <p className="mt-3 text-sm font-medium text-gray-600">Loading submitted answers...</p>
+          <p className="mt-3 text-sm font-medium text-gray-600">
+            Loading submitted answers...
+          </p>
         </div>
       </div>
     );
@@ -110,7 +112,9 @@ const SubmissionPage = () => {
     return (
       <div className="mx-auto max-w-6xl px-4 py-12">
         <div className="rounded-2xl border border-gray-200 bg-white p-8 text-center shadow-sm">
-          <p className="text-sm font-medium text-gray-600">No submission data available.</p>
+          <p className="text-sm font-medium text-gray-600">
+            No submission data available.
+          </p>
         </div>
       </div>
     );
@@ -132,10 +136,15 @@ const SubmissionPage = () => {
     const qType = answer.questionType || "";
 
     // True/False/Not Given
-    if (qType.toLowerCase().includes("true") || qType.toLowerCase().includes("false")) {
+    if (
+      qType.toLowerCase().includes("true") ||
+      qType.toLowerCase().includes("false")
+    ) {
       const tfOptions = ["True", "False", "Not Given"];
       const safeUserValue = tfOptions.includes(userValue) ? userValue : "";
-      const safeCorrectValue = tfOptions.includes(correctValue) ? correctValue : "";
+      const safeCorrectValue = tfOptions.includes(correctValue)
+        ? correctValue
+        : "";
       return (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div className="form-control">
@@ -144,7 +153,11 @@ const SubmissionPage = () => {
                 Your answer
               </span>
             </div>
-            <select className="select select-bordered" disabled value={safeUserValue}>
+            <select
+              className="select select-bordered"
+              disabled
+              value={safeUserValue}
+            >
               <option value="">(not answered)</option>
               <option value="True">True</option>
               <option value="False">False</option>
@@ -223,13 +236,18 @@ const SubmissionPage = () => {
           </div>
           <div
             className={`rounded-lg p-3 border ${
-              isCorrect ? "border-success/40 bg-success/10" : "border-warning/40 bg-warning/10"
+              isCorrect
+                ? "border-success/40 bg-success/10"
+                : "border-warning/40 bg-warning/10"
             }`}
           >
             {userValue ? (
               <div className="flex flex-wrap gap-2">
                 {userValue.split(",").map((v, i) => (
-                  <span key={`${variantKey}-user-pill-${i}`} className="badge badge-sm badge-primary badge-outline">
+                  <span
+                    key={`${variantKey}-user-pill-${i}`}
+                    className="badge badge-sm badge-primary badge-outline"
+                  >
                     {v.trim()}
                   </span>
                 ))}
@@ -249,7 +267,10 @@ const SubmissionPage = () => {
             {correctValue ? (
               <div className="flex flex-wrap gap-2">
                 {correctValue.split(",").map((v, i) => (
-                  <span key={`${variantKey}-correct-pill-${i}`} className="badge badge-sm badge-success badge-outline">
+                  <span
+                    key={`${variantKey}-correct-pill-${i}`}
+                    className="badge badge-sm badge-success badge-outline"
+                  >
                     {v.trim()}
                   </span>
                 ))}
@@ -299,8 +320,12 @@ const SubmissionPage = () => {
   };
 
   const totalQuestions = submission.answers.length;
-  const correctAnswersCount = submission.answers.filter((a) => a.isCorrect).length;
-  const accuracy = totalQuestions ? Math.round((correctAnswersCount / totalQuestions) * 100) : 0;
+  const correctAnswersCount = submission.answers.filter(
+    (a) => a.isCorrect
+  ).length;
+  const accuracy = totalQuestions
+    ? Math.round((correctAnswersCount / totalQuestions) * 100)
+    : 0;
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-6 md:py-8">
@@ -321,17 +346,25 @@ const SubmissionPage = () => {
       {/* Total Score Card */}
       <div className="mb-6 grid grid-cols-1 gap-4 md:grid-cols-3">
         <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
-          <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">Total Score</p>
-          <p className="mt-2 text-2xl font-bold text-gray-900">{submission.totalScore} / 40</p>
+          <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">
+            Total Score
+          </p>
+          <p className="mt-2 text-2xl font-bold text-gray-900">
+            {submission.totalScore} / 40
+          </p>
         </div>
         <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
-          <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">Correct</p>
+          <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">
+            Correct
+          </p>
           <p className="mt-2 text-2xl font-bold text-emerald-700">
             {correctAnswersCount} / {totalQuestions}
           </p>
         </div>
         <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
-          <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">Accuracy</p>
+          <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">
+            Accuracy
+          </p>
           <p className="mt-2 text-2xl font-bold text-gray-900">{accuracy}%</p>
         </div>
       </div>
@@ -373,10 +406,18 @@ const SubmissionPage = () => {
                       aria-expanded={expandedRowKey === rowKey}
                       title="Click to reveal details"
                     >
-                      <td className="font-medium text-gray-900">{answers[0].questionGroup.join(", ")}</td>
-                      <td className="max-w-[260px] truncate text-gray-700">{selectedAnswers || "Not answered"}</td>
-                      <td className="max-w-[260px] truncate text-gray-700">{correctAnswers}</td>
-                      <td className="text-gray-600">{answers[0].questionType || "-"}</td>
+                      <td className="font-medium text-gray-900">
+                        {answers[0].questionGroup.join(", ")}
+                      </td>
+                      <td className="max-w-[260px] truncate text-gray-700">
+                        {selectedAnswers || "Not answered"}
+                      </td>
+                      <td className="max-w-[260px] truncate text-gray-700">
+                        {correctAnswers}
+                      </td>
+                      <td className="text-gray-600">
+                        {answers[0].questionType || "-"}
+                      </td>
                       <td>
                         <span
                           className={`inline-flex items-center rounded-full px-2.5 py-1 text-xs font-semibold ${
@@ -385,7 +426,9 @@ const SubmissionPage = () => {
                               : "bg-amber-50 text-amber-700"
                           }`}
                         >
-                          {isGroupCorrect ? "Correct" : `Partial (${partialCorrectness})`}
+                          {isGroupCorrect
+                            ? "Correct"
+                            : `Partial (${partialCorrectness})`}
                         </span>
                       </td>
                     </tr>
@@ -395,25 +438,38 @@ const SubmissionPage = () => {
                           <div className="m-2 rounded-xl border border-gray-200 bg-gray-50 p-4">
                             <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
                               <div className="font-semibold text-gray-900">
-                                Multiple question set ({answers[0].questionGroup.join(", ")})
+                                Multiple question set (
+                                {answers[0].questionGroup.join(", ")})
                               </div>
                               <div
                                 className={`text-sm font-semibold ${
-                                  isGroupCorrect ? "text-emerald-700" : "text-amber-700"
+                                  isGroupCorrect
+                                    ? "text-emerald-700"
+                                    : "text-amber-700"
                                 }`}
                               >
-                                {isGroupCorrect ? "Correct" : `Partial (${partialCorrectness})`}
+                                {isGroupCorrect
+                                  ? "Correct"
+                                  : `Partial (${partialCorrectness})`}
                               </div>
                             </div>
 
                             <div className="grid grid-cols-1 gap-3">
                               {answers.map((answer: Answer, idx: number) => {
-                                const perRowKey = `${rowKey}:q:${answer.questionId ?? idx}`;
+                                const perRowKey = `${rowKey}:q:${
+                                  answer.questionId ?? idx
+                                }`;
                                 return (
-                                  <div key={perRowKey} className="rounded-lg border border-gray-200 bg-white p-3">
+                                  <div
+                                    key={perRowKey}
+                                    className="rounded-lg border border-gray-200 bg-white p-3"
+                                  >
                                     <div className="flex flex-wrap gap-2 items-center justify-between mb-2">
                                       <div className="text-sm font-semibold text-gray-900">
-                                        Question {Array.isArray(answer.questionId) ? answer.questionId.join(", ") : answer.questionId}
+                                        Question{" "}
+                                        {Array.isArray(answer.questionId)
+                                          ? answer.questionId.join(", ")
+                                          : answer.questionId}
                                       </div>
                                       <span
                                         className={`inline-flex items-center rounded-full px-2.5 py-1 text-xs font-semibold ${
@@ -440,7 +496,9 @@ const SubmissionPage = () => {
 
               // For individual answers
               return answers.map((answer: any, index: any) => {
-                const rowKey = `single:${groupKey}:${answer.questionId ?? index}`;
+                const rowKey = `single:${groupKey}:${
+                  answer.questionId ?? index
+                }`;
                 return (
                   <React.Fragment key={rowKey}>
                     <tr
@@ -450,10 +508,18 @@ const SubmissionPage = () => {
                       aria-expanded={expandedRowKey === rowKey}
                       title="Click to reveal details"
                     >
-                      <td className="font-medium text-gray-900">{answer.questionId}</td>
-                      <td className="max-w-[260px] truncate text-gray-700">{answer.value || "Not answered"}</td>
-                      <td className="max-w-[260px] truncate text-gray-700">{answer.answerText as string}</td>
-                      <td className="text-gray-600">{answer.questionType || "-"}</td>
+                      <td className="font-medium text-gray-900">
+                        {answer.questionId}
+                      </td>
+                      <td className="max-w-[260px] truncate text-gray-700">
+                        {answer.value || "Not answered"}
+                      </td>
+                      <td className="max-w-[260px] truncate text-gray-700">
+                        {answer.answerText as string}
+                      </td>
+                      <td className="text-gray-600">
+                        {answer.questionType || "-"}
+                      </td>
                       <td>
                         <span
                           className={`inline-flex items-center rounded-full px-2.5 py-1 text-xs font-semibold ${
@@ -472,7 +538,8 @@ const SubmissionPage = () => {
                           <div className="m-2 rounded-xl border border-gray-200 bg-gray-50 p-4">
                             <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
                               <div className="font-semibold text-gray-900">
-                                Question {answer.questionId} - {answer.questionType || " "}
+                                Question {answer.questionId} -{" "}
+                                {answer.questionType || " "}
                               </div>
                               <span
                                 className={`inline-flex items-center rounded-full px-2.5 py-1 text-xs font-semibold ${
@@ -503,7 +570,10 @@ const SubmissionPage = () => {
           <h2 className="mb-4 text-lg font-semibold text-gray-900 md:text-xl text-center text-red-600">
             Detailed Review
           </h2>
-          <ReadingReview test={readingTest} submissionAnswers={submission.answers as any} />
+          <ReadingReview
+            test={readingTest}
+            submissionAnswers={submission.answers as any}
+          />
         </div>
       )}
     </div>

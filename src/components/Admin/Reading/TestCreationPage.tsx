@@ -195,7 +195,7 @@ const TestCreationPage: React.FC = () => {
   const removeParagraph = (passageIndex: number, paraIndex: number) => {
     const updatedParts = [...test.parts];
     const passage = updatedParts[passageIndex].passage;
-    
+
     if (Array.isArray(passage)) {
       // For type1 (array) - remove by index
       passage.splice(paraIndex, 1);
@@ -205,7 +205,7 @@ const TestCreationPage: React.FC = () => {
       const keyToRemove = keys[paraIndex];
       delete passage[keyToRemove];
     }
-    
+
     setTest({ ...test, parts: updatedParts });
   };
 

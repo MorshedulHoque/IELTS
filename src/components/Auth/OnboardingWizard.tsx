@@ -195,11 +195,11 @@ const OnboardingWizard = () => {
         const onboardingRecord = response?.data ?? null;
         const onboardingStatus = onboardingRecord?.status;
 
-        console.log("Onboarding check:", {
-          hasRecord: !!onboardingRecord,
-          status: onboardingStatus,
-          record: onboardingRecord,
-        });
+        // console.log("Onboarding check:", {
+        //   hasRecord: !!onboardingRecord,
+        //   status: onboardingStatus,
+        //   record: onboardingRecord,
+        // });
 
         // Only if onboarding is completed, redirect immediately
         // If skipped, user must see onboarding again until they submit
@@ -389,12 +389,12 @@ const OnboardingWizard = () => {
         completedAt: new Date().toISOString(),
       };
 
-      console.log("Saving onboarding data:", {
-        userId: session.user.id,
-        payload,
-      });
+      // console.log("Saving onboarding data:", {
+      //   userId: session.user.id,
+      //   payload,
+      // });
       const result = await saveOnboardingData(session.user.id, payload);
-      console.log("Onboarding save result:", result);
+      // console.log("Onboarding save result:", result);
 
       if (typeof window !== "undefined") {
         localStorage.setItem(storageKey, "completed");

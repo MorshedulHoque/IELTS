@@ -194,7 +194,7 @@ export async function getSingleReadingTest(paramsId: any) {
 
 export async function submitReadingQuestions(formData: any) {
   try {
-    console.log("Sending data to API:", formData);
+    // console.log("Sending data to API:", formData);
     const response = await axios.post(
       `${process.env.NEXT_PUBLIC_BASE_URL}/api/questions/readingQuestions`,
       formData,
@@ -204,7 +204,7 @@ export async function submitReadingQuestions(formData: any) {
         },
       }
     );
-    console.log("API Response:", response.data);
+    // console.log("API Response:", response.data);
     // return response.data;
     return {
       success: true,
@@ -385,11 +385,11 @@ export async function postSubmitWritingTest(formData: any) {
 
 export async function getSubmitWritingTest(testId: any, userId: any) {
   try {
-    console.log("Fetching writing test submission:", { testId, userId });
+    // console.log("Fetching writing test submission:", { testId, userId });
     const response = await axios.get(
       `${process.env.NEXT_PUBLIC_BASE_URL}/api/submitAnswers/submitWritingAnswers/${testId}/${userId}`
     );
-    console.log("Writing test submission response:", response.data);
+    // console.log("Writing test submission response:", response.data);
     return response.data;
   } catch (error: any) {
     console.error("Error fetching writing test submission:", error);

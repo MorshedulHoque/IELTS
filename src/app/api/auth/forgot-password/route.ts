@@ -73,7 +73,7 @@ export async function POST(request: Request) {
           </div>
         `,
       });
-      console.log("Email successfully sent to:", user.email);
+      // console.log("Email successfully sent to:", user.email);
     } catch (emailError) {
       console.error("Resend Error:", emailError);
       // Note: We don't fail the request if the email errors out,

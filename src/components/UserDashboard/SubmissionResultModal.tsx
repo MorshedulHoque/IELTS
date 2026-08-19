@@ -85,14 +85,14 @@ const SubmissionResultModal: React.FC<SubmissionResultModalProps> = ({
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    console.log(
-      "SubmissionResultModal: testId:",
-      testId,
-      "userId:",
-      userId,
-      "testType:",
-      testType
-    );
+    // console.log(
+    //   "SubmissionResultModal: testId:",
+    //   testId,
+    //   "userId:",
+    //   userId,
+    //   "testType:",
+    //   testType
+    // );
     if (!testId) {
       setError("Missing testId.");
       setLoading(false);
@@ -103,25 +103,25 @@ const SubmissionResultModal: React.FC<SubmissionResultModalProps> = ({
       try {
         let response;
         if (testType === "writing") {
-          console.log("Fetching writing test with:", { testId, userId });
+          // console.log("Fetching writing test with:", { testId, userId });
           response = await getWritingAnswersById(testId);
         } else if (testType === "speaking") {
-          console.log("Fetching speaking test with:", { testId });
+          // console.log("Fetching speaking test with:", { testId });
           response = await getSubmitSpeakingTest(testId);
         } else if (testType === "listening") {
-          console.log("Fetching speaking test with:", { testId });
+          // console.log("Fetching speaking test with:", { testId });
           response = await getListeningAnswersById(testId);
         } else {
-          console.log("Fetching reading test with:", { testId, userId });
+          // console.log("Fetching reading test with:", { testId, userId });
           response = await getReadingAnswersById(testId);
         }
 
-        console.log("API response:", response);
+        // console.log("API response:", response);
         if (response && response.success) {
           const data = Array.isArray(response.data)
             ? response.data[0]
             : response.data;
-          console.log("Submission data received:", data);
+          // console.log("Submission data received:", data);
           setSubmission(data || null);
 
           // For writing tests, fetch original test data to get images if missing
@@ -130,10 +130,10 @@ const SubmissionResultModal: React.FC<SubmissionResultModalProps> = ({
               const originalTestResponse = await getSingleWritingTest(testId);
               if (originalTestResponse && originalTestResponse.success) {
                 setOriginalTest(originalTestResponse.data);
-                console.log(
-                  "Original test data for modal:",
-                  originalTestResponse.data
-                );
+                // console.log(
+                //   "Original test data for modal:",
+                //   originalTestResponse.data
+                // );
               }
             } catch (err) {
               console.error(
@@ -162,7 +162,7 @@ const SubmissionResultModal: React.FC<SubmissionResultModalProps> = ({
     fetchSubmission();
   }, [testId, userId, testType]);
 
-  console.log("Test ID", testId);
+  // console.log("Test ID", testId);
 
   // Group answers by questionGroup and maintain order (for reading/listening)
   const groupedAnswers =

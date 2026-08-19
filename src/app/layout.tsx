@@ -21,10 +21,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-theme="light">
+    <html lang="en" data-theme="light" suppressHydrationWarning>
       <SessionWrapper>
         <body
           className={`${GeistSans.variable} ${GeistMono.variable} antialiased flex min-h-screen flex-col`}
+          suppressHydrationWarning
         >
           <ScrollToTop />
           <Navbar />

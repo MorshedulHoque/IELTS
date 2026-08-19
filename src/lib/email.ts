@@ -139,6 +139,115 @@ export async function sendVerificationEmail(
   });
 }
 
+export async function sendResetPasswordEmail(
+  email: string,
+  resetUrl: string,
+  username: string
+) {
+  const year = new Date().getFullYear();
+
+  const html = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reset Your Password</title>
+</head>
+<body style="margin:0;padding:0;background-color:#f4f6f8;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#1f2937;">
+  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:#f4f6f8;padding:32px 16px;">
+    <tr>
+      <td align="center">
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="600" style="max-width:600px;background-color:#ffffff;border-radius:12px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,0.06);">
+          <!-- Header -->
+          <tr>
+            <td style="background:linear-gradient(135deg,#dc2626 0%,#991b1b 100%);padding:32px 40px;text-align:center;">
+              <h1 style="margin:0;font-size:24px;font-weight:700;color:#ffffff;letter-spacing:-0.5px;">BandGrowth</h1>
+              <p style="margin:8px 0 0;font-size:14px;color:#fecaca;">Password Reset</p>
+            </td>
+          </tr>
+
+          <!-- Body -->
+          <tr>
+            <td style="padding:40px;">
+              <h2 style="margin:0 0 16px;font-size:22px;font-weight:600;color:#111827;">Reset your password, ${username}</h2>
+              <p style="margin:0 0 16px;font-size:16px;line-height:24px;color:#374151;">
+                You requested a password reset for your BandGrowth account. Click the button below to set a new password.
+              </p>
+
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                <tr>
+                  <td align="center" style="padding:8px 0 24px;">
+                    <a href="${resetUrl}" target="_blank" style="display:inline-block;background-color:#dc2626;color:#ffffff;font-size:16px;font-weight:600;text-decoration:none;padding:14px 32px;border-radius:8px;">
+                      Reset Password
+                    </a>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="margin:0 0 16px;font-size:14px;line-height:22px;color:#6b7280;">
+                Or copy and paste this link into your browser:
+              </p>
+              <p style="margin:0 0 24px;font-size:13px;line-height:20px;color:#dc2626;word-break:break-all;background-color:#fef2f2;padding:12px 16px;border-radius:6px;border:1px solid #fecaca;">
+                ${resetUrl}
+              </p>
+
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:#fef3c7;border-left:4px solid #f59e0b;border-radius:6px;margin:0 0 24px;">
+                <tr>
+                  <td style="padding:16px 20px;">
+                    <p style="margin:0;font-size:14px;line-height:20px;color:#78350f;">
+                      ⏰ <strong>This link expires in 1 hour.</strong> If you didn't request this, you can safely ignore this email.
+                    </p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="padding:24px 40px 32px;text-align:center;">
+              <p style="margin:0 0 8px;font-size:14px;font-weight:600;color:#111827;">BandGrowth</p>
+              <p style="margin:0 0 16px;font-size:13px;line-height:20px;color:#6b7280;">
+                Helping you achieve your dream IELTS band score.
+              </p>
+              <p style="margin:0 0 8px;font-size:12px;color:#9ca3af;">
+                <a href="${process.env.NEXT_PUBLIC_BASE_URL}/contact" style="color:#6b7280;text-decoration:underline;">Contact</a>
+                &nbsp;·&nbsp;
+                <a href="${process.env.NEXT_PUBLIC_BASE_URL}/privacy-policy" style="color:#6b7280;text-decoration:underline;">Privacy</a>
+                &nbsp;·&nbsp;
+                <a href="${process.env.NEXT_PUBLIC_BASE_URL}/terms-of-service" style="color:#6b7280;text-decoration:underline;">Terms</a>
+              </p>
+              <p style="margin:8px 0 0;font-size:12px;color:#9ca3af;">
+                © ${year} BandGrowth. All rights reserved.
+              </p>
+            </td>
+          </tr>
+        </table>
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="600" style="max-width:600px;">
+          <tr>
+            <td style="padding:16px 40px;text-align:center;">
+              <p style="margin:0;font-size:12px;color:#9ca3af;">
+                This is an automated message. Please do not reply to this email.
+              </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
+  `.trim();
+
+  await transporter.sendMail({
+    from: process.env.SMTP_FROM,
+    to: email,
+    subject: "Reset your BandGrowth password",
+    html,
+  });
+}
+
 // Resend
 
 // import { Resend } from "resend";

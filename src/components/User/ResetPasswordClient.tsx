@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { signIn } from "next-auth/react";
 
 export default function ResetPasswordClient() {
   const router = useRouter();
@@ -18,7 +17,6 @@ export default function ResetPasswordClient() {
   } | null>(null);
   const [isValidLink, setIsValidLink] = useState(true);
 
-  // If there is no token in the URL, the link is invalid
   useEffect(() => {
     if (!token) {
       setIsValidLink(false);
@@ -59,9 +57,9 @@ export default function ResetPasswordClient() {
 
       if (res.ok) {
         setMessage({ type: "success", text: data.message });
-        // Redirect to login after 2 seconds
+        // ✅ Redirect to sign-in without callbackUrl
         setTimeout(() => {
-          signIn();
+          router.push("/user/signin?reset=success");
         }, 2000);
       } else {
         setMessage({

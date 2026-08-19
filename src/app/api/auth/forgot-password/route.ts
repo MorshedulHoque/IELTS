@@ -4,11 +4,10 @@ import UserModel from "@/models/UserModel";
 import ResetTokenModel from "@/models/ResetTokenModel";
 import { NextResponse } from "next/server";
 import crypto from "crypto";
-import { Resend } from "resend";
+import { sendResetPasswordEmail } from "@/lib/email"; // adjust path
 
 export async function POST(request: Request) {
   try {
-    const resend = new Resend(process.env.RESEND_API_KEY);
     await dbConnect();
 
     const body = await request.json();
@@ -25,7 +24,7 @@ export async function POST(request: Request) {
     const user = await UserModel.findOne({ email: email.toLowerCase().trim() });
 
     if (!user) {
-      // Security: Don't reveal if the user exists
+      // Security: don't reveal existence
       return NextResponse.json(
         {
           success: true,
@@ -38,46 +37,33 @@ export async function POST(request: Request) {
     // 2. Generate secure random token
     const resetToken = crypto.randomBytes(32).toString("hex");
 
-    // 3. Set expiration (1 hour from now)
+    // 3. Expiration (1 hour)
     const expires = new Date(Date.now() + 3600 * 1000);
 
-    // 4. Save token to DB (Delete old ones first)
+    // 4. Save token (delete old ones first)
     await ResetTokenModel.deleteMany({ identifier: user.email });
     await ResetTokenModel.create({
       identifier: user.email,
       token: resetToken,
-      expires: expires,
+      expires,
     });
 
-    // 5. SEND EMAIL VIA RESEND
-    const resetUrl = `${
-      process.env.NEXTAUTH_URL || "http://localhost:3000"
-    }/user/reset-password?token=${resetToken}`;
+    // 5. Build reset URL
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+    const resetUrl = `${baseUrl}/user/reset-password?token=${resetToken}`;
 
+    // 6. Send email using Nodemailer
     try {
-      await resend.emails.send({
-        from: "onboarding@resend.dev", // Default Resend domain for testing
-        to: user.email,
-        subject: "Reset Your Password",
-        html: `
-          <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
-            <h2 style="color: #4F46E5;">Password Reset Request</h2>
-            <p>Hi ${user.username || "User"},</p>
-            <p>You requested a password reset. Click the button below to reset your password:</p>
-            <a href="${resetUrl}" style="display: inline-block; padding: 10px 20px; background-color: #4F46E5; color: #fff; text-decoration: none; border-radius: 5px;">Reset Password</a>
-            <p style="margin-top: 20px; font-size: 0.9em; color: #666;">
-              Or copy and paste this link into your browser:<br>
-              <a href="${resetUrl}" style="color: #4F46E5;">${resetUrl}</a>
-            </p>
-            <p style="margin-top: 20px; font-size: 0.8em; color: #999;">This link will expire in 1 hour.</p>
-          </div>
-        `,
-      });
-      // console.log("Email successfully sent to:", user.email);
+      await sendResetPasswordEmail(
+        user.email,
+        resetUrl,
+        user.username || "User"
+      );
+      // console.log("Reset email sent to:", user.email);
     } catch (emailError) {
-      console.error("Resend Error:", emailError);
-      // Note: We don't fail the request if the email errors out,
-      // but you might want to in production.
+      console.error("Nodemailer Error:", emailError);
+      // You may choose to fail the request if email fails,
+      // but returning success keeps it secure.
     }
 
     return NextResponse.json(

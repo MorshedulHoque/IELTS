@@ -13,7 +13,7 @@ function loadEnvFile() {
   if (fs.existsSync(envPath)) {
     const envContent = fs.readFileSync(envPath, 'utf8');
     const lines = envContent.split('\n');
-    
+
     lines.forEach(line => {
       const trimmedLine = line.trim();
       if (trimmedLine && !trimmedLine.startsWith('#')) {
@@ -59,7 +59,7 @@ cloudinary.api.ping()
   .then(result => {
     console.log('✅ Cloudinary connection successful!');
     console.log('Response:', result);
-    
+
     // Test upload capabilities
     console.log('\n🔧 Testing upload capabilities...');
     return cloudinary.api.resources({
@@ -74,7 +74,7 @@ cloudinary.api.ping()
   .catch(error => {
     console.error('❌ Cloudinary test failed:', error.message);
     console.error('Error details:', error);
-    
+
     if (error.http_code === 401) {
       console.error('\n🔍 401 Error indicates invalid credentials.');
       console.error('Please check your API Key and API Secret in .env.local');

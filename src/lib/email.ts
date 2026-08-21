@@ -34,10 +34,10 @@ export async function sendVerificationEmail(
         <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="600" style="max-width:600px;background-color:#ffffff;border-radius:12px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,0.06);">
           <!-- Header -->
           <tr>
-            <td style="background:linear-gradient(135deg,#dc2626 0%,#991b1b 100%);padding:32px 40px;text-align:center;">
+            <td style="background:linear-gradient(135deg,#dc2626 0%,#991b1b 100%);padding:12px 40px;text-align:center;">
               <h1 style="margin:0;font-size:24px;font-weight:700;color:#ffffff;letter-spacing:-0.5px;">BandGrowth</h1>
               <p style="margin:8px 0 0;font-size:14px;color:#fecaca;">Your path to IELTS success</p>
-            </td>
+            </td> 
           </tr>
 
           <!-- Body -->

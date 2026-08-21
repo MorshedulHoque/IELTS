@@ -24,13 +24,14 @@ export async function POST(request: Request) {
     const user = await UserModel.findOne({ email: email.toLowerCase().trim() });
 
     if (!user) {
-      // Security: don't reveal existence
+      // Surface this explicitly to the UI so the user gets a clear toast.
       return NextResponse.json(
         {
-          success: true,
-          message: "If that user exists, a reset link has been sent.",
+          success: false,
+          userExists: false,
+          error: "No account found with this email. Please sign up first.",
         },
-        { status: 200 }
+        { status: 404 }
       );
     }
 
@@ -67,7 +68,11 @@ export async function POST(request: Request) {
     }
 
     return NextResponse.json(
-      { success: true, message: "Reset link sent" },
+      {
+        success: true,
+        userExists: true,
+        message: "A password reset link has been sent to your email. Please check your inbox.",
+      },
       { status: 200 }
     );
   } catch (error) {

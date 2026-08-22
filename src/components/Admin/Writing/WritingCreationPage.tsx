@@ -52,6 +52,35 @@ const WritingCreationPage: React.FC = () => {
     }
   };
 
+  const downloadJSON = () => {
+    // Use the same formatting as in handleSubmit to keep consistency
+    const formattedTest = {
+      title: testData.title,
+      type: testData.type,
+      duration: testData.duration,
+      parts: testData.parts.map((part) => ({
+        title: part.title,
+        subtitle: part.subtitle,
+        Question: part.Question,
+        instruction: part.instruction,
+        ...(part.image && { image: part.image }),
+      })),
+    };
+    const json = JSON.stringify(formattedTest, null, 2);
+
+    const blob = new Blob([json], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `writing-test-${testData.title || "untitled"}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+
+    URL.revokeObjectURL(url);
+  };
+
   const handleTestChange = (field: keyof WritingTest, value: any) => {
     setTestData({ ...testData, [field]: value });
   };
@@ -167,7 +196,14 @@ const WritingCreationPage: React.FC = () => {
             ))}
           </div>
 
-          <div className="flex justify-center mt-10">
+          <div className="flex justify-center mt-10 gap-4">
+            <button
+              type="button"
+              onClick={downloadJSON}
+              className="btn btn-secondary"
+            >
+              Download JSON
+            </button>
             <button type="submit" className="btn btn-primary btn-wide">
               Create Test
             </button>

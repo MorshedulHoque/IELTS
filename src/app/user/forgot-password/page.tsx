@@ -40,7 +40,7 @@ function ForgotPasswordContent() {
   };
 
   return (
-    <div className="grid h-[calc(100dvh-4rem)] w-full place-items-center bg-gray-50 font-sans antialiased overflow-hidden px-4">
+    <div className="grid h-[100vh] w-full place-items-center bg-gray-50 font-sans antialiased overflow-hidden px-4">
       <div className="relative w-full max-w-6xl h-[min(640px,calc(100dvh-6rem))] rounded-3xl bg-white shadow-2xl overflow-hidden">
         <div className="absolute inset-0 flex">
           <div className="relative hidden md:flex w-1/2 flex-col items-center justify-center bg-gradient-to-br from-red-700 to-red-800 text-white px-10">
@@ -59,9 +59,7 @@ function ForgotPasswordContent() {
                   <span className="font-bold text-2xl">I</span>
                 </div>
               </div>
-              <h2 className="text-3xl font-bold mb-4">
-                Forgot your password?
-              </h2>
+              <h2 className="text-3xl font-bold mb-4">Forgot your password?</h2>
               <p className="text-red-100 text-sm leading-relaxed">
                 No worries — it happens. Enter the email associated with your
                 BandGrowth account and we&apos;ll send you a secure link to
@@ -147,17 +145,17 @@ function ForgotPasswordContent() {
             </div>
           </div>
         </div>
+        <ToastContainer
+          position="top-right"
+          autoClose={3500}
+          hideProgressBar
+          newestOnTop
+          closeOnClick
+          pauseOnHover
+          draggable={false}
+          theme="light"
+        />
       </div>
-      <ToastContainer
-        position="top-right"
-        autoClose={3500}
-        hideProgressBar
-        newestOnTop
-        closeOnClick
-        pauseOnHover
-        draggable={false}
-        theme="light"
-      />
     </div>
   );
 }

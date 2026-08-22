@@ -200,6 +200,27 @@ const ListeningCreationPage = () => {
     }
   };
 
+  const downloadJSON = () => {
+    // Create a copy without any non‑serializable data (if needed)
+    const dataToSave = {
+      ...test,
+      // You can remove any temporary/UI-only fields here if necessary
+    };
+    const json = JSON.stringify(dataToSave, null, 2);
+
+    const blob = new Blob([json], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `listening-test-${test.title || "untitled"}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+
+    URL.revokeObjectURL(url);
+  };
+
   return (
     <div className="max-w-6xl mx-auto p-6">
       <h1 className="text-3xl font-bold mb-6 text-center">
@@ -305,7 +326,14 @@ const ListeningCreationPage = () => {
           </button>
         </div>
 
-        <div className="flex justify-end mt-10">
+        <div className="flex justify-end mt-10 gap-4">
+          <button
+            type="button"
+            onClick={downloadJSON}
+            className="btn btn-primary"
+          >
+            Download JSON
+          </button>
           <button type="submit" className="btn btn-success">
             Create Test
           </button>

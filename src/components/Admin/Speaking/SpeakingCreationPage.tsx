@@ -2,7 +2,14 @@
 import React, { useState } from "react";
 import { submitSpeakingQuestions } from "@/services/data";
 import { toast, ToastContainer } from "react-toastify";
-import { FaPlus, FaTrash, FaSave, FaMicrophone, FaInfoCircle, FaCheck } from "react-icons/fa";
+import {
+  FaPlus,
+  FaTrash,
+  FaSave,
+  FaMicrophone,
+  FaInfoCircle,
+  FaCheck,
+} from "react-icons/fa";
 
 interface Question {
   question_number: number;
@@ -69,37 +76,41 @@ const SpeakingCreationPage: React.FC = () => {
       case "part1":
         return {
           title: "Part 1: Personal Questions",
-          description: "Add 3-5 short personal questions about familiar topics. Each question should take 1-2 minutes to answer.",
+          description:
+            "Add 3-5 short personal questions about familiar topics. Each question should take 1-2 minutes to answer.",
           recommendedQuestions: "3-5 questions",
-          questionType: "personal"
+          questionType: "personal",
         };
       case "part2":
         return {
           title: "Part 2: Cue Card",
-          description: "Add 1 cue card with preparation time. The candidate gets 1 minute to prepare and 2 minutes to speak.",
+          description:
+            "Add 1 cue card with preparation time. The candidate gets 1 minute to prepare and 2 minutes to speak.",
           recommendedQuestions: "1 question (cue card)",
-          questionType: "cue_card"
+          questionType: "cue_card",
         };
       case "part3":
         return {
           title: "Part 3: Discussion",
-          description: "Add 3-5 follow-up discussion questions that relate to the Part 2 topic. Each question should take 1-2 minutes.",
+          description:
+            "Add 3-5 follow-up discussion questions that relate to the Part 2 topic. Each question should take 1-2 minutes.",
           recommendedQuestions: "3-5 questions",
-          questionType: "discussion"
+          questionType: "discussion",
         };
       case "full_test":
         return {
           title: "Full Test: Complete IELTS Speaking",
-          description: "Add questions for all three parts: Part 1 (3-5 questions), Part 2 (1 cue card), Part 3 (3-5 questions).",
+          description:
+            "Add questions for all three parts: Part 1 (3-5 questions), Part 2 (1 cue card), Part 3 (3-5 questions).",
           recommendedQuestions: "7-11 questions total",
-          questionType: "personal"
+          questionType: "personal",
         };
       default:
         return {
           title: "Speaking Test",
           description: "Add questions for your speaking test.",
           recommendedQuestions: "Multiple questions",
-          questionType: "personal"
+          questionType: "personal",
         };
     }
   };
@@ -112,9 +123,9 @@ const SpeakingCreationPage: React.FC = () => {
 
   // Update question type when test type changes
   React.useEffect(() => {
-    setCurrentQuestion(prev => ({
+    setCurrentQuestion((prev) => ({
       ...prev,
-      question_type: guidance.questionType as any
+      question_type: guidance.questionType as any,
     }));
   }, [test.type]);
 
@@ -132,7 +143,9 @@ const SpeakingCreationPage: React.FC = () => {
   };
 
   const addQuestion = () => {
-    const hasCueCard = test.questions.some((q) => q.question_type === "cue_card");
+    const hasCueCard = test.questions.some(
+      (q) => q.question_type === "cue_card"
+    );
 
     if (currentQuestion.question_type === "cue_card") {
       if (!cueTitle.trim()) {
@@ -181,9 +194,9 @@ const SpeakingCreationPage: React.FC = () => {
     if (currentQuestion.question_type === "cue_card") {
       const points = cuePoints
         .split(/\r?\n/)
-        .map(p => p.trim())
+        .map((p) => p.trim())
         .filter(Boolean)
-        .map(p => `- ${p}`)
+        .map((p) => `- ${p}`)
         .join("\n");
 
       builtQuestion = `${cueTitle.trim()}\n\nYou should say:\n${points}`;
@@ -198,13 +211,18 @@ const SpeakingCreationPage: React.FC = () => {
     setTest({
       ...test,
       questions: [...test.questions, newQuestion],
-      total_duration: test.total_duration + newQuestion.speaking_time + (newQuestion.preparation_time || 0),
+      total_duration:
+        test.total_duration +
+        newQuestion.speaking_time +
+        (newQuestion.preparation_time || 0),
     });
 
     // Reset form for next question
     resetQuestionForm();
 
-    toast.success(`Question ${newQuestion.question_number} added successfully! Add another question or create the test.`);
+    toast.success(
+      `Question ${newQuestion.question_number} added successfully! Add another question or create the test.`
+    );
   };
 
   const removeQuestion = (index: number) => {
@@ -223,10 +241,10 @@ const SpeakingCreationPage: React.FC = () => {
     // Update question numbers and reset form
     const renumberedQuestions = updatedQuestions.map((q, i) => ({
       ...q,
-      question_number: i + 1
+      question_number: i + 1,
     }));
 
-    setTest(prev => ({
+    setTest((prev) => ({
       ...prev,
       questions: renumberedQuestions,
       total_duration: totalDuration,
@@ -255,17 +273,21 @@ const SpeakingCreationPage: React.FC = () => {
     }
 
     if (test.type === "part1" && test.questions.length < 3) {
-      toast.warning("Part 1 typically has 3-5 questions. Consider adding more questions.");
+      toast.warning(
+        "Part 1 typically has 3-5 questions. Consider adding more questions."
+      );
     }
 
     if (test.type === "part3" && test.questions.length < 3) {
-      toast.warning("Part 3 typically has 3-5 questions. Consider adding more questions.");
+      toast.warning(
+        "Part 3 typically has 3-5 questions. Consider adding more questions."
+      );
     }
 
     try {
       await submitSpeakingQuestions(test);
       toast.success("Speaking test created successfully!");
-      
+
       // Reset form
       setTest({
         title: "",
@@ -280,6 +302,23 @@ const SpeakingCreationPage: React.FC = () => {
       console.error("Error creating speaking test:", error);
       toast.error("Failed to create speaking test");
     }
+  };
+
+  const downloadJSON = () => {
+    // Use the current test state directly (no need to format differently)
+    const json = JSON.stringify(test, null, 2);
+
+    const blob = new Blob([json], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `speaking-test-${test.title || "untitled"}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+
+    URL.revokeObjectURL(url);
   };
 
   return (
@@ -326,7 +365,9 @@ const SpeakingCreationPage: React.FC = () => {
                 <select
                   className="select select-bordered"
                   value={test.type}
-                  onChange={(e) => setTest({ ...test, type: e.target.value as any })}
+                  onChange={(e) =>
+                    setTest({ ...test, type: e.target.value as any })
+                  }
                 >
                   {testTypes.map((type) => (
                     <option key={type.value} value={type.value}>
@@ -343,7 +384,9 @@ const SpeakingCreationPage: React.FC = () => {
                 <select
                   className="select select-bordered"
                   value={test.difficulty}
-                  onChange={(e) => setTest({ ...test, difficulty: e.target.value as any })}
+                  onChange={(e) =>
+                    setTest({ ...test, difficulty: e.target.value as any })
+                  }
                 >
                   {difficulties.map((diff) => (
                     <option key={diff.value} value={diff.value}>
@@ -355,7 +398,9 @@ const SpeakingCreationPage: React.FC = () => {
 
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text font-semibold">Total Duration (minutes)</span>
+                  <span className="label-text font-semibold">
+                    Total Duration (minutes)
+                  </span>
                 </label>
                 <input
                   type="number"
@@ -368,13 +413,17 @@ const SpeakingCreationPage: React.FC = () => {
 
             <div className="form-control mb-8">
               <label className="label">
-                <span className="label-text font-semibold">Description (Optional)</span>
+                <span className="label-text font-semibold">
+                  Description (Optional)
+                </span>
               </label>
               <textarea
                 placeholder="Enter test description"
                 className="textarea textarea-bordered h-24"
                 value={test.description}
-                onChange={(e) => setTest({ ...test, description: e.target.value })}
+                onChange={(e) =>
+                  setTest({ ...test, description: e.target.value })
+                }
               />
             </div>
 
@@ -393,15 +442,19 @@ const SpeakingCreationPage: React.FC = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                   <div className="form-control">
                     <label className="label">
-                      <span className="label-text font-semibold">Question Type</span>
+                      <span className="label-text font-semibold">
+                        Question Type
+                      </span>
                     </label>
                     <select
                       className="select select-bordered"
                       value={currentQuestion.question_type}
-                      onChange={(e) => setCurrentQuestion({ 
-                        ...currentQuestion, 
-                        question_type: e.target.value as any 
-                      })}
+                      onChange={(e) =>
+                        setCurrentQuestion({
+                          ...currentQuestion,
+                          question_type: e.target.value as any,
+                        })
+                      }
                     >
                       {questionTypes.map((type) => (
                         <option key={type.value} value={type.value}>
@@ -413,7 +466,9 @@ const SpeakingCreationPage: React.FC = () => {
 
                   <div className="form-control">
                     <label className="label">
-                      <span className="label-text font-semibold">Speaking Time (minutes)</span>
+                      <span className="label-text font-semibold">
+                        Speaking Time (minutes)
+                      </span>
                     </label>
                     <input
                       type="number"
@@ -421,10 +476,12 @@ const SpeakingCreationPage: React.FC = () => {
                       max="5"
                       className="input input-bordered"
                       value={currentQuestion.speaking_time}
-                      onChange={(e) => setCurrentQuestion({ 
-                        ...currentQuestion, 
-                        speaking_time: parseInt(e.target.value) 
-                      })}
+                      onChange={(e) =>
+                        setCurrentQuestion({
+                          ...currentQuestion,
+                          speaking_time: parseInt(e.target.value),
+                        })
+                      }
                     />
                   </div>
                 </div>
@@ -432,7 +489,9 @@ const SpeakingCreationPage: React.FC = () => {
                 {currentQuestion.question_type === "cue_card" && (
                   <div className="form-control mb-4">
                     <label className="label">
-                      <span className="label-text font-semibold">Preparation Time (minutes)</span>
+                      <span className="label-text font-semibold">
+                        Preparation Time (minutes)
+                      </span>
                     </label>
                     <input
                       type="number"
@@ -440,10 +499,12 @@ const SpeakingCreationPage: React.FC = () => {
                       max="2"
                       className="input input-bordered"
                       value={currentQuestion.preparation_time || 0}
-                      onChange={(e) => setCurrentQuestion({ 
-                        ...currentQuestion, 
-                        preparation_time: parseInt(e.target.value) 
-                      })}
+                      onChange={(e) =>
+                        setCurrentQuestion({
+                          ...currentQuestion,
+                          preparation_time: parseInt(e.target.value),
+                        })
+                      }
                     />
                   </div>
                 )}
@@ -457,10 +518,12 @@ const SpeakingCreationPage: React.FC = () => {
                       placeholder="Enter the question"
                       className="textarea textarea-bordered h-32"
                       value={currentQuestion.question}
-                      onChange={(e) => setCurrentQuestion({ 
-                        ...currentQuestion, 
-                        question: e.target.value 
-                      })}
+                      onChange={(e) =>
+                        setCurrentQuestion({
+                          ...currentQuestion,
+                          question: e.target.value,
+                        })
+                      }
                     />
                   </div>
                 )}
@@ -469,7 +532,9 @@ const SpeakingCreationPage: React.FC = () => {
                   <div className="grid grid-cols-1 gap-4 mb-4">
                     <div className="form-control">
                       <label className="label">
-                        <span className="label-text font-semibold">Cue Card Title / Topic</span>
+                        <span className="label-text font-semibold">
+                          Cue Card Title / Topic
+                        </span>
                       </label>
                       <input
                         type="text"
@@ -482,16 +547,22 @@ const SpeakingCreationPage: React.FC = () => {
 
                     <div className="form-control">
                       <label className="label">
-                        <span className="label-text font-semibold">Cue Card Bullet Points (one per line)</span>
+                        <span className="label-text font-semibold">
+                          Cue Card Bullet Points (one per line)
+                        </span>
                       </label>
                       <textarea
-                        placeholder={"Who he/she is\nWhat he/she does\nWhy he/she chose this career\nHow you feel about him/her"}
+                        placeholder={
+                          "Who he/she is\nWhat he/she does\nWhy he/she chose this career\nHow you feel about him/her"
+                        }
                         className="textarea textarea-bordered h-32"
                         value={cuePoints}
                         onChange={(e) => setCuePoints(e.target.value)}
                       />
                       <label className="label">
-                        <span className="label-text-alt text-gray-500">We will format this as a cue card with bullets.</span>
+                        <span className="label-text-alt text-gray-500">
+                          We will format this as a cue card with bullets.
+                        </span>
                       </label>
                     </div>
                   </div>
@@ -499,16 +570,20 @@ const SpeakingCreationPage: React.FC = () => {
 
                 <div className="form-control mb-4">
                   <label className="label">
-                    <span className="label-text font-semibold">Instructions (Optional)</span>
+                    <span className="label-text font-semibold">
+                      Instructions (Optional)
+                    </span>
                   </label>
                   <textarea
                     placeholder="Enter instructions for the candidate"
                     className="textarea textarea-bordered h-20"
                     value={currentQuestion.instructions}
-                    onChange={(e) => setCurrentQuestion({ 
-                      ...currentQuestion, 
-                      instructions: e.target.value 
-                    })}
+                    onChange={(e) =>
+                      setCurrentQuestion({
+                        ...currentQuestion,
+                        instructions: e.target.value,
+                      })
+                    }
                   />
                 </div>
 
@@ -524,7 +599,18 @@ const SpeakingCreationPage: React.FC = () => {
                     <FaPlus className="h-4 w-4 mr-2" />
                     Add Question
                   </button>
-                  
+
+                  {/* New Download JSON button */}
+                  <button
+                    type="button"
+                    onClick={downloadJSON}
+                    className="btn btn-secondary"
+                    disabled={test.questions.length === 0} // optional: only enable if there are questions
+                  >
+                    <FaSave className="h-4 w-4 mr-2" />
+                    Download JSON
+                  </button>
+
                   {test.questions.length > 0 && (
                     <button
                       onClick={handleSubmit}
@@ -548,11 +634,12 @@ const SpeakingCreationPage: React.FC = () => {
                     {test.type === "part2" && test.questions.length === 1 && (
                       <span className="badge badge-success ml-2">Complete</span>
                     )}
-                    {(test.type === "part1" || test.type === "part3") && test.questions.length >= 3 && (
-                      <span className="badge badge-success ml-2">Good</span>
-                    )}
+                    {(test.type === "part1" || test.type === "part3") &&
+                      test.questions.length >= 3 && (
+                        <span className="badge badge-success ml-2">Good</span>
+                      )}
                   </h2>
-                  
+
                   <div className="space-y-4">
                     {test.questions.map((question, index) => (
                       <div key={index} className="card bg-base-100">
@@ -568,20 +655,29 @@ const SpeakingCreationPage: React.FC = () => {
                               <FaTrash className="h-4 w-4" />
                             </button>
                           </div>
-                          
+
                           <div className="flex gap-2 mb-2">
-                            <span className="badge badge-primary">{question.question_type}</span>
-                            <span className="badge badge-secondary">{question.speaking_time} min</span>
+                            <span className="badge badge-primary">
+                              {question.question_type}
+                            </span>
+                            <span className="badge badge-secondary">
+                              {question.speaking_time} min
+                            </span>
                             {question.preparation_time && (
-                              <span className="badge badge-accent">{question.preparation_time} min prep</span>
+                              <span className="badge badge-accent">
+                                {question.preparation_time} min prep
+                              </span>
                             )}
                           </div>
-                          
-                          <p className="text-gray-700 mb-2 whitespace-pre-line">{question.question}</p>
-                          
+
+                          <p className="text-gray-700 mb-2 whitespace-pre-line">
+                            {question.question}
+                          </p>
+
                           {question.instructions && (
                             <p className="text-sm text-gray-500">
-                              <strong>Instructions:</strong> {question.instructions}
+                              <strong>Instructions:</strong>{" "}
+                              {question.instructions}
                             </p>
                           )}
                         </div>
@@ -599,4 +695,4 @@ const SpeakingCreationPage: React.FC = () => {
   );
 };
 
-export default SpeakingCreationPage; 
+export default SpeakingCreationPage;

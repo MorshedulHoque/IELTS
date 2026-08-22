@@ -178,6 +178,27 @@ const TestCreationPage: React.FC = () => {
     setAnswers(updatedAnswers);
   };
 
+  const downloadJSON = () => {
+    // Clean the test data (same as used for submission)
+    const cleaned = cleanTestData(test);
+    const json = JSON.stringify(cleaned, null, 2);
+
+    // Create a Blob with the JSON string
+    const blob = new Blob([json], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+
+    // Create a temporary anchor element and trigger the download
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `test-${test.title || "untitled"}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+
+    // Clean up the URL object
+    URL.revokeObjectURL(url);
+  };
+
   const addParagraph = (passageIndex: number) => {
     const updatedParts = [...test.parts];
     const passage = updatedParts[passageIndex].passage;
@@ -940,6 +961,13 @@ const TestCreationPage: React.FC = () => {
         className="btn btn-success btn-md text-white"
       >
         Submit
+      </button>
+
+      <button
+        onClick={downloadJSON}
+        className="btn btn-primary text-white mx-2"
+      >
+        Download JSON
       </button>
       <ToastContainer position="top-right" />
     </div>

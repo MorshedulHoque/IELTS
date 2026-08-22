@@ -240,8 +240,14 @@ const AuthAnimated: React.FC<AuthAnimatedProps> = ({
   };
 
   return (
-    <div className="grid h-[calc(100dvh-4rem)] w-full place-items-center bg-gray-50 font-sans antialiased overflow-hidden px-4">
-      <div className="relative w-full max-w-6xl h-[min(640px,calc(100dvh-6rem))] rounded-3xl bg-white shadow-2xl overflow-hidden">
+    <div className="relative grid h-[calc(100dvh-4rem)] w-full place-items-center overflow-hidden bg-gradient-to-br from-rose-50 via-white to-slate-100 font-sans antialiased px-4">
+      {/* Decorative background layers */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-0">
+        <div className="absolute -top-32 -left-32 h-96 w-96 rounded-full bg-rose-300/30 blur-3xl" />
+        <div className="absolute -bottom-32 -right-32 h-[28rem] w-[28rem] rounded-full bg-red-200/30 blur-3xl" />
+        <div className="absolute top-1/3 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-amber-200/20 blur-3xl" />
+      </div>
+      <div className="relative z-10 flex w-full max-w-6xl h-[min(640px,calc(100dvh-6rem))] rounded-3xl bg-white shadow-2xl ring-1 ring-slate-900/5 overflow-hidden">
         {/* Sliding track */}
         <div
           className="absolute inset-0 flex transition-transform duration-500 ease-out"

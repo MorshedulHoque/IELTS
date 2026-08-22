@@ -40,7 +40,7 @@ function ForgotPasswordContent() {
   };
 
   return (
-    <div className="grid h-[100vh] w-full place-items-center bg-gray-50 font-sans antialiased overflow-hidden px-4">
+    <div className="grid h-[100vh] w-full place-items-center bg-gradient-to-br from-rose-50 via-white to-slate-100 font-sans antialiased overflow-hidden px-4">
       <div className="relative w-full max-w-6xl h-[min(640px,calc(100dvh-6rem))] rounded-3xl bg-white shadow-2xl overflow-hidden">
         <div className="absolute inset-0 flex">
           <div className="relative hidden md:flex w-1/2 flex-col items-center justify-center bg-gradient-to-br from-red-700 to-red-800 text-white px-10">

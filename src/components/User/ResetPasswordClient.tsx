@@ -78,7 +78,7 @@ export default function ResetPasswordClient() {
   };
 
   return (
-    <div className="grid h-[calc(100dvh-4rem)] w-full place-items-center bg-gray-50 font-sans antialiased overflow-hidden px-4">
+    <div className="grid h-[calc(100dvh-4rem)] w-full place-items-center bg-gradient-to-br from-rose-50 via-white to-slate-100 font-sans antialiased overflow-hidden px-4">
       <div className="relative w-full max-w-6xl h-[min(640px,calc(100dvh-6rem))] rounded-3xl bg-white shadow-2xl overflow-hidden">
         <div className="absolute inset-0 flex">
           {/* Branding panel (left) */}

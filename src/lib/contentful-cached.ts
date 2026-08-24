@@ -4,6 +4,8 @@ import { unstable_cache } from "next/cache";
 import {
   getBlogPostBySlug,
   getBlogPosts,
+  getLearnPostBySlug,
+  getLearnPosts,
   getWritingSampleBySlug,
   getWritingSamples,
 } from "@/lib/contentful";
@@ -47,6 +49,28 @@ export function getCachedWritingSampleBySlug(slug: string) {
     {
       revalidate: CONTENTFUL_REVALIDATE_SECONDS,
       tags: ["contentful-writing-list", `contentful-writing:${slug}`],
+    },
+  )();
+}
+
+export function getCachedLearnPosts(learnType?: string) {
+  return unstable_cache(
+    () => getLearnPosts(learnType),
+    ["contentful", "learn", "list", learnType ?? "all"],
+    {
+      revalidate: CONTENTFUL_REVALIDATE_SECONDS,
+      tags: ["contentful-learn-list"],
+    },
+  )();
+}
+
+export function getCachedLearnPostBySlug(slug: string) {
+  return unstable_cache(
+    () => getLearnPostBySlug(slug),
+    ["contentful", "learn", "slug", slug],
+    {
+      revalidate: CONTENTFUL_REVALIDATE_SECONDS,
+      tags: ["contentful-learn-list", `contentful-learn:${slug}`],
     },
   )();
 }

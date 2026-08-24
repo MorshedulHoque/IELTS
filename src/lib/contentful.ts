@@ -198,6 +198,88 @@ export const getWritingSamples = async (): Promise<WritingSample[]> => {
   }
 };
 
+export interface LearnPost {
+  sys: {
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+  };
+  fields: {
+    title: string;
+    slug: string;
+    image?: {
+      fields: {
+        file: {
+          url: string;
+          details: {
+            image: {
+              width: number;
+              height: number;
+            };
+          };
+        };
+      };
+    };
+    blogText: {
+      content: Array<{
+        data: {};
+        content: Array<{
+          data: {};
+          marks: Array<{ type: string }>;
+          value: string;
+          nodeType: string;
+        }>;
+        nodeType: string;
+      }>;
+    };
+    date: string;
+    learnType: string; // "IELTS Guide" | "Reading" | "Listening" | "Writing" | "Speaking"
+  };
+}
+
+export const LEARN_TYPES = [
+  "IELTS Guide",
+  "Reading",
+  "Listening",
+  "Writing",
+  "Speaking",
+] as const;
+export type LearnType = (typeof LEARN_TYPES)[number];
+
+export const getLearnPosts = async (
+  learnType?: string
+): Promise<LearnPost[]> => {
+  try {
+    const response = await getContentfulClient().getEntries({
+      content_type: "learn",
+      ...(learnType ? { "fields.learnType": learnType } : {}),
+      order: ["-fields.date"],
+    });
+
+    return response.items as unknown as LearnPost[];
+  } catch (error) {
+    console.error("Error fetching learn posts:", error);
+    return [];
+  }
+};
+
+export const getLearnPostBySlug = async (
+  slug: string
+): Promise<LearnPost | null> => {
+  try {
+    const response = await getContentfulClient().getEntries({
+      content_type: "learn",
+      "fields.slug": slug,
+      limit: 1,
+    });
+
+    return (response.items[0] as unknown as LearnPost) || null;
+  } catch (error) {
+    console.error("Error fetching learn post:", error);
+    return null;
+  }
+};
+
 export const getWritingSampleBySlug = async (
   slug: string
 ): Promise<WritingSample | null> => {

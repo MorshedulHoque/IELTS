@@ -135,7 +135,54 @@ const WritingSamplesPage = ({ initialSamples }: Props) => {
       </div> */}
 
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Header */}
+        <div className="mb-8 text-center">
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-2">
+            Writing Samples
+          </h1>
+          <p className="text-gray-600 max-w-2xl mx-auto">
+            Explore IELTS Writing Task 1 and Task 2 sample questions with model
+            answers to sharpen your writing skills.
+          </p>
+        </div>
+
+        {/* Filter pills */}
+        <div className="mb-8">
+          <div className="flex flex-wrap gap-2 justify-center">
+            <button
+              onClick={() => handleTaskSelect("all")}
+              className={`px-5 py-2.5 rounded-full font-semibold shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5 ${
+                selectedTask === "all"
+                  ? "bg-red-600 text-white"
+                  : "bg-white text-red-600 border-2 border-red-600 hover:bg-red-50"
+              }`}
+            >
+              All
+            </button>
+            <button
+              onClick={() => handleTaskSelect("task1")}
+              className={`px-5 py-2.5 rounded-full font-semibold shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5 ${
+                selectedTask === "task1"
+                  ? "bg-red-600 text-white"
+                  : "bg-white text-red-600 border-2 border-red-600 hover:bg-red-50"
+              }`}
+            >
+              Task 1
+            </button>
+            <button
+              onClick={() => handleTaskSelect("task2")}
+              className={`px-5 py-2.5 rounded-full font-semibold shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5 ${
+                selectedTask === "task2"
+                  ? "bg-red-600 text-white"
+                  : "bg-white text-red-600 border-2 border-red-600 hover:bg-red-50"
+              }`}
+            >
+              Task 2
+            </button>
+          </div>
+        </div>
+
         {/* Filter Section */}
         <div className="mb-6">
           {/* <div className="text-center mb-8">
@@ -256,14 +303,18 @@ const WritingSamplesPage = ({ initialSamples }: Props) => {
               >
                 {/* Image */}
                 {sample.fields.image && (
-                  <div className="relative overflow-hidden">
+                  <Link
+                    href={`/writing-samples/${sample.fields.slug}`}
+                    className="block relative overflow-hidden"
+                    aria-label={sample.fields.question}
+                  >
                     <img
                       src={`https:${sample.fields.image.fields.file.url}`}
                       alt={sample.fields.question}
                       className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-                  </div>
+                  </Link>
                 )}
 
                 <div className="p-6">

@@ -62,14 +62,18 @@ const BlogClient: React.FC<Props> = ({ initialPosts }) => {
                 className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 overflow-hidden border border-gray-100 flex flex-col"
               >
                 {post.fields.featuredImage && (
-                  <div className="relative overflow-hidden">
+                  <Link
+                    href={`/blog/${post.fields.slug}`}
+                    className="block relative overflow-hidden"
+                    aria-label={post.fields.title}
+                  >
                     <img
                       src={`https:${post.fields.featuredImage.fields.file.url}`}
                       alt={post.fields.title}
                       className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/25 to-transparent" />
-                  </div>
+                  </Link>
                 )}
 
                 <div className="p-6 flex flex-col flex-1">
